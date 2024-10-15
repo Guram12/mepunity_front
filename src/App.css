@@ -1,42 +1,132 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.shpash_screen_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Ensure it takes the full width */
+  height: 100vh;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.main_logo_svg {
+  width: 100%;
+  height: auto;
+  max-width: 600px; /* Adjust max-width as needed */
 }
 
-@keyframes logo-spin {
+.logo_m,
+.logo_e,
+.logo_p {
+  stroke-width: 0;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+  transform-origin: center; /* Set the transform origin to the center */
+  animation-delay: 1s; /* Add a 1-second delay before animation starts */
+}
+
+.logo_m {
+  fill: #6f2865;
+  animation-name: moveM;
+  transform: translate(-143px, 50px); /* Set initial position */
+}
+
+.logo_e {
+  fill: #cc2031;
+  animation-name: moveE;
+  transform: translate(-130px, 160px) rotate(45deg); /* Set initial position */
+}
+
+.logo_p {
+  fill: #084f98;
+  animation-name: moveP;
+  transform: translate(70px, 50px); /* Set initial position */
+}
+
+.logo_unity {
+  fill: aliceblue;
+}
+
+@keyframes moveM {
   from {
-    transform: rotate(0deg);
+    transform: translate(-143px, 50px);
   }
   to {
-    transform: rotate(360deg);
+    transform: translate(0, 0);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@keyframes moveE {
+  from {
+    transform: translate(-130px, 160px) rotate(45deg);
+  }
+  to {
+    transform: translate(0, 0);
   }
 }
 
-.card {
-  padding: 2em;
+@keyframes moveP {
+  from {
+    transform: translate(70px, 50px);
+  }
+  to {
+    transform: translate(0, 0);
+  }
 }
 
-.read-the-docs {
-  color: #888;
+
+.logo_unity {
+  fill: aliceblue;
+  opacity: 0; /* Initially hide the letters */
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  transform:none !important;
+}
+
+
+.first {
+  animation-name: fadeIn;
+  animation-delay: 2s;
+}
+
+.second {
+  animation-name: fadeIn;
+  animation-delay: 2.3s;
+}
+
+.third {
+  animation-name: fadeIn;
+  animation-delay: 2.6s;
+}
+
+.fourth {
+  animation-name: fadeIn;
+  animation-delay: 2.9s;
+}
+
+.fivth {
+  animation-name: fadeIn;
+  animation-delay: 3.2s;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.path-animation {
+  animation: fadeIn 2s ease-in-out forwards;
 }
