@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import "../styles/Projects.css";
+import React, { useEffect, useState } from 'react';
 import pdf_image from "../assets/prf_image.png";
 import simple_pdf from '../assets/simplepdf_image.png';
-import "../styles/Projects.css"
+import axios from 'axios';
+import { baseURL } from '../App';
 
 
 
@@ -30,10 +32,39 @@ const fireEmergencyProjectData: Project_Data_Types[] = [
 
 ];
 
+// title = models.CharField(max_length=250)
+// file = models.FileField(upload_to='projects/files/')
+// fileSize  = models.CharField(max_length=250 , blank=True , null=True)
+// image = models.ImageField(upload_to='projects/images/')
+
+interface New_project_data_Types {
+  title: string;
+  file: string;
+  fileSize: string;
+  image: string;
+}
+
 const Projects: React.FC = () => {
   const [showDownloadWindow, setShowDownloadWindow] = useState<boolean>(false);
   const [selectedProject, setSelectedProject] = useState<Project_Data_Types | null>(null);
   const [animationClass, setAnimationClass] = useState<string>('');
+  const [NewProjects, setNewProjects] = useState<New_project_data_Types[] | null>(null);
+
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get(`${baseURL}/api/projects/`)
+      console.log(response.data)
+      setNewProjects(response.data)
+    }
+    fetchData();
+  }, [])
+
+
+
+
+
 
   const handleDownloadClick = (project: Project_Data_Types) => {
     setSelectedProject(project);
@@ -57,6 +88,14 @@ const Projects: React.FC = () => {
 
   return (
     <div className='main_project_containet'>
+
+      {NewProjects && NewProjects.map((project, index) => (
+        <div key={index} >
+          <p>{project.title}</p>
+          <img src={project.image} alt="" />
+        </div>
+      ))}
+
       <h1 className='project_header'>ELECTRICITY</h1>
       {showDownloadWindow && selectedProject && (
         <div className={`download_window_container ${animationClass}`}>
