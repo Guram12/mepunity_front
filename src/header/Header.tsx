@@ -27,6 +27,14 @@ const Header: React.FC = () => {
         </svg>
       </div>
       <div className='header_button_container'>
+        <Link to="/login">
+          <button className='header_button'>Login</button>
+        </Link>
+
+        <Link to="/register">
+          <button className='header_button'>Register</button>
+        </Link>
+
         <Link to="/">
           <button className='header_button'>Home</button>
         </Link>

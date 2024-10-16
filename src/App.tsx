@@ -4,21 +4,25 @@ import MainPage from './components/MainPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './header/Header';
 import Projects from './components/Projects';
+import Login from './auth/Login';
+import Register from './auth/Register';
 
 
+const baseURL = 'http://127.0.0.1:8000'
 
-
-
+export { baseURL }
 
 
 const App: React.FC = () => {
   const [showSplashScreen, setShowSplashScreen] = useState<boolean>(true);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+
 
 
   useEffect(() => {
     setTimeout(() => {
       setShowSplashScreen(false)
-    }, 4500);
+    }, 50);
   })
 
 
@@ -62,10 +66,14 @@ const App: React.FC = () => {
   return (
     <Router>
       <Header />
+      <div style={{ width: "100%", height: "100px" }} >
+      </div>
       <Routes>
+        <Route path="/login" element={<Login  setIsAuthenticated={setIsAuthenticated}/>} />
+        <Route path="/register" element={<Register />} />
         <Route path="/" element={<MainPage />} />
         <Route path="/projects" element={<Projects />} />
-        
+
 
       </Routes>
     </Router>
