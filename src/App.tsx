@@ -30,7 +30,10 @@ const App: React.FC = () => {
   const [showSplashScreen, setShowSplashScreen] = useState<boolean>(true);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [profileData, setProfileData] = useState<ProfileData | null>(null);
-  const [continueWithoutRegistering, setContinueWithoutRegistering] = useState<boolean>(false);
+
+  const saved_login_status = localStorage.getItem('login_status');
+  const login_status  = saved_login_status === "true";
+  const [continueWithoutRegistering, setContinueWithoutRegistering] = useState<boolean>(login_status);
 
 
 
@@ -69,8 +72,8 @@ const App: React.FC = () => {
 
 
   useEffect(() => {
-    console.log("isAuthenticated", isAuthenticated)
-  }, [isAuthenticated])
+    console.log("continueWithoutRegistering", continueWithoutRegistering)
+  }, [continueWithoutRegistering])
 
 
   if (showSplashScreen) {
@@ -113,11 +116,14 @@ const App: React.FC = () => {
       <div>
         <Router>
           <Routes>
-            <Route path="/" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+            <Route path="/" element={<Login
+              setIsAuthenticated={setIsAuthenticated}
+              setContinueWithoutRegistering={setContinueWithoutRegistering}
+
+            />} />
             <Route path="/register" element={<Register />} />
           </Routes>
         </Router>
-        <button onClick={() => setContinueWithoutRegistering(true)}>Continue without registering</button>
       </div>
     )
   }

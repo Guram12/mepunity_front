@@ -21,6 +21,7 @@ const Header: React.FC<HeaderProps> = ({ profileData, isAuthenticated, setContin
   const handleLogout = () => {
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
+    localStorage.setItem("login_status", "false");
     window.location.reload();
   }
 
@@ -50,7 +51,7 @@ const Header: React.FC<HeaderProps> = ({ profileData, isAuthenticated, setContin
       </div>
       <div className='header_button_container'>
 
-        <Link to="/home">
+        <Link to="/">
           <button className='header_button'>Home</button>
         </Link>
 
@@ -68,7 +69,7 @@ const Header: React.FC<HeaderProps> = ({ profileData, isAuthenticated, setContin
         {!isAuthenticated && (
           <>
             <Link to="/">
-              <button  onClick={handle_Login_Logout_Click} className='header_button'>Login</button>
+              <button onClick={handle_Login_Logout_Click} className='header_button'>Login</button>
             </Link>
 
             {/* <Link to="/register">
