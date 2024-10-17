@@ -72,8 +72,8 @@ const App: React.FC = () => {
 
 
   useEffect(() => {
-    console.log("continueWithoutRegistering", continueWithoutRegistering)
-  }, [continueWithoutRegistering])
+    console.log("profileData", profileData)
+  }, [profileData])
 
 
   if (showSplashScreen) {

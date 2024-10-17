@@ -15,6 +15,8 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+
 
   const navigate = useNavigate();
 
@@ -27,7 +29,6 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
         email,
         password,
       });
-      console.log("profile  data ", response.data)
       localStorage.setItem('access_token', response.data.access);
       localStorage.setItem('refresh_token', response.data.refresh);
       localStorage.setItem("login_status", "true");
@@ -81,11 +82,21 @@ const handle_without_register_click = () => {
           <div>
             <label>Password:</label>
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+          </div>
+          <div>
+            <label>
+              <input
+                type="checkbox"
+                checked={showPassword}
+                onChange={() => setShowPassword(!showPassword)}
+              />
+              Show Password
+            </label>
           </div>
           {error && <p>{error}</p>}
           <button type="submit">Login</button>

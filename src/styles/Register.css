@@ -1,0 +1,41 @@
+
+
+
+
+.register_parent_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.register_company_logo{
+  width: 100px;
+}
+
+.register_child_container{
+  border: 1px solid #e1e1e1;
+  width: 400px;
+  height: 500px;
+  padding: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
