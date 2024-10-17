@@ -1,10 +1,32 @@
 import React from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
+import { ProfileData } from '../App';
+import default_profile_image from "../assets/default.jpg"
+
+
+interface HeaderProps {
+  profileData: ProfileData | null,
+  isAuthenticated: boolean,
+  setContinueWithoutRegistering: (continueWithoutRegistering: boolean) => void
+
+}
 
 
 
-const Header: React.FC = () => {
+const Header: React.FC<HeaderProps> = ({ profileData, isAuthenticated, setContinueWithoutRegistering }) => {
+
+
+
+  const handleLogout = () => {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    window.location.reload();
+  }
+
+  const handle_Login_Logout_Click = () => {
+    setContinueWithoutRegistering(false)
+  }
 
 
   return (
@@ -27,15 +49,8 @@ const Header: React.FC = () => {
         </svg>
       </div>
       <div className='header_button_container'>
-        <Link to="/login">
-          <button className='header_button'>Login</button>
-        </Link>
 
-        <Link to="/register">
-          <button className='header_button'>Register</button>
-        </Link>
-
-        <Link to="/">
+        <Link to="/home">
           <button className='header_button'>Home</button>
         </Link>
 
@@ -50,6 +65,20 @@ const Header: React.FC = () => {
         <Link to="/contact">
           <button className='header_button'>Contact</button>
         </Link>
+        {!isAuthenticated && (
+          <>
+            <Link to="/">
+              <button  onClick={handle_Login_Logout_Click} className='header_button'>Login</button>
+            </Link>
+
+            {/* <Link to="/register">
+              <button className='header_button'>Register</button>
+            </Link> */}
+          </>
+        )}
+        <img src={profileData ? profileData.image : default_profile_image} alt="profile picture" style={{ width: "40px" }} className='profile_picture' />
+        <button onClick={handleLogout} className='header_button logout_button'>Log Out</button>
+
       </div>
     </div>
   );

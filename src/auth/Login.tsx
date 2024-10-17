@@ -8,7 +8,7 @@ interface LoginProps {
 }
 
 
-const Login: React.FC<LoginProps> = ({setIsAuthenticated}) => {
+const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
@@ -24,16 +24,22 @@ const Login: React.FC<LoginProps> = ({setIsAuthenticated}) => {
         email,
         password,
       });
-      console.log(response.data)
+      console.log("profile  data ", response.data)
       localStorage.setItem('access_token', response.data.access);
       localStorage.setItem('refresh_token', response.data.refresh);
 
       setIsAuthenticated(true);
-      navigate('/projects');
+      navigate('/');
     } catch (err) {
       setError('Invalid email or password');
     }
   };
+
+
+  const handleRegister = () => {
+    navigate('/register')
+  }
+
 
   return (
     <div>
@@ -60,6 +66,7 @@ const Login: React.FC<LoginProps> = ({setIsAuthenticated}) => {
         {error && <p>{error}</p>}
         <button type="submit">Login</button>
       </form>
+      <button onClick={handleRegister} >No Account? Register</button>
     </div>
   );
 };

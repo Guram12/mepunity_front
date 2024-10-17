@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { baseURL } from '../App';
 import { AxiosError } from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 
 const Register: React.FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -11,6 +11,9 @@ const Register: React.FC = () => {
   const [password2, setPassword2] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [success, setSuccess] = useState<string>('');
+
+  const navigate = useNavigate();
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault(); // Prevent default form submission
@@ -46,6 +49,12 @@ const Register: React.FC = () => {
       }
     }
   };
+
+
+  const handleLogin = () => {
+    navigate('/')
+  }
+
 
   return (
     <div>
@@ -91,6 +100,7 @@ const Register: React.FC = () => {
         {success && <p style={{ color: 'green' }}>{success}</p>}
         <button type="submit">Register</button>
       </form>
+      <button  onClick={handleLogin} >Go To Login</button>
     </div>
   );
 };
