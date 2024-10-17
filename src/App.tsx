@@ -6,6 +6,8 @@ import Header from './header/Header';
 import Projects from './components/Projects';
 import Login from './auth/Login';
 import Register from './auth/Register';
+import axios from 'axios';
+// import { Location } from 'react-router-dom';
 
 
 const baseURL = 'http://127.0.0.1:8000'
@@ -13,9 +15,26 @@ const baseURL = 'http://127.0.0.1:8000'
 export { baseURL }
 
 
+
+export interface ProfileData {
+  discount: number;
+  email: string;
+  full_name: string;
+  id: number;
+  image: string;
+  is_email_verified: boolean;
+  phone_number: string;
+}
+
 const App: React.FC = () => {
   const [showSplashScreen, setShowSplashScreen] = useState<boolean>(true);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [profileData, setProfileData] = useState<ProfileData | null>(null);
+
+  const saved_login_status = localStorage.getItem('login_status');
+  const login_status  = saved_login_status === "true";
+  const [continueWithoutRegistering, setContinueWithoutRegistering] = useState<boolean>(login_status);
+
 
 
 
@@ -23,8 +42,38 @@ const App: React.FC = () => {
     setTimeout(() => {
       setShowSplashScreen(false)
     }, 50);
-  })
+  }, [])
 
+
+
+  // fetch profile data
+  useEffect(() => {
+    const token: string | null = localStorage.getItem('access_token')
+    if (token) {
+      try {
+        const fetchprofile = async () => {
+          const response = await axios.get(`${baseURL}/auth/profile/`, {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          })
+          console.log(response.data)
+          setProfileData(response.data)
+
+        }
+        fetchprofile()
+      } catch (error) {
+        console.error("Error while retrieving profile data", error)
+      }
+
+    }
+
+  }, [isAuthenticated])
+
+
+  useEffect(() => {
+    console.log("profileData", profileData)
+  }, [profileData])
 
 
   if (showSplashScreen) {
@@ -62,22 +111,35 @@ const App: React.FC = () => {
     )
   }
 
+  if (!isAuthenticated && !continueWithoutRegistering) {
+    return (
+      <div>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Login
+              setIsAuthenticated={setIsAuthenticated}
+              setContinueWithoutRegistering={setContinueWithoutRegistering}
+
+            />} />
+            <Route path="/register" element={<Register />} />
+          </Routes>
+        </Router>
+      </div>
+    )
+  }
 
   return (
     <Router>
-      <Header />
-      <div style={{ width: "100%", height: "100px" }} >
-      </div>
+      <Header profileData={profileData} isAuthenticated={isAuthenticated} setContinueWithoutRegistering={setContinueWithoutRegistering} />
+      <div style={{ width: "100%", height: "100px" }}></div>
       <Routes>
-        <Route path="/login" element={<Login  setIsAuthenticated={setIsAuthenticated}/>} />
-        <Route path="/register" element={<Register />} />
         <Route path="/" element={<MainPage />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/projects" element={<Projects />} />
-
-
       </Routes>
     </Router>
   )
 }
+
 
 export default App
