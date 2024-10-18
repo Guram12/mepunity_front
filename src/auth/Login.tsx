@@ -16,6 +16,7 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [isGoogleLoggedIn, setIsGoogleLoggedIn] = useState<boolean>(false);
 
 
   const navigate = useNavigate();
@@ -67,43 +68,53 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
           <path className="cls-4" d="M519.63,693.84h25l-43.06,107.27h-25l16.32-34.97-29.16-72.29h26.14l15.03,44.72,14.73-44.72Z" />
         </g>
       </svg>
-      <div className='Login_child_container' >
-        <h2>Login</h2>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label>Email:</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <label>Password:</label>
-            <input
-              type={showPassword ? 'text' : 'password'}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <label>
-              <input
-                type="checkbox"
-                checked={showPassword}
-                onChange={() => setShowPassword(!showPassword)}
-              />
-              Show Password
-            </label>
-          </div>
-          {error && <p>{error}</p>}
-          <button type="submit">Login</button>
-        </form>
-        <button onClick={handleRegister} >No Account? Register</button>
 
-        <GoogleSignUp setIsAuthenticated={setIsAuthenticated} />
+
+      <div className='Login_child_container' >
+        {!isGoogleLoggedIn && (
+          <div>
+            <h2>Login</h2>
+            <form onSubmit={handleSubmit}>
+              <div>
+                <label>Email:</label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <div>
+                <label>Password:</label>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </div>
+              <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={showPassword}
+                    onChange={() => setShowPassword(!showPassword)}
+                  />
+                  Show Password
+                </label>
+              </div>
+              {error && <p>{error}</p>}
+              <button type="submit">Login</button>
+            </form>
+            <button onClick={handleRegister} >No Account? Register</button>
+          </div>
+        )}
+
+        <GoogleSignUp
+          setIsAuthenticated={setIsAuthenticated}
+          setIsGoogleLoggedIn={setIsGoogleLoggedIn}
+          isGoogleLoggedIn={isGoogleLoggedIn}
+        />
         <button onClick={handle_without_register_click}>Continue without registering</button>
       </div>
     </div>
