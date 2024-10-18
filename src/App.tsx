@@ -49,6 +49,7 @@ const App: React.FC = () => {
   // fetch profile data
   useEffect(() => {
     const token: string | null = localStorage.getItem('access_token')
+    
     if (token) {
       try {
         const fetchprofile = async () => {
