@@ -77,8 +77,19 @@ const Header: React.FC<HeaderProps> = ({ profileData, isAuthenticated, setContin
             </Link> */}
           </>
         )}
-        <img src={profileData ? profileData.image : default_profile_image} alt="profile picture" style={{ width: "40px" }} className='profile_picture' />
-        <button onClick={handleLogout} className='header_button logout_button'>Log Out</button>
+
+        <h1  className='discount' >Discount: {profileData?.discount} % </h1>
+
+        <div className='header_profile_data_parent_container' >
+          <div className='header_profile_data_child_container' >
+            <p className='header_profile_data_p' > {profileData ? profileData.username : "Guest"}</p>
+            <p className='header_profile_data_p' > {profileData ? profileData.company : ""}</p>
+          </div>
+          <img src={profileData ? profileData.image : default_profile_image} alt="profile picture" style={{ width: "40px" }} className='profile_picture' />
+        </div>
+        {isAuthenticated && (
+          <button onClick={handleLogout} className='header_button logout_button'>Log Out</button>
+        )}
 
       </div>
     </div>

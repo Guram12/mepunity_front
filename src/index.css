@@ -1,21 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Noto+Serif+Georgian:wght@100..900&display=swap');
-
-html {
-  margin: 0;
-  top: 0;
-  /* background-color: #fffefe; */
-  background-color: #121212;
-  color: #E4E4E4;
-}
+/* @import url('https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
 
 
-body {
-  margin: 0;
-  font-family: "Anton", sans-serif;
 
-}
-
-/* scrollbar.css */
 
 /* For WebKit browsers (Chrome, Safari) */
 ::-webkit-scrollbar {
@@ -40,3 +27,24 @@ body {
   scrollbar-width: thin; /* Make the scrollbar thinner */
   scrollbar-color: #121212 #979797; /* Thumb color and track color */
 }
+
+
+html {
+  margin: 0;
+  top: 0;
+  /* background-color: #fffefe; */
+  background-color: #121212;
+  color: #E4E4E4;
+}
+
+
+body {
+  margin: 0;
+  font-family: "Lexend", sans-serif;
+  font-optical-sizing: auto;
+
+  font-weight: 200;
+  font-style: normal;
+}
+
+
