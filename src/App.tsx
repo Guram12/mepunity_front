@@ -15,16 +15,29 @@ const baseURL = 'http://127.0.0.1:8000'
 export { baseURL }
 
 
+// company
+// discount
+// email
+// id
+// image
+// is_email_verified
+// phone_number
+// username
 
 export interface ProfileData {
-  discount: number;
+  company: string;
+  discount: string;
   email: string;
-  full_name: string;
   id: number;
   image: string;
   is_email_verified: boolean;
   phone_number: string;
+  username: string;
 }
+
+
+
+
 
 const App: React.FC = () => {
   const [showSplashScreen, setShowSplashScreen] = useState<boolean>(true);
@@ -32,10 +45,11 @@ const App: React.FC = () => {
   const [profileData, setProfileData] = useState<ProfileData | null>(null);
 
   const saved_login_status = localStorage.getItem('login_status');
-  const login_status  = saved_login_status === "true";
+  const login_status = saved_login_status === "true";
   const [continueWithoutRegistering, setContinueWithoutRegistering] = useState<boolean>(login_status);
 
-
+  const accessToken: string | null = localStorage.getItem('access_token');
+  const refreshToken: string | null = localStorage.getItem('refresh_token');
 
 
   useEffect(() => {
@@ -46,19 +60,18 @@ const App: React.FC = () => {
 
 
 
-  // fetch profile data
+  //======================================== fetch profile data ==================================================
   useEffect(() => {
-    const token: string | null = localStorage.getItem('access_token')
-    
-    if (token) {
+
+    if (accessToken) {
       try {
         const fetchprofile = async () => {
           const response = await axios.get(`${baseURL}/auth/profile/`, {
             headers: {
-              Authorization: `Bearer ${token}`
+              Authorization: `Bearer ${accessToken}`
             }
           })
-          console.log(response.data)
+          console.log("profile data from app",response.data)
           setProfileData(response.data)
 
         }
@@ -69,12 +82,63 @@ const App: React.FC = () => {
 
     }
 
-  }, [isAuthenticated])
+  }, [isAuthenticated, accessToken , refreshToken])
 
 
-  useEffect(() => {
-    console.log("profileData", profileData)
-  }, [profileData])
+// =================================  validate tokens on website load ==================================
+
+
+
+const validateTokens = async () => {
+
+  if (accessToken) {
+    try {
+      const response = await axios.post(`${baseURL}/auth/token/verify/`, {
+        token: accessToken,
+      });
+      return response.status === 200;
+    } catch (error) {
+      console.error('Access token is invalid', error);
+    }
+  }
+
+  if (refreshToken) {
+    try {
+      const response = await axios.post(`${baseURL}/auth/token/refresh/`, {
+        refresh: refreshToken,
+      });
+      localStorage.setItem('access_token', response.data.access);
+      return true;
+    } catch (error) {
+      console.error('Refresh token is invalid', error);
+    }
+  }
+
+  return false;
+};
+
+// --------------------------------------------------------------------------------------------------------
+useEffect(() => {
+  const checkAuthentication = async () => {
+    const isValid = await validateTokens();
+    if (isValid) {
+      setIsAuthenticated(true);
+    }
+  };
+
+  checkAuthentication();
+}, []);
+
+// ========================================================================================================
+
+
+
+
+
+
+  // useEffect(() => {
+  //   console.log("profileData", profileData)
+  // }, [profileData])
 
 
   if (showSplashScreen) {
