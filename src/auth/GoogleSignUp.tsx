@@ -12,13 +12,13 @@ interface GoogleOuthProps {
 }
 
 interface ProfileData {
-  username : string;
-  company : string;
-  phone_number : string;
+  username: string;
+  company: string;
+  phone_number: string;
 }
 
 
-const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated , setIsGoogleLoggedIn, isGoogleLoggedIn}) => {
+const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoogleLoggedIn, isGoogleLoggedIn }) => {
   const [profileData, setProfileData] = useState<ProfileData>({
     username: '',
     phone_number: '',
@@ -46,8 +46,10 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated , setIsGoo
           },
         });
         localStorage.setItem('user_id', profileResponse.data.id);
+        if (profileResponse.data.username | profileResponse.data.company | profileResponse.data.phone_number) {
+          setIsAuthenticated(true);
+        }
         setIsGoogleLoggedIn(true);
-        // setIsAuthenticated(true);
       }
     } catch (error: any) {
       console.error('Error during Google login:', error.response);
@@ -79,7 +81,7 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated , setIsGoo
     }
   };
 
-  
+
   return (
     <div>
       {!isGoogleLoggedIn && (
