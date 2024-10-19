@@ -3,7 +3,6 @@ import { ProfileData } from "../App"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { baseURL } from "../App"
-import { div } from "framer-motion/client"
 
 interface CalculateProps {
   profileData: ProfileData | null,
