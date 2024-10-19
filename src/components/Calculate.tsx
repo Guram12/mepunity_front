@@ -21,6 +21,8 @@ const Calculate: React.FC<CalculateProps> = (isAuthenticated) => {
   const [markedItems, setMarkedItems] = useState<boolean[]>(Array(12).fill(false));
   const [projectServices, setProjectServices] = useState<ProjectServicesType[] | null>([]);
   const [markedServiceCount, setMarkedServiceCount] = useState<number>(0);
+  const [square_meter, setSquare_meter] = useState<number>(0);
+
 
 
 
@@ -59,7 +61,7 @@ const Calculate: React.FC<CalculateProps> = (isAuthenticated) => {
   const electricalServices = filterServicesByType("electrical");
   const mechanicalServices = filterServicesByType("mechanical");
   const plumbingServices = filterServicesByType("plumbing");
-  
+
   // ===============================================================================================================
   // ============================== count  marked service number ===================================================
 
@@ -131,8 +133,13 @@ const Calculate: React.FC<CalculateProps> = (isAuthenticated) => {
       </div>
 
       <div className="calculation_container">
-        <input type="text" />
-        <button>გამოთვლა</button>
+        <h3>ფართობი (m²) </h3>
+        <input
+          className="square_meter_input"
+          placeholder="შეიყვანეთ ფართობი"
+          type="number"
+        />
+        <button className="calculate_button" > <span className="calculate_span" >გამოთვლა</span> </button>
       </div>
     </div>
   );
