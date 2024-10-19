@@ -9,7 +9,7 @@ import Register from './auth/Register';
 import axios from 'axios';
 import FileUpload from './components/FileUpload';
 import About from './components/About'; 
-
+import Calculate from './components/Calculate';
 
 
 export const baseURL = 'http://127.0.0.1:8000'
@@ -64,7 +64,7 @@ const App: React.FC = () => {
               Authorization: `Bearer ${accessToken}`
             }
           })
-          console.log("profile data from app",response.data)
+          // console.log("profile data from app",response.data)
           setProfileData(response.data)
 
         }
@@ -194,6 +194,7 @@ useEffect(() => {
         <Route path="/" element={<MainPage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About />} />
+        <Route path="/price-calculation" element={<Calculate  profileData={profileData} isAuthenticated={isAuthenticated} />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/upload-file" element={<FileUpload />} />
       </Routes>
