@@ -3,6 +3,7 @@ import { ProfileData } from "../App"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { baseURL } from "../App"
+import { div } from "framer-motion/client"
 
 interface CalculateProps {
   profileData: ProfileData | null,
@@ -17,11 +18,13 @@ interface ProjectServicesType {
   price_per_sqm: string
 }
 
-const Calculate: React.FC<CalculateProps> = (isAuthenticated) => {
+const Calculate: React.FC<CalculateProps> = (profileData, isAuthenticated) => {
   const [markedItems, setMarkedItems] = useState<boolean[]>(Array(12).fill(false));
   const [projectServices, setProjectServices] = useState<ProjectServicesType[] | null>([]);
   const [markedServiceCount, setMarkedServiceCount] = useState<number>(0);
-  const [square_meter, setSquare_meter] = useState<number>(0);
+  const [square_meter, setSquare_meter] = useState<number | null>(null);
+  const [fullPrice, setFullPrice] = useState<number | null>(null);
+
 
 
 
@@ -78,10 +81,29 @@ const Calculate: React.FC<CalculateProps> = (isAuthenticated) => {
 
   useEffect(() => {
     console.log("markedServiceCount", markedServiceCount)
-  }, [markedServiceCount])
+    console.log("fullPrice", fullPrice)
+
+  }, [fullPrice, markedServiceCount])
 
 
-
+  const calculate_full_price = () => {
+    if (isAuthenticated) {
+      if (profileData) {
+        const discount = Number(profileData.profileData?.discount)
+        let full_price = 0;
+        for (let i = 0; i < markedItems.length; i++) {
+          if (markedItems[i]) {
+            const service = projectServices?.[i];
+            if (service && square_meter) {
+              full_price += Number(service.price_per_sqm) * square_meter;
+            }
+          }
+        }
+        const full_price_with_discount = full_price - Number(full_price * discount / 100)
+        setFullPrice(full_price_with_discount)
+      }
+    }
+  }
 
 
 
@@ -138,8 +160,16 @@ const Calculate: React.FC<CalculateProps> = (isAuthenticated) => {
           className="square_meter_input"
           placeholder="შეიყვანეთ ფართობი"
           type="number"
+          value={square_meter ?? ''}
+          onChange={(e) => setSquare_meter(Number(e.target.value))}
+          onClick={calculate_full_price}
         />
-        <button className="calculate_button" > <span className="calculate_span" >გამოთვლა</span> </button>
+        <button className="calculate_button"  > <span className="calculate_span" >გამოთვლა</span> </button>
+          {fullPrice && (
+            <div className="full_price_container">
+              <h3>სრული ფასი: {fullPrice} ₾</h3>
+            </div>
+          )}
       </div>
     </div>
   );
