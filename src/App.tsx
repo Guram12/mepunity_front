@@ -7,22 +7,15 @@ import Projects from './components/Projects';
 import Login from './auth/Login';
 import Register from './auth/Register';
 import axios from 'axios';
-// import { Location } from 'react-router-dom';
 import FileUpload from './components/FileUpload';
-
-const baseURL = 'http://127.0.0.1:8000'
-
-export { baseURL }
+import About from './components/About'; 
 
 
-// company
-// discount
-// email
-// id
-// image
-// is_email_verified
-// phone_number
-// username
+
+export const baseURL = 'http://127.0.0.1:8000'
+
+
+
 
 export interface ProfileData {
   company: string;
@@ -200,6 +193,7 @@ useEffect(() => {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/about" element={<About />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/upload-file" element={<FileUpload />} />
       </Routes>

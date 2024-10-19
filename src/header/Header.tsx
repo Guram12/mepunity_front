@@ -63,9 +63,9 @@ const Header: React.FC<HeaderProps> = ({ profileData, isAuthenticated, setContin
           <button className='header_button'>About</button>
         </Link>
 
-        <Link to="/contact">
+        {/* <Link to="/contact">
           <button className='header_button'>Contact</button>
-        </Link>
+        </Link> */}
 
         <Link to="/upload-file">
           <button className='header_button'>Upload File</button>
