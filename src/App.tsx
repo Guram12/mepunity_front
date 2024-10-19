@@ -8,7 +8,7 @@ import Login from './auth/Login';
 import Register from './auth/Register';
 import axios from 'axios';
 // import { Location } from 'react-router-dom';
-
+import FileUpload from './components/FileUpload';
 
 const baseURL = 'http://127.0.0.1:8000'
 
@@ -201,6 +201,7 @@ useEffect(() => {
         <Route path="/" element={<MainPage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/upload-file" element={<FileUpload />} />
       </Routes>
     </Router>
   )
