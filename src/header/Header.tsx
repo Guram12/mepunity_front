@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { ProfileData } from '../App';
 import default_profile_image from "../assets/default.jpg"
 
-
 interface HeaderProps {
   profileData: ProfileData | null,
   isAuthenticated: boolean,
@@ -22,6 +21,7 @@ const Header: React.FC<HeaderProps> = ({ profileData, isAuthenticated, setContin
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
     localStorage.setItem("login_status", "false");
+    window.location.replace("/");
     window.location.reload();
   }
 
@@ -63,9 +63,14 @@ const Header: React.FC<HeaderProps> = ({ profileData, isAuthenticated, setContin
           <button className='header_button'>About</button>
         </Link>
 
-        <Link to="/contact">
-          <button className='header_button'>Contact</button>
+        <Link to="/price-calculation">
+          <button className='header_button'>Capculate Price</button>
         </Link>
+
+        <Link to="/upload-file">
+          <button className='header_button'>Upload File</button>
+        </Link>
+
         {!isAuthenticated && (
           <>
             <Link to="/">
@@ -77,8 +82,9 @@ const Header: React.FC<HeaderProps> = ({ profileData, isAuthenticated, setContin
             </Link> */}
           </>
         )}
-
-        <h1  className='discount' >Discount: {profileData?.discount} % </h1>
+        {isAuthenticated && (
+          <h1 className='discount' >Discount: {profileData?.discount} % </h1>
+        )}
 
         <div className='header_profile_data_parent_container' >
           <div className='header_profile_data_child_container' >
