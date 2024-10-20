@@ -189,7 +189,7 @@ useEffect(() => {
   return (
     <Router>
       <Header profileData={profileData} isAuthenticated={isAuthenticated} setContinueWithoutRegistering={setContinueWithoutRegistering} />
-      <div style={{ width: "100%", height: "100px" }}></div>
+      <div style={{ width: "100%", height: "80px" }}></div>
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/register" element={<Register />} />

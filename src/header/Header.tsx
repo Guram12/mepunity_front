@@ -22,7 +22,6 @@ const Header: React.FC<HeaderProps> = ({ profileData, isAuthenticated, setContin
     localStorage.removeItem('refresh_token');
     localStorage.setItem("login_status", "false");
     window.location.replace("/");
-    window.location.reload();
   }
 
   const handle_Login_Logout_Click = () => {
