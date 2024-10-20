@@ -32,10 +32,13 @@ const fireEmergencyProjectData: Project_Data_Types[] = [
 
 ];
 
-// title = models.CharField(max_length=250)
-// file = models.FileField(upload_to='projects/files/')
-// fileSize  = models.CharField(max_length=250 , blank=True , null=True)
-// image = models.ImageField(upload_to='projects/images/')
+
+//  dasaxeleba proeqtis 
+//  proeqtis poto 
+// desqription 
+
+
+
 
 interface New_project_data_Types {
   title: string;

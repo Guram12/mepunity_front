@@ -94,7 +94,7 @@ input[type="number"] {
   outline: none;
   cursor: pointer;
   border: none;
-  padding: 0.9rem 2rem;
+  padding: 0.5rem 1rem;
   margin: 0;
   font-family: inherit;
   font-size: inherit;
@@ -107,6 +107,7 @@ input[type="number"] {
   overflow: hidden;
   background:  rgb(22, 92, 59);
   color: ghostwhite;
+  margin-right: 30px;
  }
  
  .calculate_button .calculate_span {
@@ -139,3 +140,18 @@ input[type="number"] {
   transform: translate3d(100%, 0, 0);
  }
  
+
+
+ .warning_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: tomato;
+ }
+
+
+ .clear{
+  background: tomato !important;
+  border: 1px solid tomato !important;
+ }
