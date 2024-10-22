@@ -126,14 +126,6 @@ useEffect(() => {
 
 
 
-
-
-
-  // useEffect(() => {
-  //   console.log("profileData", profileData)
-  // }, [profileData])
-
-
   if (showSplashScreen) {
     return (
       <div className='shpash_screen_container' >

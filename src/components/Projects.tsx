@@ -33,12 +33,6 @@ const fireEmergencyProjectData: Project_Data_Types[] = [
 ];
 
 
-//  dasaxeleba proeqtis 
-//  proeqtis poto 
-// desqription 
-
-
-
 
 interface New_project_data_Types {
   title: string;
