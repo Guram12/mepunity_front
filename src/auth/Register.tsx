@@ -21,7 +21,7 @@ const Register: React.FC = () => {
 
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
     try {
       const response = await axios.post(`${baseURL}/auth/registration/`, {
         username,
@@ -35,7 +35,7 @@ const Register: React.FC = () => {
       if (response.data.detail === 'Verification e-mail sent.') {
         console.log('Registration successful! Please check your email to confirm your account.');
         setSuccess('Registration successful! Please check your email to confirm your account.');
-        setError("");  // Clear any previous errors
+        setError(""); 
         setTimeout(() => {
           navigate('/')
         }, 4000);

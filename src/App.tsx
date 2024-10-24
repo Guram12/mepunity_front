@@ -15,8 +15,6 @@ import Calculate from './components/Calculate';
 export const baseURL = 'http://127.0.0.1:8000'
 
 
-
-
 export interface ProfileData {
   company: string;
   discount: string;
@@ -27,8 +25,6 @@ export interface ProfileData {
   phone_number: string;
   username: string;
 }
-
-
 
 
 
