@@ -44,7 +44,6 @@ const Register: React.FC = () => {
       const axiosError = error as AxiosError;
       if (axiosError.response && axiosError.response.data) {
         const errorData = axiosError.response.data as { email: string; password1: String; username: string };
-        // Handle different error types
         if (errorData.email) {
           setError(`Email: ${errorData.email}`);
         } else if (errorData.password1) {
