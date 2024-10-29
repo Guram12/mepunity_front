@@ -1,268 +1,95 @@
+
+
+
 .main_project_containet{
-  padding-top: 80px;
+  padding: 10px;
 }
 
-.project_header {
+
+.projects_header_container{
   width: 100%;
   display: flex;
   justify-content: center;
-
-  font-family: "Anton", sans-serif;
-  font-weight: 200;
-  font-style: normal;
-  font-size: 42px;
-  padding-top: 200px;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -60%);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
+.project_header_line{
+  width: 85%;
+  height: 1px;
+  background-color: #00a753;
 }
 
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
-  to {
-    opacity: 0;
-    transform: translate(-50%, -60%);
-  }
+
+/* =================================== project container styles ======================================== */
+
+
+.projects_parent_container{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  gap: 30px;
 }
 
-.download_window_container {
-  position: fixed;
+
+.project_container {
   width: 600px;
   height: 300px;
-  background-color: #222222;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 9;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-direction: column;
-  font-weight: 200;
-  font-style: normal;
-  font-size: 22px;
-  border-radius: 5px;
-  animation: fadeIn 0.3s ease-out;
-
-}
-
-.fade-in {
-  animation: fadeIn 0.3s ease-out forwards;
-}
-
-.fade-out {
-  animation: fadeOut 0.3s ease-out forwards;
-}
-
-
-.download_window_button {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 50px;
-}
-
-
-.window_download {
-  padding: 1.3em 3em;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 2.5px;
-  font-weight: 500;
-  color: #000;
-  background-color: #fff;
-  border: none;
-  border-radius: 45px;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease 0s;
-  cursor: pointer;
-  outline: none;
-}
-
-.window_download:hover {
-  background-color: #004d2e;
-  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
-  color: #fff;
-  transform: translateY(-7px);
-}
-
-.window_download:active {
-  transform: translateY(-1px);
-}
-
-
-
-.projects_container {
-  display: flex;
-  height: auto;
-  /* background-color: blueviolet; */
-  display: flex;
-  align-items: center;
-  width: 100%;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 70px;
-  padding-top: 30px;
-}
-
-
-.projects_child_container {
-  padding: 10px;
-  width: 500px;
-  height: 200px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  margin: 10px;
   border-radius: 10px;
-  background: #0a0a0a;
-  box-shadow: rgba(163, 163, 163, 0.2) 0px 7px 29px 0px;
-}
-
-.projects_child_container:hover {
-  transition: all 300ms;
-
-}
-
-.pdf_image {
-  width: auto;
-  height: 170px;
-  transition: transform 0.3s ease-in-out;
-}
-
-
-.pdf_image:hover {
-  transform: scale(1.1);
-  /* Adjust the scale factor as needed */
-}
-
-
-/* =====================================  download button styles  */
-
-/* From Uiverse.io by satyamchaudharydev */
-.button {
-  --width: 100px;
-  --height: 35px;
-  --tooltip-height: 35px;
-  --tooltip-width: 90px;
-  --gap-between-tooltip-to-button: 18px;
-  --button-color: #282828;
-  --tooltip-color: #fff;
-  width: var(--width);
-  height: var(--height);
-  background: var(--button-color);
+  box-shadow: 0px 0px 10px 0px #555555;
+  overflow: hidden;
   position: relative;
-  text-align: center;
-  border-radius: 0.45em;
-  font-family: "Arial";
-  transition: background 0.3s;
-}
-
-.button::before {
-  position: absolute;
-  content: attr(data-tooltip);
-  width: var(--tooltip-width);
-  height: var(--tooltip-height);
-  background-color: var(--tooltip-color);
-  font-size: 0.9rem;
-  color: #111;
-  border-radius: .25em;
-  line-height: var(--tooltip-height);
-  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) + 10px);
-  left: calc(50% - var(--tooltip-width) / 2);
-}
-
-.button::after {
-  position: absolute;
-  content: '';
-  width: 0;
-  height: 0;
-  border: 10px solid transparent;
-  border-top-color: var(--tooltip-color);
-  left: calc(50% - 10px);
-  bottom: calc(100% + var(--gap-between-tooltip-to-button) - 10px);
-}
-
-.button::after,
-.button::before {
-  opacity: 0;
-  visibility: hidden;
+  cursor: pointer;
   transition: all 0.5s;
 }
 
-.text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.button-wrapper,
-.text,
-.icon {
-  overflow: hidden;
+.project_container::before {
+  content: "";
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  left: 0;
-  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
+  z-index: 1;
 }
 
-.text {
-  top: 0
+.project_image_container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 0;
+  transition: transform 1s ease; /* Smooth zoom transition */
 }
 
-.text,
-.icon {
-  transition: top 0.5s;
+.project_container:hover .project_image_container img {
+  transform: scale(1.7);
 }
 
-.icon {
-  color: #fff;
-  top: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.project_title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  color: #fff; /* White text color */
+  padding: 10px 20px; /* Padding for better spacing */
+  border-radius: 5px; /* Rounded corners */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Slight text shadow */
+  transition: transform 0.5s ease, font-size 0.5s ease; /* Smooth transition for size */
+
 }
 
-.icon svg {
-  width: 24px;
-  height: 24px;
+
+.project_container:hover .project_title {
+  transform: translate(-50%, -50%) scale(1.1); /* Slightly increase size */
 }
 
-.button:hover {
-  background: #045757;
-}
 
-.button:hover .text {
-  top: -100%;
-}
 
-.button:hover .icon {
-  top: 0;
-}
 
-.button:hover:before,
-.button:hover:after {
-  opacity: 1;
-  visibility: visible;
-}
-
-.button:hover:after {
-  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) - 20px);
-}
-
-.button:hover:before {
-  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button));
-}

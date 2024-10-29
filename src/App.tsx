@@ -12,8 +12,8 @@ import About from './components/About';
 import Calculate from './components/Calculate';
 
 
-export const baseURL = 'https://api.mepunity.com'
-// export const baseURL = 'http://localhost:8000'
+// export const baseURL = 'https://api.mepunity.com'
+export const baseURL = 'http://localhost:8000'
 
 
 
