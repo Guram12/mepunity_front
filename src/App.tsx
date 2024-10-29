@@ -12,7 +12,7 @@ import About from './components/About';
 import Calculate from './components/Calculate';
 
 
-export const baseURL = 'http://127.0.0.1:8000'
+export const baseURL = 'api.mepunity.com'
 
 
 export interface ProfileData {

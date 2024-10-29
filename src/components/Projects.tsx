@@ -41,6 +41,8 @@ interface New_project_data_Types {
   image: string;
 }
 
+
+
 const Projects: React.FC = () => {
   const [showDownloadWindow, setShowDownloadWindow] = useState<boolean>(false);
   const [selectedProject, setSelectedProject] = useState<Project_Data_Types | null>(null);
