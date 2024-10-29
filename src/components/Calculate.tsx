@@ -21,7 +21,7 @@ interface ProjectServicesType {
 
 const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated }) => {
   const [markedItems, setMarkedItems] = useState<Set<number>>(new Set());
-  const [projectServices, setProjectServices] = useState<ProjectServicesType[] | null>([]);
+  const [projectServices, setProjectServices] = useState<ProjectServicesType[]>([]);
   const [markedServiceCount, setMarkedServiceCount] = useState<number>(0);
   const [square_meter, setSquare_meter] = useState<number | null>(null);
   const [fullPrice, setFullPrice] = useState<number | null>(null);
@@ -34,18 +34,20 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated }) =
   useEffect(() => {
     const fetchProjectPrices = async () => {
       try {
-        const response = await axios.get(`${baseURL}/api/project-services/`)
-        console.log(response.data)
-        setProjectServices(response.data)
-        setContentLoaded(true);
+        const response = await axios.get(`${baseURL}/api/project-services/`);
+        if (Array.isArray(response.data)) {
+          setProjectServices(response.data);
+          setContentLoaded(true);
+        } else {
+          console.error("API response is not an array:", response.data);
+        }
       } catch (error) {
-        console.log("Cannot fetch project services.", error)
+        console.error("Error fetching project services data:", error);
       }
-    }
+    };
 
     fetchProjectPrices();
-  }, [])
-
+  }, []);
   // =============================================================================================================
 
   const handleItemClick = (id: number) => {
