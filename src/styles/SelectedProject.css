@@ -1,0 +1,37 @@
+.selected_project_container {
+  width: 90%;
+  height: 80%;
+  background-color: black;
+  border: 1px solid rgb(75, 75, 75);
+  border-radius: 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+
+.slider_and_description_container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 20px;
+  height: 100%;
+  width: 100%;
+}
+
+.slider_container {
+  width: 700px;
+  height: 100%;
+  border: 1px solid rgb(75, 75, 75);
+}
+
+
+.description_container {
+  max-width: 500px;
+  border: 1px solid rgb(153, 4, 4);
+  height: 100%;
+  padding: 10px;
+  padding-bottom: 0px;
+}
