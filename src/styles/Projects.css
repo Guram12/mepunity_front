@@ -1,12 +1,11 @@
-
-
-
-.main_project_containet{
+.main_project_containet {
   padding: 10px;
+  position: relative;
+
 }
 
 
-.projects_header_container{
+.projects_header_container {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -16,7 +15,7 @@
 }
 
 
-.project_header_line{
+.project_header_line {
   width: 85%;
   height: 1px;
   background-color: #00a753;
@@ -26,7 +25,7 @@
 /* =================================== project container styles ======================================== */
 
 
-.projects_parent_container{
+.projects_parent_container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -54,7 +53,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent dark overlay */
   z-index: 1;
 }
 
@@ -64,7 +64,8 @@
   object-fit: cover;
   position: relative;
   z-index: 0;
-  transition: transform 1s ease; /* Smooth zoom transition */
+  transition: transform 1s ease;
+  /* Smooth zoom transition */
 }
 
 .project_container:hover .project_image_container img {
@@ -77,19 +78,35 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
-  color: #fff; /* White text color */
-  padding: 10px 20px; /* Padding for better spacing */
-  border-radius: 5px; /* Rounded corners */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Slight text shadow */
-  transition: transform 0.5s ease, font-size 0.5s ease; /* Smooth transition for size */
+  color: #fff;
+  /* White text color */
+  padding: 10px 20px;
+  /* Padding for better spacing */
+  border-radius: 5px;
+  /* Rounded corners */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  /* Slight text shadow */
+  transition: transform 0.5s ease, font-size 0.5s ease;
+  /* Smooth transition for size */
 
 }
 
 
 .project_container:hover .project_title {
-  transform: translate(-50%, -50%) scale(1.1); /* Slightly increase size */
+  transform: translate(-50%, -50%) scale(1.1);
+  /* Slightly increase size */
 }
 
 
-
-
+.selected_project_component_container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
