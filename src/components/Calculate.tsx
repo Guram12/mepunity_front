@@ -1,4 +1,5 @@
 import "../styles/Calculate.css"
+import "../styles/Loadec.css"
 import { ProfileData } from "../App"
 import { useEffect, useState } from "react"
 import axios from "axios"
@@ -25,7 +26,9 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated }) =
   const [square_meter, setSquare_meter] = useState<number | null>(null);
   const [fullPrice, setFullPrice] = useState<number | null>(null);
   const [warning, setWarning] = useState<string>('');
-  
+  const [contentLoaded, setContentLoaded] = useState<boolean>(false);
+
+
 
   // ========================================== fetch service prices ==========================================
   useEffect(() => {
@@ -34,6 +37,7 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated }) =
         const response = await axios.get(`${baseURL}/api/project-services/`)
         console.log(response.data)
         setProjectServices(response.data)
+        setContentLoaded(true);
       } catch (error) {
         console.log("Cannot fetch project services.", error)
       }
@@ -88,7 +92,7 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated }) =
       return;
     }
     let full_price = 0;
-  
+
     markedItems.forEach(id => {
       const service = projectServices?.find(service => service.id === id);
       if (service && square_meter) {
@@ -102,7 +106,7 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated }) =
         full_price += price_per_sqm * square_meter;
       }
     });
-  
+
     if (isAuthenticated && profileData) {
       const discount = Number(profileData?.discount);
       console.log(`Total price before discount: ${full_price}`);
@@ -122,7 +126,7 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated }) =
     setFullPrice(null);
     setWarning('');
   }
-  
+
   return (
     <div className="main_calculation_container">
       <div className="parent_div_line">
@@ -135,6 +139,18 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated }) =
         </div>
       )}
       <h3>ელექტროობა</h3>
+      {!contentLoaded && (
+        <div className="dot-spinner">
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+        </div>
+      )}
       <div className="first_project_group_container">
         {electricalServices.map((service) => (
           <p
@@ -148,6 +164,18 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated }) =
       </div>
 
       <h3>მექანიკური</h3>
+      {!contentLoaded && (
+        <div className="dot-spinner">
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+        </div>
+      )}
       <div className="first_project_group_container">
         {mechanicalServices.map((service) => (
           <p
@@ -161,6 +189,18 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated }) =
       </div>
 
       <h3>სანტექნიკა</h3>
+      {!contentLoaded && (
+        <div className="dot-spinner">
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+        </div>
+      )}
       <div className="first_project_group_container">
         {plumbingServices.map((service) => (
           <p
@@ -196,8 +236,8 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated }) =
 
       {fullPrice && (Number(fullPrice) > 1) && (
         <div className="full_price_container">
-    <h3>სრული ფასი: {Number(fullPrice.toFixed(2))} ₾</h3>
-    </div>
+          <h3>სრული ფასი: {Number(fullPrice.toFixed(2))} ₾</h3>
+        </div>
       )}
     </div>
   );
