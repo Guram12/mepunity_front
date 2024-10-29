@@ -53,13 +53,20 @@ const Projects: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(`${baseURL}/api/projects/`)
-      console.log(response.data)
-      setNewProjects(response.data)
-    }
+      try {
+        const response = await axios.get(`${baseURL}/api/projects/`);
+        console.log(response.data);
+        if (Array.isArray(response.data)) {
+          setNewProjects(response.data);
+        } else {
+          console.error("API response is not an array:", response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching projects data:", error);
+      }
+    };
     fetchData();
-  }, [])
-
+  }, []);
 
 
 

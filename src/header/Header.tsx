@@ -63,7 +63,7 @@ const Header: React.FC<HeaderProps> = ({ profileData, isAuthenticated, setContin
         </Link>
 
         <Link to="/price-calculation">
-          <button className='header_button'>Capculate Price</button>
+          <button className='header_button'>Calculate Price</button>
         </Link>
 
         <Link to="/upload-file">
