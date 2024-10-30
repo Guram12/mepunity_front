@@ -3,6 +3,10 @@ import './Header.css';
 import { Link } from 'react-router-dom';
 import { ProfileData } from '../App';
 import default_profile_image from "../assets/default.jpg"
+import { useState } from 'react';
+import { FaBars } from 'react-icons/fa';
+
+
 
 interface HeaderProps {
   profileData: ProfileData | null,
@@ -14,7 +18,14 @@ interface HeaderProps {
 
 
 const Header: React.FC<HeaderProps> = ({ profileData, isAuthenticated, setContinueWithoutRegistering }) => {
+  const [menuVisible, setMenuVisible] = useState<boolean>(false);
 
+
+  const toggleMenu = () => {
+    setMenuVisible(!menuVisible);
+    console.log("clicked");
+    console.log(menuVisible);
+  }
 
 
   const handleLogout = () => {
@@ -22,10 +33,12 @@ const Header: React.FC<HeaderProps> = ({ profileData, isAuthenticated, setContin
     localStorage.removeItem('refresh_token');
     localStorage.setItem("login_status", "false");
     window.location.replace("/");
+    setMenuVisible(false);
   }
 
   const handle_Login_Logout_Click = () => {
     setContinueWithoutRegistering(false)
+    setMenuVisible(false);
   }
 
 
@@ -48,26 +61,49 @@ const Header: React.FC<HeaderProps> = ({ profileData, isAuthenticated, setContin
           </g>
         </svg>
       </div>
-      <div className='header_button_container'>
+      {/* if user is authenticated and also if mobile version, i should show the discount */}
+      {isAuthenticated && (
+        <div className='mobile_userdata_container' >
+          <img src={profileData ? profileData.image : default_profile_image} alt="profile picture" style={{ width: "40px" }} className='profile_picture' />
+
+          <div>
+            <h1 className='mobile_discount' >Discount: {profileData?.discount} % </h1>
+            <p className='header_profile_data_p' > {profileData ? profileData.username : "Guest"}</p>
+            <p className='header_profile_data_p' > {profileData ? profileData.company : ""}</p>
+          </div>
+        </div>
+      )}
+
+      {!isAuthenticated && (
+        <div  className='login_button_mobile' >
+          <Link to="/">
+            <button onClick={handle_Login_Logout_Click} className='header_button'>Login</button>
+          </Link>
+        </div>
+      )}
+
+      <FaBars className='menu_icon' onClick={toggleMenu} />
+
+      <div className={`header_button_container ${menuVisible === null ? '' : menuVisible ? 'mobile_visible' : 'mobile_hidden'}`}>
 
         <Link to="/">
-          <button className='header_button'>Home</button>
+          <button className='header_button' onClick={toggleMenu} >Home</button>
         </Link>
 
         <Link to="/projects">
-          <button className='header_button'>Projects</button>
+          <button className='header_button' onClick={toggleMenu} >Projects</button>
         </Link>
 
         <Link to="/about">
-          <button className='header_button'>About</button>
+          <button className='header_button' onClick={toggleMenu}>About</button>
         </Link>
 
         <Link to="/price-calculation">
-          <button className='header_button'>Calculate Price</button>
+          <button className='header_button' onClick={toggleMenu}>Calculate Price</button>
         </Link>
 
         <Link to="/upload-file">
-          <button className='header_button'>Upload File</button>
+          <button className='header_button' onClick={toggleMenu}>Upload File</button>
         </Link>
 
         {!isAuthenticated && (
@@ -82,7 +118,7 @@ const Header: React.FC<HeaderProps> = ({ profileData, isAuthenticated, setContin
           </>
         )}
         {isAuthenticated && (
-          <h1 className='discount' >Discount: {profileData?.discount} % </h1>
+          <h1 className='discount  old_discount_remove_on_mobile' >Discount: {profileData?.discount} % </h1>
         )}
 
         <div className='header_profile_data_parent_container' >

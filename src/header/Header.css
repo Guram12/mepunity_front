@@ -41,6 +41,8 @@
   align-items: center;
   gap: 30px;
   margin-right: 40px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+
 }
 
 .header_button {
@@ -53,6 +55,13 @@
 
 /* ============================================ header button style ================ */
 
+.mobile_discount {
+  display: none;
+}
+
+.login_button_mobile{
+  display: none;
+}
 
 /* From Uiverse.io by WhiteNervosa */
 .header_button {
@@ -108,7 +117,7 @@
 
 
 /* ======================================= header profile data ================================================= */
-.discount{
+.discount {
   font-size: 20px;
   font-weight: 500;
   margin: 0px;
@@ -138,4 +147,98 @@
   margin: 0px;
   font-size: small;
 
+}
+
+/* ==============================  mobile styles ============================== */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+/* ---------------------------------------- */
+.menu_icon {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .logo_cont {
+    margin-left: 10px;
+  }
+
+  .logo {
+    width: 60px
+  }
+
+  .mobile_userdata_container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .login_button_mobile{
+  display: flex;
+  }
+
+  .mobile_discount {
+    display: flex;
+    font-size: 15px;
+    background: linear-gradient(to right, #FFD700, #ffa600);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0px;
+  }
+
+  .old_discount_remove_on_mobile{
+    display: none;
+  }
+
+  .header_button_container {
+    display: none;
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  .menu_icon {
+    display: block;
+    margin-right: 40px;
+    cursor: pointer;
+  }
+
+  .header_button_container.mobile_visible {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    background-color: #222222;
+    width: 100%;
+    padding: 10px;
+    animation: slideDown 0.3s ease forwards;
+  }
+
+  .header_button_container.mobile_hidden {
+
+    animation: slideUp 0.3s ease forwards;
+  }
 }
