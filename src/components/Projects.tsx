@@ -87,7 +87,7 @@ const Projects: React.FC = () => {
       </div>
       {isProjectSelected && (
         <div className="selected_project_component_container">
-          <SelectedProject project={selectedProject} />
+          <SelectedProject project={selectedProject}  setIsProjectSelected={setIsProjectSelected}/>
         </div>
       )}
 

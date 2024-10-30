@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import "../styles/SelectedProject.css";
 import { ProjectType } from "./Projects";
 import { FaAnglesLeft, FaAnglesRight } from "react-icons/fa6";
+import { IoMdCloseCircle } from "react-icons/io";
+
 
 interface SelectedProjectProps {
   project: ProjectType | null;
+  setIsProjectSelected: (isProjectSelected: boolean) => void;
 }
 
-const SelectedProject: React.FC<SelectedProjectProps> = ({ project }) => {
+const SelectedProject: React.FC<SelectedProjectProps> = ({ project ,setIsProjectSelected }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   if (!project) return null;
@@ -22,9 +25,15 @@ const SelectedProject: React.FC<SelectedProjectProps> = ({ project }) => {
     console.log('prev image');
   };
 
+  const handleClose = () => {
+    setIsProjectSelected(false);
+  }
   return (
     <div className="selected_project_container">
-      <h2>{project.title_en}</h2>
+      <div className='project_header_and_close_container' >
+        <h2>{project.title_en}</h2>
+        <IoMdCloseCircle className='project_close' onClick={handleClose} />
+      </div>
       <div className="slider_and_description_container">
         <div className="slider_container">
           <FaAnglesLeft className='slider_button_left' onClick={handlePrevImage} />

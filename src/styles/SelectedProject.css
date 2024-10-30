@@ -11,6 +11,27 @@
   align-items: center;
 }
 
+.project_header_and_close_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.project_close {
+  position: absolute;
+  right: 0;
+  font-size: 40px;
+  margin-right: 30px;
+  transition: transform 0.3s ease, color 0.3s ease; /* Add transition for hover effect */
+  cursor: pointer;
+}
+.project_close:hover{
+  color: tomato;
+  transform: scale(1.2); /* Scale up the icon on hover */
+}
+
 
 .slider_and_description_container {
   display: flex;
@@ -25,13 +46,13 @@
   width: 60%;
   height: 100%;
   position: relative;
-  display: flex ;
+  display: flex;
   justify-content: center;
   align-items: center;
   border: 1px solid rgb(153, 4, 4);
 }
 
-.main_slider_image_container{
+.main_slider_image_container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,8 +68,8 @@
 
 /* ===============================================   slider styles  =============================================== */
 
-.main_slider_image_container{
-  display: flex ;
+.main_slider_image_container {
+  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -75,7 +96,8 @@
   opacity: 1;
 }
 
-.slider_button_left, .slider_button_right {
+.slider_button_left,
+.slider_button_right {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -85,8 +107,10 @@
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
-  transition: transform 0.3s ease, background-color 0.3s ease; /* Add transition for hover effect */
-  font-size: 2rem; /* Increase the size of the icons */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  /* Add transition for hover effect */
+  font-size: 2rem;
+  /* Increase the size of the icons */
 }
 
 .slider_button_left {
@@ -102,10 +126,14 @@
 
 }
 
-.slider_button_left:hover, .slider_button_right:hover {
-  transform: translateY(-50%) scale(1.1); /* Scale up the icon on hover */
-  background-color: #00a753; /* Change background color on hover */
-  color: white; /* Change icon color on hover */
+.slider_button_left:hover,
+.slider_button_right:hover {
+  transform: translateY(-50%) scale(1.1);
+  /* Scale up the icon on hover */
+  background-color: #00a753;
+  /* Change background color on hover */
+  color: white;
+  /* Change icon color on hover */
 }
 
 .dots_container {
@@ -134,6 +162,7 @@
   from {
     transform: translateX(-100%);
   }
+
   to {
     transform: translateX(0);
   }
@@ -143,8 +172,10 @@
   from {
     transform: translateX(100%);
   }
+
   to {
     transform: translateX(0);
   }
 }
+
 /* ====================================================================================== */
