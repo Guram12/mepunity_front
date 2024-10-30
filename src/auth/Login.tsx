@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import "../styles/Login.css"
 import GoogleSignUp from './GoogleSignUp';
+import { MdOutlineMarkEmailRead } from "react-icons/md";
+import { PiPasswordFill } from "react-icons/pi";
 
 
 interface LoginProps {
@@ -72,50 +74,69 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
 
       <div className='Login_child_container' >
         {!isGoogleLoggedIn && (
-          <div>
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
-              <div>
-                <label>Email:</label>
+          <div className='login_form_container' >
+            <div>
+              <h2 className='login_h2'>Login</h2>
+            </div>
+            <form onSubmit={handleSubmit} className='form' >
+              <div className='mark_and_input_container'  >
+                <MdOutlineMarkEmailRead className='mark_email_icon' />
                 <input
+                  className='login_inputs'
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  placeholder='  Enter Email'
                   required
                 />
               </div>
-              <div>
-                <label>Password:</label>
+              <div className='mark_and_input_container'  >
+                <PiPasswordFill className='mark_password_icon' />
                 <input
+                  className='login_inputs'
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  placeholder='  Enter Password'
+
                 />
               </div>
-              <div>
+              <div className="checkbox_container">
                 <label>
                   <input
+                    className="checkbox_input"
                     type="checkbox"
                     checked={showPassword}
                     onChange={() => setShowPassword(!showPassword)}
                   />
-                  Show Password
+                  <p>Show Password</p>
                 </label>
+
+                <p onClick={handleRegister} className='no_account'>No Account? Register</p>
+
+
               </div>
               {error && <p>{error}</p>}
-              <button type="submit">Login</button>
+
+              <div className='login_button_container' >
+                <button type="submit" className="login_button">Login</button>
+              </div>
+
             </form>
-            <button onClick={handleRegister} >No Account? Register</button>
           </div>
         )}
+        <div className='google_login_conrainer'>
 
-        <GoogleSignUp
-          setIsAuthenticated={setIsAuthenticated}
-          setIsGoogleLoggedIn={setIsGoogleLoggedIn}
-          isGoogleLoggedIn={isGoogleLoggedIn}
-        />
-        <button onClick={handle_without_register_click}>Continue without registering</button>
+          <GoogleSignUp
+            setIsAuthenticated={setIsAuthenticated}
+            setIsGoogleLoggedIn={setIsGoogleLoggedIn}
+            isGoogleLoggedIn={isGoogleLoggedIn}
+          />
+        </div>
+        <div className='contonue_without_container' >
+          <p onClick={handle_without_register_click} className='contonue_without' >Continue without registering</p>
+        </div>
       </div>
     </div>
   );

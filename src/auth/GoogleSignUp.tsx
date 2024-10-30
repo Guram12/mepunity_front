@@ -89,10 +89,12 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
           <GoogleLogin
             onSuccess={handleGoogleLoginSuccess}
             onError={handleGoogleLoginFailure}
-            theme="outline"  // Options: 'outline' or 'filled'
+            theme="filled_black"  // Options: 'outline' or 'filled'
             size="large"     // Options: 'small', 'medium', 'large'
             text="signup_with"    // Options: 'signin_with', 'signup_with', 'continue_with', 'signin'
             width="50px"
+            locale="ka" 
+
           />
         </GoogleOAuthProvider>
       )}

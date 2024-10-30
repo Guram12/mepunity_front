@@ -1,6 +1,4 @@
-
-
-.login_mother_container{
+.login_mother_container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,14 +9,16 @@
 }
 
 
-.Login_child_container{
-  border: 1px solid #e1e1e1;
+.Login_child_container {
+  border: 1px solid #4b4b4b;
   width: 400px;
   height: 400px;
   padding: 15px;
+  height: auto;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
-.login_company_logo{
+.login_company_logo {
   width: 100px;
 }
 
@@ -39,15 +39,178 @@
   fill: #ffffff;
 }
 
+/* ======================================== desktop input astyles ========================================  */
+
+.login_form_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login_h2 {
+  width: 100%;
+  align-content: center;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.mark_and_input_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 30px;
+  gap: 20px;
+}
+
+.mark_email_icon {
+  width: 30px;
+  font-size: 30px;
+}
+
+.mark_password_icon {
+  width: 30px;
+  font-size: 30px;
+}
+
+.login_inputs {
+  font-weight: 500;
+  font-size: 20px;
+  color: #ffffff;
+  background-color: rgb(28, 28, 30);
+  box-shadow: 0 0 .4vw rgba(0, 0, 0, 0.5), 0 0 0 .15vw transparent;
+  border-radius: 0.4vw;
+  border: none;
+  outline: none;
+  padding: 0.4vw;
+  transition: .4s;
+  width: 80%;
+  height: 40px;
+}
+
+.login_inputs:hover {
+  box-shadow: 0 0 0 .15vw rgba(135, 207, 235, 0.186);
+}
+
+.login_inputs:focus {
+  box-shadow: 0 0 0 .15vw #00a753;
+}
+
+/* -------------------- checkbox input sryles -------------------- */
+
+.checkbox_container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkbox_input {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  position: relative;
+  margin-left: 10px;
+}
+
+.checkbox_input:checked {
+  background-color: #00a753;
+}
+
+.checkbox_input:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Ensure label and checkbox are inline */
+.checkbox_container label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ------------------------------------ login button styles ---------------------- */
+.login_button_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
 
 
-/* 
-//  "email",
-//   "username", 
-//   "compamy" ,
-//   "phone_number",
-//    "discount",
-//     "is_email_verified",
- */
+.login_button {
+  background-color: #00a753;
+  border: none;
+  color: white;
+  padding: 15px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  width: 50%;
+}
+
+.login_button:hover {
+  background-color: #00a75496;
+}
+
+.login_button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #00a753;
+}
 
 
+.no_account {
+  color: #ffffff;
+  font-size: 15px;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+.contonue_without_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.contonue_without {
+  cursor: pointer;
+}
+
+
+/* ----------------------- google login container ------------------------ */
+.google_login_conrainer {
+  margin-top: 20px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+
+/* ======================================== mobile styles ======================================== */
+
+@media (max-width: 768px) {}
