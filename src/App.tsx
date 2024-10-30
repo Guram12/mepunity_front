@@ -12,9 +12,16 @@ import About from './components/About';
 import Calculate from './components/Calculate';
 
 
-// export const baseURL = 'https://api.mepunity.com'
-export const baseURL = 'http://localhost:8000'
+let baseURL: string;
 
+if (process.env.NODE_ENV === 'production') {
+  baseURL = 'https://api.mepunity.com';
+} else {
+  baseURL = 'http://localhost:8000';
+}
+
+
+export { baseURL };
 
 
 export interface ProfileData {
