@@ -1,6 +1,6 @@
 .selected_project_container {
   width: 90%;
-  height: 80%;
+  height: 90%;
   background-color: black;
   border: 1px solid rgb(75, 75, 75);
   border-radius: 20px;
@@ -22,11 +22,20 @@
 }
 
 .slider_container {
-  width: 700px;
+  width: 60%;
   height: 100%;
-  border: 1px solid rgb(75, 75, 75);
+  position: relative;
+  display: flex ;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(153, 4, 4);
 }
 
+.main_slider_image_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .description_container {
   max-width: 500px;
@@ -35,3 +44,107 @@
   padding: 10px;
   padding-bottom: 0px;
 }
+
+/* ===============================================   slider styles  =============================================== */
+
+.main_slider_image_container{
+  display: flex ;
+  justify-content: center;
+  align-items: center;
+}
+
+.image_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+
+.main_slider_image {
+  max-width: 80%;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  position: absolute;
+}
+
+.main_slider_image.active {
+  opacity: 1;
+}
+
+.slider_button_left, .slider_button_right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #00a753;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease; /* Add transition for hover effect */
+  font-size: 2rem; /* Increase the size of the icons */
+}
+
+.slider_button_left {
+  left: 0;
+  margin-left: 10px;
+  z-index: 9999999999999;
+}
+
+.slider_button_right {
+  right: 0;
+  margin-right: 10px;
+  z-index: 9999999999999;
+
+}
+
+.slider_button_left:hover, .slider_button_right:hover {
+  transform: translateY(-50%) scale(1.1); /* Scale up the icon on hover */
+  background-color: #00a753; /* Change background color on hover */
+  color: white; /* Change icon color on hover */
+}
+
+.dots_container {
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  margin: 0 5px;
+  background-color: #383838;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: #00a753;
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+/* ====================================================================================== */
