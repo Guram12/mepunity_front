@@ -4,6 +4,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { baseURL } from '../App';
 import SelectedProject from "./SelectedProject";
+
+
+
+
+
 export interface ProjectType {
   id: number,
   images: { id: number, image: string }[],
@@ -19,11 +24,6 @@ const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<ProjectType | null>(null);
   const [isProjectSelected, setIsProjectSelected] = useState<boolean>(false);
   const [project_content_loaded, setProject_content_loaded] = useState<boolean>(false);
-
-
-
-
-
 
 
   useEffect(() => {
@@ -87,7 +87,7 @@ const Projects: React.FC = () => {
       </div>
       {isProjectSelected && (
         <div className="selected_project_component_container">
-          <SelectedProject project={selectedProject} />
+          <SelectedProject project={selectedProject}  setIsProjectSelected={setIsProjectSelected}/>
         </div>
       )}
 
@@ -96,3 +96,35 @@ const Projects: React.FC = () => {
 }
 
 export default Projects;
+
+
+
+
+
+
+// ელექტროობა,
+// სახანძრო სიგნალიზაცია,
+//  გახმოვანება, 
+//  საევაკუაციო მანიშნებლები და განათება,
+//   დაშვების კონტროლი,
+//    ვიდეო მეთვალყურეობა, 
+//    CO დეტექცია.
+// ხანძარქრობა,
+// სახანძრო ვენტილაცია,
+// საყოფაცხოვრებო ვენტილაცია,
+//  გათბობა გაგრილება,
+//   კანალიზაცია.
+
+
+// Electricity,
+// Fire alarm,
+// Public address system,
+// Evacuation signs and lighting,
+// Access control,
+// Video surveillance,
+// CO detection,
+// Fire suppression,
+// Fire ventilation,
+// Residential ventilation,
+// Heating and cooling,
+// Sewerage.
