@@ -112,7 +112,7 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
               <input
                 type="text"
                 value={profileData.username}
-                onChange={(e) => setProfileData({ ...profileData, username: e.target.value })}
+                onChange={(e) => setProfileData({ ...profileData, username: e.target.value.replace(/\s/g, '') })}
                 required
                 className="register_input_google"
                 placeholder='  Enter your name'
