@@ -89,7 +89,13 @@ const Register: React.FC = () => {
     navigate('/')
   }
 
+  // ================================  check if form is valid ================================
+  const isFormValid = isPasswordLengthValid && isPasswordNumeric && hasNumericCharacter && arePasswordsSame
+    && email !== '' && username !== '' && company !== '' && phoneNumber !== '';
+  // ============================================================================================
 
+
+  
   return (
     <div className='register_parent_container' >
       <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 549.67 802.83" className='register_company_logo' >
@@ -223,7 +229,8 @@ const Register: React.FC = () => {
             <button
               type="submit"
               className="registration_button"
-              style={{ cursor: isPasswordLengthValid && isPasswordNumeric && hasNumericCharacter ? 'pointer' : 'not-allowed' }}
+              style={{ backgroundColor: isFormValid ? '#00a753' : '#313131', cursor: isFormValid ? 'pointer' : 'not-allowed' }}
+              disabled={!isFormValid}
             >
               Register
             </button>

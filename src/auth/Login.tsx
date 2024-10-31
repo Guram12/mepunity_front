@@ -110,7 +110,7 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
                     checked={showPassword}
                     onChange={() => setShowPassword(!showPassword)}
                   />
-                  <p>Show Password</p>
+                  <p className='show_password_login' >Show Password</p>
                 </label>
 
                 <p onClick={handleRegister} className='no_account'>No Account? Register</p>
