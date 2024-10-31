@@ -77,7 +77,27 @@
   font-size: 1.1rem;
 }
 
+
 /* ===============================================   slider styles  =============================================== */
+.fullscreen_button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #00a753;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  font-size: 2rem;
+}
+
+.fullscreen_button:hover {
+  transform: scale(1.1);
+  background-color: #00a753;
+  color: white;
+}
 
 .main_slider_image_container {
   display: flex;
@@ -196,8 +216,22 @@
 
 @media screen and (max-width: 768px) {
 
-
-
+  .fullscreen_button {
+    width: 15px;
+    height: auto;
+    
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #00a753;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    font-size: 2rem;
+  }
 
   .selected_project_container {
     width: 100%;

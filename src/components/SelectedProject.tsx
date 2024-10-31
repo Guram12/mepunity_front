@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import "../styles/SelectedProject.css";
 import { ProjectType } from "./Projects";
-import { FaAnglesLeft, FaAnglesRight } from "react-icons/fa6";
+import { FaAnglesLeft, FaAnglesRight, FaExpand } from "react-icons/fa6";
 import { IoMdCloseCircle } from "react-icons/io";
-
 
 interface SelectedProjectProps {
   project: ProjectType | null;
@@ -28,6 +27,18 @@ const SelectedProject: React.FC<SelectedProjectProps> = ({ project, setIsProject
   const handleClose = () => {
     setIsProjectSelected(false);
   }
+
+  const handleFullscreen = () => {
+    const elem = document.querySelector('.slider_container');
+    if (elem) {
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else {
+        elem.requestFullscreen();
+      }
+    }
+  }
+
   return (
     <div className="selected_project_container">
       <div className='project_header_and_close_container' >
@@ -48,6 +59,7 @@ const SelectedProject: React.FC<SelectedProjectProps> = ({ project, setIsProject
             ))}
           </div>
           <FaAnglesRight className='slider_button_right' onClick={handleNextImage} />
+          <FaExpand className='fullscreen_button' onClick={handleFullscreen} />
           <div className="dots_container">
             {project.images.map((_, index) => (
               <span
