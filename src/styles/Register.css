@@ -1,8 +1,4 @@
-
-
-
-
-.register_parent_container{
+.register_parent_container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,28 +8,243 @@
   gap: 40px;
 }
 
-.register_company_logo{
+.register_company_logo {
   width: 100px;
 }
 
-.register_child_container{
+.register_child_container {
   border: 1px solid #e1e1e1;
   width: 400px;
-  height: 500px;
+  height: auto;
   padding: 15px;
+  padding-top: 0px;
 }
 
 
 
+.register_header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register_heder_h2{
+ margin-bottom: 20px;
+}
+
+/* ========================================  input styles  ======================================  */
+
+
+.register_input_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.mark_email_icon_register {
+  width: 30px;
+  font-size: 30px;
+
+}
+
+
+.register_input {
+  font-weight: 500;
+  font-size: 20px;
+  color: #ffffff;
+  background-color: rgb(28, 28, 30);
+  box-shadow: 0 0 .4vw rgba(0, 0, 0, 0.5), 0 0 0 .15vw transparent;
+  border-radius: 0.4vw;
+  border: none;
+  outline: none;
+  padding: 0.4vw;
+  transition: .4s;
+  width: 80%;
+  height: 40px;
+}
+
+.register_input:hover {
+  box-shadow: 0 0 0 .15vw rgba(135, 207, 235, 0.186);
+}
+
+.register_input:focus {
+  box-shadow: 0 0 0 .15vw #00a753;
+}
+
+  /* ----------------checkbox styles ----------------------- */
+.checkbox_container_register {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkbox_container_register label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+
+.checkbox_input_register {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  position: relative;
+  margin-left: 10px;
+}
+
+.checkbox_input_register:checked {
+  background-color: #00a753;
+}
+
+.checkbox_input_register:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.show_passwird_p{
+  margin: 0px;
+  font-weight: 500;
+}
+
+/* ------------------------------------ register button styles ---------------------- */
+
+
+.login_and_register_button_container{
+  margin-top: 10px;
+  display: flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.login_button_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+
+.registration_button {
+  background-color: #313131;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  width: 180px;
+}
+
+.registration_button:hover {
+  background-color: #00a75496;
+}
+
+.registration_button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #00a753;
+}
+ /* -------------------------- return to login styles --------------- */
+.back_to_login_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.return_to_login_p{
+  cursor: pointer;
+  transition: color 0.3s ease;
+  font-weight: 500;
+}
+
+.return_to_login_p:hover{
+ color:tomato;
+  
+}
+
+.back_to_login_arrow{
+  cursor: pointer;
+  font-size: 23px;
+}
+
+/* ------------------- password validation styles --------------------- */
+
+.password_validations_container{
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.true {
+  color: #00a753;
+}
+
+.false {
+  color: tomato;
+}
+
+.password_validation_p{
+  margin: 0px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+
+}
 
 
 
+/* ============================= mobile styles ============================== */
 
+@media (max-width: 768px) {  
+  .register_child_container {
+    border: none;
+    padding: 0px;
+    box-shadow: none;
+  }
+.register_input_container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  gap: 10px;
+}
 
+.checkbox_container_register{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
+.password_validations_container{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-left: 30px;
+}
 
-
-
+}
 
 
 

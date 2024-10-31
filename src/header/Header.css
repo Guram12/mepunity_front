@@ -148,7 +148,9 @@
   font-size: small;
 
 }
-
+.mobile_userdata_container{
+  display: none;
+}
 /* ==============================  mobile styles ============================== */
 @keyframes slideDown {
   from {

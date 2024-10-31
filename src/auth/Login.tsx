@@ -103,14 +103,14 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
                 />
               </div>
               <div className="checkbox_container">
-                <label>
+                <label style={{ cursor: "pointer" }}  >
                   <input
                     className="checkbox_input"
                     type="checkbox"
                     checked={showPassword}
                     onChange={() => setShowPassword(!showPassword)}
                   />
-                  <p>Show Password</p>
+                  <p className='show_password_login' >Show Password</p>
                 </label>
 
                 <p onClick={handleRegister} className='no_account'>No Account? Register</p>
@@ -135,7 +135,9 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
           />
         </div>
         <div className='contonue_without_container' >
-          <p onClick={handle_without_register_click} className='contonue_without' >Continue without registering</p>
+          {!isGoogleLoggedIn && (
+            <p onClick={handle_without_register_click} className='contonue_without' >Continue without registering</p>
+          )}
         </div>
       </div>
     </div>
