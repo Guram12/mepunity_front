@@ -171,107 +171,112 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated }) =
           <h3>{warning}</h3>
         </div>
       )}
-      <h3>ელექტროობა</h3>
-      {!contentLoaded && (
-        <div className="dot-spinner">
-          <div className="dot-spinner__dot"></div>
-          <div className="dot-spinner__dot"></div>
-          <div className="dot-spinner__dot"></div>
-          <div className="dot-spinner__dot"></div>
-          <div className="dot-spinner__dot"></div>
-          <div className="dot-spinner__dot"></div>
-          <div className="dot-spinner__dot"></div>
-          <div className="dot-spinner__dot"></div>
+      <div className="services_container" >
+
+        <h3>ელექტროობა</h3>
+        {!contentLoaded && (
+          <div className="dot-spinner">
+            <div className="dot-spinner__dot"></div>
+            <div className="dot-spinner__dot"></div>
+            <div className="dot-spinner__dot"></div>
+            <div className="dot-spinner__dot"></div>
+            <div className="dot-spinner__dot"></div>
+            <div className="dot-spinner__dot"></div>
+            <div className="dot-spinner__dot"></div>
+            <div className="dot-spinner__dot"></div>
+          </div>
+        )}
+        <div className="first_project_group_container">
+          {electricalServices.map((service) => (
+            <p
+              key={service.id}
+              className={`project_checkmark ${markedItems.has(service.id) ? 'marked' : 'unmarked'}`}
+              onClick={() => handleItemClick(service.id)}
+            >
+              {service.name_ka}
+            </p>
+          ))}
         </div>
-      )}
-      <div className="first_project_group_container">
-        {electricalServices.map((service) => (
-          <p
-            key={service.id}
-            className={`project_checkmark ${markedItems.has(service.id) ? 'marked' : 'unmarked'}`}
-            onClick={() => handleItemClick(service.id)}
-          >
-            {service.name_ka}
-          </p>
-        ))}
-      </div>
 
-      <h3>მექანიკური</h3>
-      {!contentLoaded && (
-        <div className="dot-spinner">
-          <div className="dot-spinner__dot"></div>
-          <div className="dot-spinner__dot"></div>
-          <div className="dot-spinner__dot"></div>
-          <div className="dot-spinner__dot"></div>
-          <div className="dot-spinner__dot"></div>
-          <div className="dot-spinner__dot"></div>
-          <div className="dot-spinner__dot"></div>
-          <div className="dot-spinner__dot"></div>
+        <h3>მექანიკური</h3>
+        {!contentLoaded && (
+          <div className="dot-spinner">
+            <div className="dot-spinner__dot"></div>
+            <div className="dot-spinner__dot"></div>
+            <div className="dot-spinner__dot"></div>
+            <div className="dot-spinner__dot"></div>
+            <div className="dot-spinner__dot"></div>
+            <div className="dot-spinner__dot"></div>
+            <div className="dot-spinner__dot"></div>
+            <div className="dot-spinner__dot"></div>
+          </div>
+        )}
+        <div className="first_project_group_container">
+          {mechanicalServices.map((service) => (
+            <p
+              key={service.id}
+              className={`project_checkmark ${markedItems.has(service.id) ? 'marked' : 'unmarked'}`}
+              onClick={() => handleItemClick(service.id)}
+            >
+              {service.name_ka}
+            </p>
+          ))}
         </div>
-      )}
-      <div className="first_project_group_container">
-        {mechanicalServices.map((service) => (
-          <p
-            key={service.id}
-            className={`project_checkmark ${markedItems.has(service.id) ? 'marked' : 'unmarked'}`}
-            onClick={() => handleItemClick(service.id)}
-          >
-            {service.name_ka}
-          </p>
-        ))}
-      </div>
 
-      <h3>სანტექნიკა</h3>
-      {!contentLoaded && (
-        <div className="dot-spinner">
-          <div className="dot-spinner__dot"></div>
-          <div className="dot-spinner__dot"></div>
-          <div className="dot-spinner__dot"></div>
-          <div className="dot-spinner__dot"></div>
-          <div className="dot-spinner__dot"></div>
-          <div className="dot-spinner__dot"></div>
-          <div className="dot-spinner__dot"></div>
-          <div className="dot-spinner__dot"></div>
+        <h3>სანტექნიკა</h3>
+        {!contentLoaded && (
+          <div className="dot-spinner">
+            <div className="dot-spinner__dot"></div>
+            <div className="dot-spinner__dot"></div>
+            <div className="dot-spinner__dot"></div>
+            <div className="dot-spinner__dot"></div>
+            <div className="dot-spinner__dot"></div>
+            <div className="dot-spinner__dot"></div>
+            <div className="dot-spinner__dot"></div>
+            <div className="dot-spinner__dot"></div>
+          </div>
+        )}
+        <div className="first_project_group_container">
+          {plumbingServices.map((service) => (
+            <p
+              key={service.id}
+              className={`project_checkmark ${markedItems.has(service.id) ? 'marked' : 'unmarked'}`}
+              onClick={() => handleItemClick(service.id)}
+            >
+              {service.name_ka}
+            </p>
+          ))}
         </div>
-      )}
-      <div className="first_project_group_container">
-        {plumbingServices.map((service) => (
-          <p
-            key={service.id}
-            className={`project_checkmark ${markedItems.has(service.id) ? 'marked' : 'unmarked'}`}
-            onClick={() => handleItemClick(service.id)}
-          >
-            {service.name_ka}
-          </p>
-        ))}
-      </div>
 
-      <div className="calculation_container">
-        <h3>ფართობი (m²) </h3>
-        <input
-          className="square_meter_input"
-          placeholder="შეიყვანეთ ფართობი"
-          type="number"
-          value={square_meter !== null ? square_meter : ''}
-          onChange={(e) => {
-            const value = e.target.value;
-            setSquare_meter(value === '' ? null : Number(value));
-          }}
-        />
-        <button className="calculate_button" onClick={calculate_full_price}>
-          <span className="calculate_span">გამოთვლა</span>
-        </button>
+        <div className="calculation_container">
+          <h3>ფართობი (m²) </h3>
+          <input
+            className="square_meter_input"
+            placeholder="შეიყვანეთ ფართობი"
+            type="number"
+            value={square_meter !== null ? square_meter : ''}
+            onChange={(e) => {
+              const value = e.target.value;
+              setSquare_meter(value === '' ? null : Number(value));
+            }}
+          />
+          <button className="calculate_button" onClick={calculate_full_price}>
+            <span className="calculate_span">გამოთვლა</span>
+          </button>
 
-        <button className="calculate_button clear" onClick={clear_all}>
-          <span className="calculate_span">გასუფთავება</span>
-        </button>
-      </div>
+          <button className="calculate_button clear" onClick={clear_all}>
+            <span className="calculate_span">გასუფთავება</span>
+          </button>
+        </div>
 
       {fullPrice && (Number(fullPrice) > 1) && (
         <div className="full_price_container">
           <h3>სრული ფასი: {Number(fullPrice.toFixed(2))} ₾</h3>
         </div>
       )}
+      </div>
+
+
     </div>
   );
 }
