@@ -10,7 +10,7 @@ interface SelectedProjectProps {
   setIsProjectSelected: (isProjectSelected: boolean) => void;
 }
 
-const SelectedProject: React.FC<SelectedProjectProps> = ({ project ,setIsProjectSelected }) => {
+const SelectedProject: React.FC<SelectedProjectProps> = ({ project, setIsProjectSelected }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   if (!project) return null;
@@ -59,7 +59,7 @@ const SelectedProject: React.FC<SelectedProjectProps> = ({ project ,setIsProject
           </div>
         </div>
         <div className="description_container">
-          <p>{project.description_en}</p>
+          <p className='project_description' >{project.description_en}</p>
         </div>
       </div>
     </div>

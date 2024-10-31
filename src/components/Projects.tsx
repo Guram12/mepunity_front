@@ -57,7 +57,7 @@ const Projects: React.FC = () => {
     <div className='main_project_containet'>
       <div className="projects_header_container" >
 
-        <h1>MepUnity Projects</h1>
+        <h1>Complited Projects</h1>
         <div className="project_header_line" ></div>
         {!project_content_loaded && (
           <div className="dot-spinner" style={{ marginTop: "80px" }} >
@@ -80,14 +80,16 @@ const Projects: React.FC = () => {
               <div className="project_image_container" >
                 <img src={project.images[0].image} alt="project_image" />
               </div>
+
               <h2 className="project_title" >{project.title_en}</h2>
+
             </div>
           )
         })}
       </div>
       {isProjectSelected && (
         <div className="selected_project_component_container">
-          <SelectedProject project={selectedProject}  setIsProjectSelected={setIsProjectSelected}/>
+          <SelectedProject project={selectedProject} setIsProjectSelected={setIsProjectSelected} />
         </div>
       )}
 

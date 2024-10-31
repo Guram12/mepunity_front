@@ -65,12 +65,13 @@
   position: relative;
   z-index: 0;
   transition: transform 1s ease;
-  /* Smooth zoom transition */
 }
 
 .project_container:hover .project_image_container img {
   transform: scale(1.7);
 }
+
+
 
 .project_title {
   position: absolute;
@@ -79,16 +80,11 @@
   transform: translate(-50%, -50%);
   z-index: 2;
   color: #fff;
-  /* White text color */
   padding: 10px 20px;
-  /* Padding for better spacing */
   border-radius: 5px;
-  /* Rounded corners */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-  /* Slight text shadow */
   transition: transform 0.5s ease, font-size 0.5s ease;
-  /* Smooth transition for size */
-
+  width: max-content;
 }
 
 
@@ -110,3 +106,46 @@
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999;
 }
+
+/* ======================================== mobile stylres ======================================== */
+
+@media screen and (max-width: 768px) {
+  .projects_header_container{
+    font-size: 14px;
+  }
+
+  .projects_parent_container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .project_container {
+    width: 90%;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -10,12 +10,25 @@
   flex-direction: column;
 }
 
+.warning_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: tomato;
+ }
 
+ 
 .child_div_line {
   width: 70%;
-  background-color: rgb(51, 51, 51);
+  background-color: #00a753;
   height: 2px;
 }
+
+.services_container{
+  margin-left: 3%;
+}
+
 
 .first_project_group_container {
   display: flex;
@@ -142,13 +155,6 @@ input[type="number"] {
  
 
 
- .warning_container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  color: tomato;
- }
 
 
  .clear{
