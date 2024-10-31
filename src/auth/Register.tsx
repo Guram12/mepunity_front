@@ -1,5 +1,5 @@
 import "../styles/Register.css"
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { baseURL } from '../App';
 import { AxiosError } from 'axios';
@@ -25,9 +25,25 @@ const Register: React.FC = () => {
   const [error, setError] = useState<string>('');
   const [success, setSuccess] = useState<string>('');
 
+  const [isPasswordLengthValid, setIsPasswordLengthValid] = useState<boolean>(false);
+  const [isPasswordNumeric, setIsPasswordNumeric] = useState<boolean>(false);
+  const [hasNumericCharacter, setHasNumericCharacter] = useState<boolean>(false);
+  const [arePasswordsSame, setArePasswordsSame] = useState<boolean>(false);
+
   const navigate = useNavigate();
 
 
+  useEffect(() => {
+    validatePassword(password1, password2);
+  }, [password1, password2]);
+
+  const validatePassword = (password1: string, password2: string) => {
+    setIsPasswordLengthValid(password1.length >= 8);
+    setIsPasswordNumeric(password1 !== '' && !/^\d+$/.test(password1));
+    setHasNumericCharacter(/\d/.test(password1));
+    setArePasswordsSame(password1 !== '' && password2 !== '' && password1 === password2);
+
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -184,18 +200,40 @@ const Register: React.FC = () => {
             </label>
           </div>
 
+          <div className="password_validations_container">
+            <p className={`password_validation_p ${isPasswordLengthValid ? "true" : "false"}`} >
+              * Password must be minimum 8 characters.
+            </p>
+            <p className={`password_validation_p ${hasNumericCharacter ? "true" : "false"}`}  >
+              * Minimum one numeric character.
+            </p>
+            <p className={`password_validation_p ${isPasswordNumeric ? "true" : "false"}`} >
+              * Must not be entirely numeric.
+            </p>
+            <p className={`password_validation_p ${arePasswordsSame ? "true" : "false"}`} >
+              * Passwords must match.
+            </p>
+          </div>
+
+
           {error && <p style={{ color: 'red' }}>{error}</p>}
           {success && <p style={{ color: 'green' }}>{success}</p>}
 
           <div className="login_and_register_button_container" >
-            <button type="submit" className="registration_button" >Register</button>
+            <button
+              type="submit"
+              className="registration_button"
+              style={{ cursor: isPasswordLengthValid && isPasswordNumeric && hasNumericCharacter ? 'pointer' : 'not-allowed' }}
+            >
+              Register
+            </button>
           </div>
 
         </form>
 
         <div className="back_to_login_container" >
-          <p onClick={handleLogin}  className="return_to_login_p" > Return to login</p>
-          <TbArrowBack  className="back_to_login_arrow" />
+          <p onClick={handleLogin} className="return_to_login_p" > Return to login</p>
+          <TbArrowBack className="back_to_login_arrow" />
         </div>
       </div>
 

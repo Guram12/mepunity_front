@@ -1,0 +1,108 @@
+
+
+.register_input_container_google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+
+
+.mark_email_icon_register_google {
+  width: 30px;
+  font-size: 30px;
+
+}
+
+
+
+.register_input_google {
+  font-weight: 500;
+  font-size: 20px;
+  color: #ffffff;
+  background-color: rgb(28, 28, 30);
+  box-shadow: 0 0 .4vw rgba(0, 0, 0, 0.5), 0 0 0 .15vw transparent;
+  border-radius: 0.4vw;
+  border: none;
+  outline: none;
+  padding: 0.4vw;
+  transition: .4s;
+  width: 80%;
+  height: 40px;
+}
+
+.register_input_google:hover {
+  box-shadow: 0 0 0 .15vw rgba(135, 207, 235, 0.186);
+}
+
+.register_input_google:focus {
+  box-shadow: 0 0 0 .15vw #00a753;
+}
+
+
+.google_complite_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+
+
+.complite_profile_burron {
+  background-color: #00a753;
+  border: none;
+  color: white;
+  padding: 15px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  width: 50%;
+}
+
+.complite_profile_burron:hover {
+  background-color: #00a75496;
+}
+
+.complite_profile_burron:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #00a753;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

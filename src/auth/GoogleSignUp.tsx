@@ -1,8 +1,12 @@
+import "../styles/GoogleSignUp.css"
 import { GoogleOAuthProvider, GoogleLogin, CredentialResponse } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import axios from 'axios';
 import { baseURL } from '../App';
+import { RiUserSearchFill } from "react-icons/ri";
+import { MdBusinessCenter } from "react-icons/md";
+import { ImMobile2 } from "react-icons/im";
 
 
 interface GoogleOuthProps {
@@ -93,7 +97,7 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
             size="large"     // Options: 'small', 'medium', 'large'
             text="signup_with"    // Options: 'signin_with', 'signup_with', 'continue_with', 'signin'
             width="50px"
-            locale="ka" 
+            locale="ka"
 
           />
         </GoogleOAuthProvider>
@@ -102,42 +106,50 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
       {isGoogleLoggedIn && (
         <form onSubmit={handleProfileSetupSubmit}>
 
-          <div>
+          <div className="register_input_container_google" >
+            <RiUserSearchFill className='mark_email_icon_register_google' />
             <label>
-              UserName:
               <input
                 type="text"
                 value={profileData.username}
                 onChange={(e) => setProfileData({ ...profileData, username: e.target.value })}
                 required
+                className="register_input_google"
+                placeholder='  Enter your name'
               />
             </label>
           </div>
 
-          <div>
+          <div className="register_input_container_google" >
+            <MdBusinessCenter className='mark_email_icon_register_google' />
             <label>
-              Company:
               <input
                 type="text"
                 value={profileData.company}
                 onChange={(e) => setProfileData({ ...profileData, company: e.target.value })}
                 required
+                className="register_input_google"
+                placeholder="  Enter Company Name"
               />
             </label>
           </div>
 
-          <div>
+          <div className="register_input_container_google" >
+            <ImMobile2 className='mark_email_icon_register_google' />
             <label>
-              Phone Number:
               <input
                 type="text"
                 value={profileData.phone_number}
                 onChange={(e) => setProfileData({ ...profileData, phone_number: e.target.value })}
                 required
+                className="register_input_google"
+                placeholder="  Enter Phone Number"
               />
             </label>
           </div>
-          <button type="submit">Complete Profile</button>
+          <div className="google_complite_container" >
+            <button type="submit" className="complite_profile_burron">Complete Profile</button>
+          </div>
         </form>
       )}
     </div>

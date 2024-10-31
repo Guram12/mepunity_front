@@ -121,7 +121,7 @@
   margin: 0px;
 }
 
-/* ------------------------------------ login and register button styles ---------------------- */
+/* ------------------------------------ register button styles ---------------------- */
 
 
 .login_and_register_button_container{
@@ -142,7 +142,7 @@
 
 
 .registration_button {
-  background-color: #00a753;
+  background-color: #313131;
   border: none;
   color: white;
   padding: 10px 15px;
@@ -186,3 +186,34 @@
   cursor: pointer;
   font-size: 23px;
 }
+
+/* ------------------- password validation styles --------------------- */
+
+.password_validations_container{
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.true {
+  color: #00a753;
+}
+
+.false {
+  color: tomato;
+}
+
+.password_validation_p{
+  margin: 0px;
+  font-size: 15px;
+  transition: color 0.3s ease;
+
+}
+
+
+
+
+
+
+
+
+
