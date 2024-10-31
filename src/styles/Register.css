@@ -217,10 +217,15 @@
 /* ============================= mobile styles ============================== */
 
 @media (max-width: 768px) {  
+.register_parent_container{
+  height: auto;
+}
+
   .register_child_container {
     border: none;
     padding: 0px;
     box-shadow: none;
+    width: 100%;
   }
 .register_input_container {
   display: flex;

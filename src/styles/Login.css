@@ -222,6 +222,7 @@
     border: none;
     padding: 0px;
     box-shadow: none;
+    width: 80%;
   }
 
 .mark_and_input_container{
@@ -229,6 +230,10 @@
   flex-direction: column;
   margin-bottom: 10px;
   gap: 10px;
+}
+
+.login_inputs{
+  width: 100%;
 }
 
 .checkbox_container{
