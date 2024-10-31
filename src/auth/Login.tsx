@@ -103,7 +103,7 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
                 />
               </div>
               <div className="checkbox_container">
-                <label>
+                <label style={{cursor: "pointer"}}  >
                   <input
                     className="checkbox_input"
                     type="checkbox"

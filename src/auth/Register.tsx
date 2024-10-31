@@ -4,6 +4,15 @@ import axios from 'axios';
 import { baseURL } from '../App';
 import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { MdOutlineMarkEmailRead } from "react-icons/md";
+import { PiPasswordFill } from "react-icons/pi";
+import { RiUserSearchFill } from "react-icons/ri";
+import { MdBusinessCenter } from "react-icons/md";
+import { ImMobile2 } from "react-icons/im";
+import { TbArrowBack } from "react-icons/tb";
+
+
+
 
 const Register: React.FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -35,7 +44,7 @@ const Register: React.FC = () => {
       if (response.data.detail === 'Verification e-mail sent.') {
         console.log('Registration successful! Please check your email to confirm your account.');
         setSuccess('Registration successful! Please check your email to confirm your account.');
-        setError(""); 
+        setError("");
         setTimeout(() => {
           navigate('/')
         }, 4000);
@@ -80,89 +89,114 @@ const Register: React.FC = () => {
           <path className="cls-4" d="M519.63,693.84h25l-43.06,107.27h-25l16.32-34.97-29.16-72.29h26.14l15.03,44.72,14.73-44.72Z" />
         </g>
       </svg>
+
       <div className='register_child_container' >
 
-        <h2>Register</h2>
+        <div className="register_header" >
+          <h2 className="register_heder_h2" >Register</h2>
+        </div>
+
+
         <form onSubmit={handleSubmit}>
 
-          <div>
-            <label>Email:</label>
+          <div className="register_input_container" >
+            <MdOutlineMarkEmailRead className='mark_email_icon_register' />
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              className="register_input"
+              placeholder='  Enter Email'
             />
-
           </div>
 
-          <div>
-            <label>Username:</label>
+          <div className="register_input_container" >
+            <RiUserSearchFill className='mark_email_icon_register' />
             <input
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
+              className="register_input"
+              placeholder='  Enter Username'
             />
           </div>
 
-          <div>
-            <label>Company:</label>
+          <div className="register_input_container"  >
+            <MdBusinessCenter className='mark_email_icon_register' />
             <input
               type="text"
               value={company}
               onChange={(e) => setCompany(e.target.value)}
               required
+              className="register_input"
+              placeholder="  Enter Company Name"
             />
           </div>
 
-          <div>
-            <label>Mobile Number:</label>
+          <div className="register_input_container" >
+            <ImMobile2 className='mark_email_icon_register' />
             <input
               type="tel"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
               required
+              className="register_input"
+              placeholder="  Enter Phone Number"
             />
           </div>
 
 
-          <div>
-            <label>Password:</label>
+          <div className="register_input_container" >
+            <PiPasswordFill className='mark_email_icon_register' />
             <input
               type={showPassword ? 'text' : 'password'}
               value={password1}
               onChange={(e) => setPassword1(e.target.value)}
               required
+              className="register_input"
+              placeholder="  Enter Password"
             />
           </div>
 
-          <div>
-            <label>Confirm Password:</label>
+          <div className="register_input_container">
+            <PiPasswordFill className='mark_email_icon_register' />
             <input
               type={showPassword ? 'text' : 'password'}
               value={password2}
               onChange={(e) => setPassword2(e.target.value)}
               required
+              className="register_input"
+              placeholder="  Confirm Password"
+
             />
           </div>
-          <div>
+          <div className="checkbox_container_register">
             <label>
               <input
+                className="checkbox_input_register"
                 type="checkbox"
                 checked={showPassword}
                 onChange={() => setShowPassword(!showPassword)}
               />
-              Show Password
+              <p className="show_passwird_p" >Show Password</p>
             </label>
           </div>
 
           {error && <p style={{ color: 'red' }}>{error}</p>}
           {success && <p style={{ color: 'green' }}>{success}</p>}
-          <button type="submit">Register</button>
+
+          <div className="login_and_register_button_container" >
+            <button type="submit" className="registration_button" >Register</button>
+          </div>
 
         </form>
-        <button onClick={handleLogin} >Go To Login</button>
+
+        <div className="back_to_login_container" >
+          <p onClick={handleLogin}  className="return_to_login_p" > Return to login</p>
+          <TbArrowBack  className="back_to_login_arrow" />
+        </div>
       </div>
 
     </div>
@@ -170,3 +204,30 @@ const Register: React.FC = () => {
 };
 
 export default Register;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Password: This password is too short.
+//  It must contain at least 8 characters.
+//  ,This password is too common.,
+//  This password is entirely numeric.
+
+
