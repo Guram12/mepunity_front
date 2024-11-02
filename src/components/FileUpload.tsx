@@ -1,6 +1,15 @@
+import "../styles/FileUpload.css"
 import { useState } from "react";
 import axios from 'axios';
 import { baseURL } from "../App";
+import { RiUserSearchFill } from "react-icons/ri";
+import { MdBusinessCenter } from "react-icons/md";
+import { MdOutlineMarkEmailRead } from "react-icons/md";
+import { LuMailSearch } from "react-icons/lu";
+import { MdOutlineLibraryBooks } from "react-icons/md";
+
+
+
 
 const FileUpload: React.FC = () => {
   const [files, setFiles] = useState<FileList | null>(null);
@@ -44,72 +53,107 @@ const FileUpload: React.FC = () => {
     }
   };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>
-          Files:
-          <input
-            type="file"
-            multiple
-            onChange={handleFileChange} />
-        </label>
-      </div>
 
-      <div>
-        <label>
-          Name:
+  // ================================  check if form is valid ================================
+  const isFormValid = name !== '' && company !== '' && userEmail !== ''
+  // ============================================================================================
+
+
+
+  return (
+    <div className="fileupload_main_container" >
+
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>
+            Files:
+            <input
+              type="file"
+              multiple
+              onChange={handleFileChange}
+            />
+          </label>
+        </div>
+
+        <div className="upload_input_container" >
+          <RiUserSearchFill className='mark_email_icon_upload' />
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
+            className="upload_input"
+            placeholder='  Enter Username'
           />
-        </label>
-      </div>
+        </div>
 
-      <div>
-        <label>
-          Company:
-          <input
-            type="text"
-            value={company}
-            onChange={(e) => setCompany(e.target.value)}
-            required />
-        </label>
-      </div>
-      <div>
-        <label>
-          Email:
-          <input
-            type="email"
-            value={userEmail}
-            onChange={(e) => setUserEmail(e.target.value)}
-            required
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          Subject:
-          <input
-            type="text"
-            value={subject}
-            onChange={(e) => setSubject(e.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          Description:
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </label>
-      </div>
-      <button type="submit">Submit</button>
-    </form>
+        <div className="upload_input_container">
+          <MdBusinessCenter className='mark_email_icon_upload' />
+
+          <label>
+            <input
+              type="text"
+              value={company}
+              onChange={(e) => setCompany(e.target.value)}
+              required
+              className="upload_input"
+              placeholder='  Enter company name'
+            />
+          </label>
+        </div>
+
+        <div className="upload_input_container">
+          <MdOutlineMarkEmailRead className='mark_email_icon_upload' />
+
+          <label>
+            <input
+              type="email"
+              value={userEmail}
+              onChange={(e) => setUserEmail(e.target.value)}
+              required
+              className="upload_input"
+              placeholder='  Enter Email'
+            />
+          </label>
+        </div>
+
+        <div className="upload_input_container">
+          <LuMailSearch className='mark_email_icon_upload' />
+          <label>
+            <input
+              type="text"
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
+              className="upload_input"
+              placeholder='  Enter Subject'
+            />
+          </label>
+        </div>
+
+        <div className="upload_input_container">
+          <MdOutlineLibraryBooks className='mark_email_icon_upload' />
+          <label>
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className="upload_input"
+              placeholder='  Enter Description'
+            />
+          </label>
+        </div>
+
+
+        <button
+          className="upload_button"
+          type="submit"
+          style={{ backgroundColor: isFormValid ? '#00a753' : '#313131', cursor: isFormValid ? 'pointer' : 'not-allowed' }}
+          disabled={!isFormValid}
+        >
+          Send
+        </button>
+      </form>
+    </div>
+
   );
 };
 
