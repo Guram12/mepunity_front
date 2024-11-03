@@ -22,17 +22,29 @@ const FileUpload: React.FC = () => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [isFilesSending, setIsFilesSending] = useState<boolean>(false);
   const [filesAreSent, setFilesAreSent] = useState<boolean>(false);
-
-
-
+  const [current_file_size, setCurrent_file_size] = useState<number>(0);
 
 
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+
+  const MAX_TOTAL_SIZE: number = 2 * 1024 * 1024 * 1024; // 2GB
+
+
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const newFiles = Array.from(e.target.files);
+      const totalSize = newFiles.reduce((acc, file) => acc + file.size, 0) + files.reduce((acc, file) => acc + file.size, 0);
+      if (totalSize) {
+        setCurrent_file_size(totalSize);
+      }
+      if (totalSize > MAX_TOTAL_SIZE) {
+        alert('Total file size exceeds 2GB limit.');
+        return;
+      }
+
       setFiles(prevFiles => [...prevFiles, ...newFiles]);
     }
   };
@@ -42,6 +54,13 @@ const FileUpload: React.FC = () => {
     setIsDragging(false);
     if (e.dataTransfer.files) {
       const newFiles = Array.from(e.dataTransfer.files);
+      const totalSize = newFiles.reduce((acc, file) => acc + file.size, 0) + files.reduce((acc, file) => acc + file.size, 0);
+      setCurrent_file_size(totalSize);
+      if (totalSize > MAX_TOTAL_SIZE) {
+        alert('Total file size exceeds 2GB limit.');
+        return;
+      }
+
       setFiles(prevFiles => [...prevFiles, ...newFiles]);
     }
   };
@@ -120,7 +139,7 @@ const FileUpload: React.FC = () => {
     }
   };
 
-  const isFormValid = name !== '' && company !== '' && userEmail !== '';
+  const isFormValid = name !== '' && company !== '' && userEmail !== '' && files.reduce((acc, file) => acc + file.size, 0) <= MAX_TOTAL_SIZE;
 
   return (
     <div>
@@ -166,8 +185,14 @@ const FileUpload: React.FC = () => {
                 style={{ display: 'none' }}
               />
             </div>
+            {current_file_size > 0 && (
+              <div className="filesize_info_container">
+                <p className="file_size">File size: {current_file_size !== null ? (current_file_size / (1024 * 1024)).toFixed(2) + ' MB' : '0 MB'}</p>
+                <p className="file_info" >(Maximum size 2G)</p>
+              </div>
+            )}
           </div>
-
+          {/* file preview container  */}
           <div className="file_preview">
             {files.map((file, index) => (
               <div key={index} className="file_preview_item">
