@@ -110,7 +110,7 @@
 /* ======================================== mobile stylres ======================================== */
 
 @media screen and (max-width: 768px) {
-  .projects_header_container{
+  .projects_header_container {
     font-size: 14px;
   }
 
@@ -121,11 +121,15 @@
 
   .project_container {
     width: 90%;
+    border: 1px solid red
   }
 
+  .project_image_container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
-
-
 
 
 
