@@ -5,7 +5,8 @@
 
 .blur_background {
   filter: blur(5px);
-  pointer-events: none; /* Prevent interactions with blurred content */
+  pointer-events: none;
+  /* Prevent interactions with blurred content */
 }
 
 .loader_on_upload {
@@ -17,7 +18,7 @@
 }
 
 
-.files_are_sent{
+.files_are_sent {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -188,4 +189,99 @@
   transform: scale(1.6);
 }
 
-/* ================================================================================== */
+/* ==============================  mobile version styles ========================================= */
+
+@media (max-width: 768px) {
+  .mother_inputs_group {
+    gap: 0px;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+
+  /* ---------drag and droop styles --- */
+  .drag_and_drop_container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .drag_drop_area {
+    width: 70%;
+    height: auto;
+    padding: 20px;
+    border: 2px dashed #00a753;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 0px;
+  }
+
+  .drag_drop_area.dragging {
+    background-color: #00a753;
+  }
+
+  .drag_drop_p {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .upload_input_container {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .upload_input {
+    width: 100%;
+  }
+
+  .description_upload_input {
+    width: 90%;
+    height: 160px;
+  }
+
+  .upload_button {
+    width: 100%;
+  }
+
+  .upload_loader_container {
+    width: 200px;
+  }
+
+  .remove_icon {
+    background-color: #121212;
+    border-radius: 50%;
+  }
+
+  .remove_icon:hover {
+    transform: none;
+    color: tomato;
+  }
+
+  .file_preview_item {
+    height: auto;
+    text-wrap: wrap;
+    overflow: hidden;
+
+  }
+
+  .file_icon {
+    min-width: 30px;
+  }
+
+  .files_sent_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .files_are_sent {
+    font-size: 20px;
+    width: 270px;
+  }
+
+}

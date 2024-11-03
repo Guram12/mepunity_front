@@ -139,7 +139,7 @@ const FileUpload: React.FC = () => {
         </div>
       )}
       <div className="files_sent_container" >
-        {filesAreSent && <p className="files_are_sent" >Files are sent successfully</p>}
+        {filesAreSent && <p className="files_are_sent" >Files are sent successfully!</p>}
       </div>
 
       {/* upload main continer is this  */}
@@ -148,21 +148,24 @@ const FileUpload: React.FC = () => {
        ${isFilesSending ? 'blur_background' : ''} 
        ${filesAreSent ? 'blur_background' : ''}`}>
         <form onSubmit={handleSubmit}>
-          <div
-            className={`drag_drop_area ${isDragging ? 'dragging' : ''}`}
-            onDrop={handleDrop}
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
-            onClick={handleClick}
-          >
-            <p className="drag_drop_p">Drag & Drop files here or click to select files</p>
-            <input
-              type="file"
-              multiple
-              onChange={handleFileChange}
-              ref={fileInputRef}
-              style={{ display: 'none' }}
-            />
+          {/* drag and drop container  */}
+          <div className="drag_and_drop_container" >
+            <div
+              className={`drag_drop_area ${isDragging ? 'dragging' : ''}`}
+              onDrop={handleDrop}
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onClick={handleClick}
+            >
+              <p className="drag_drop_p">Drag & Drop files here or click to select files</p>
+              <input
+                type="file"
+                multiple
+                onChange={handleFileChange}
+                ref={fileInputRef}
+                style={{ display: 'none' }}
+              />
+            </div>
           </div>
 
           <div className="file_preview">
