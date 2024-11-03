@@ -8,7 +8,7 @@ import { MdOutlineMarkEmailRead } from "react-icons/md";
 import { LuMailSearch } from "react-icons/lu";
 import { MdOutlineLibraryBooks } from "react-icons/md";
 import { IoMdRemoveCircleOutline } from "react-icons/io";
-// import { FaFilePdf, FaFileImage, FaFileAlt } from "react-icons/fa"; // Add more icons as needed
+import { FaFilePdf, FaFileAlt } from "react-icons/fa"; // Add more icons as needed
 import { FaRegFileZipper } from "react-icons/fa6";
 import { SiAutodesk } from "react-icons/si"; // DWG icon
 
