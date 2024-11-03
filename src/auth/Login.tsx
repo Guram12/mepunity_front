@@ -1,10 +1,11 @@
+import "../styles/Login.css"
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import "../styles/Login.css"
 import GoogleSignUp from './GoogleSignUp';
 import { MdOutlineMarkEmailRead } from "react-icons/md";
-import { PiPasswordFill } from "react-icons/pi";
+import { MdOutlineNextPlan } from "react-icons/md";
+import { PiPasswordBold } from "react-icons/pi";
 
 
 interface LoginProps {
@@ -91,7 +92,7 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
                 />
               </div>
               <div className='mark_and_input_container'  >
-                <PiPasswordFill className='mark_password_icon' />
+                <PiPasswordBold className='mark_password_icon' />
                 <input
                   className='login_inputs'
                   type={showPassword ? 'text' : 'password'}
@@ -136,7 +137,10 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
         </div>
         <div className='contonue_without_container' >
           {!isGoogleLoggedIn && (
+            <>
             <p onClick={handle_without_register_click} className='contonue_without' >Continue without registering</p>
+            <MdOutlineNextPlan  className='no_register_icon' />
+            </>
           )}
         </div>
       </div>

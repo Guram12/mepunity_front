@@ -187,7 +187,13 @@
   cursor: pointer;
   margin-right: 15px;
   font-weight: 500;
+  transition: color 0.5s ease;
 }
+
+.no_account:hover {
+  color: #00a753;
+}
+
 
 .contonue_without_container {
   display: flex;
@@ -200,8 +206,18 @@
 .contonue_without {
   cursor: pointer;
   font-weight: 500;
+  transition: color 0.5s ease;
 }
 
+.contonue_without:hover{
+  color : tomato
+}
+
+.no_register_icon{
+  font-size: 25px;
+  margin-left: 10px;
+
+}
 
 /* ----------------------- google login container ------------------------ */
 .google_login_conrainer {
