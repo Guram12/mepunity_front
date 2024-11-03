@@ -5,11 +5,11 @@ import { baseURL } from '../App';
 import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { MdOutlineMarkEmailRead } from "react-icons/md";
-import { PiPasswordFill } from "react-icons/pi";
 import { RiUserSearchFill } from "react-icons/ri";
 import { MdBusinessCenter } from "react-icons/md";
 import { ImMobile2 } from "react-icons/im";
 import { TbArrowBack } from "react-icons/tb";
+import { PiPasswordBold } from "react-icons/pi";
 
 
 
@@ -171,7 +171,7 @@ const Register: React.FC = () => {
 
 
           <div className="register_input_container" >
-            <PiPasswordFill className='mark_email_icon_register' />
+            <PiPasswordBold className='mark_email_icon_register' />
             <input
               type={showPassword ? 'text' : 'password'}
               value={password1}
@@ -183,7 +183,7 @@ const Register: React.FC = () => {
           </div>
 
           <div className="register_input_container">
-            <PiPasswordFill className='mark_email_icon_register' />
+            <PiPasswordBold className='mark_email_icon_register' />
             <input
               type={showPassword ? 'text' : 'password'}
               value={password2}
