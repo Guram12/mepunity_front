@@ -1,6 +1,6 @@
 .fileupload_main_container {
   padding: 20px;
-
+  min-height: 80vh;
 }
 
 .blur_background {
