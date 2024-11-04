@@ -38,28 +38,6 @@ const FileUpload: React.FC = () => {
 
   }, [current_file_size])
 
-  const pollUploadProgress = () => {
-    console.log('Polling upload progress...');
-    const interval = setInterval(async () => {
-      try {
-        const response = await axios.get(`${baseURL}/api/upload-progress/`);
-        setUploadProgress(response.data.progress);
-        console.log(`Current progress: ${response.data.progress}%`);
-        if (response.data.progress >= 100) {
-          clearInterval(interval);
-          setIsFilesSending(false);
-          setFilesAreSent(true);
-          setUploadProgress(0);
-          setTimeout(() => {
-            setFilesAreSent(false);
-          }, 2000);
-        }
-      } catch (error) {
-        console.error('Error fetching upload progress:', error);
-        clearInterval(interval);
-      }
-    }, 1000); // Poll every second
-  };
 
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -119,7 +97,7 @@ const FileUpload: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+  
     setIsFilesSending(true);
     const formData = new FormData();
     files.forEach(file => {
@@ -130,9 +108,7 @@ const FileUpload: React.FC = () => {
     formData.append('email', userEmail);
     formData.append('subject', subject);
     formData.append('description', description);
-
-    pollUploadProgress();  // Start polling for backend progress immediately
-
+  
     try {
       await axios.post(`${baseURL}/api/send-file/`, formData, {
         headers: {
@@ -141,7 +117,14 @@ const FileUpload: React.FC = () => {
         onUploadProgress: (progressEvent) => {
           if (progressEvent.total) {
             const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-            setUploadProgress(percentCompleted * 0.2);  // 20% for frontend upload
+            setUploadProgress(percentCompleted);  // Track progress on the frontend
+            if (percentCompleted === 100) {
+              setIsFilesSending(false);
+              setFilesAreSent(true);
+              setTimeout(() => {
+                setFilesAreSent(false);
+              }, 2000);
+            }
           } else {
             setUploadProgress(0);
           }
@@ -150,8 +133,11 @@ const FileUpload: React.FC = () => {
     } catch (error) {
       console.error('Error uploading files:', error);
       alert('Error uploading files');
+      setIsFilesSending(false);
     }
   };
+
+
   const renderFileIcon = (file: File) => {
     if (file.type.startsWith('image/')) {
       if (file.type === 'image/vnd.dwg') {
