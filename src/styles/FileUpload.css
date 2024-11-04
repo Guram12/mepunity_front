@@ -1,6 +1,6 @@
 .fileupload_main_container {
   padding: 20px;
-
+  min-height: 80vh;
 }
 
 .blur_background {
@@ -160,6 +160,14 @@
 }
 
 
+.drag_area_contaner{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 .drag_drop_area {
   border: 2px dashed #00a753;
   border-radius: 10px;
@@ -167,7 +175,7 @@
   text-align: center;
   cursor: pointer;
   transition: background-color 0.3s;
-  width: 600px;
+  width: 70%;
   height: 150px;
   align-content: center;
 }

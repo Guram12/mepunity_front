@@ -94,10 +94,6 @@ const Header: React.FC<HeaderProps> = ({ profileData, isAuthenticated, setContin
           <button className='header_button' onClick={toggleMenu} >Projects</button>
         </Link>
 
-        <Link to="/about">
-          <button className='header_button' onClick={toggleMenu}>About</button>
-        </Link>
-
         <Link to="/price-calculation">
           <button className='header_button' onClick={toggleMenu}>Calculate Price</button>
         </Link>

@@ -1,0 +1,95 @@
+.site_footer {
+  height: auto;
+  background-color: rgb(28, 28, 30);
+  margin-top: 50px;
+}
+
+
+.footer_content_container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: self-start;
+  padding: 20px 40px;
+  position: relative;
+  gap: 100px;
+}
+
+.about_continer {
+  max-width: 600px;
+}
+
+.footer_about_h1 {
+  font-size: 30px;
+  color: rgb(145, 145, 145);
+}
+
+.footer_about_p {
+  color: rgb(145, 145, 145);
+}
+
+
+.contact_container {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer_contact_h1 {
+  font-size: 30px;
+  color: rgb(145, 145, 145);
+}
+
+.footer_mobile_email_container{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 50px;
+}
+
+.footer_mobile_container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+}
+
+.foolter_mobile_icon {
+  color: rgb(145, 145, 145);
+  font-size: 35px;
+}
+
+.mobile_p {
+  color: rgb(145, 145, 145);
+  margin: 0px;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+
+.footer_email_container{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+}
+
+
+.footer_email_icon{
+  color: rgb(145, 145, 145);
+  font-size: 35px;
+}
+
+
+.email_p {
+  color: rgb(145, 145, 145);
+  margin: 0px;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.rights_reserver {
+  position: absolute;
+  bottom: 2px;
+  margin: 0px;
+  color: rgb(87, 87, 87);
+  right: 10px;
+}

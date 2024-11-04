@@ -8,9 +8,8 @@ import Login from './auth/Login';
 import Register from './auth/Register';
 import axios from 'axios';
 import FileUpload from './components/FileUpload';
-import About from './components/About'; 
 import Calculate from './components/Calculate';
-
+import Footer from './header/Footr';
 
 let baseURL: string;
 
@@ -190,11 +189,11 @@ useEffect(() => {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/about" element={<About />} />
         <Route path="/price-calculation" element={<Calculate  profileData={profileData} isAuthenticated={isAuthenticated} />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/upload-file" element={<FileUpload />} />
       </Routes>
+      <Footer/>
     </Router>
   )
 }
