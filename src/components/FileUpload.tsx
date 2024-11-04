@@ -87,17 +87,17 @@ const FileUpload: React.FC = () => {
 
   const handleRemoveFile = (index: number) => {
     setFiles(prevFiles => {
-      const newFiles = prevFiles.filter((_,i) =>  i !== index);
-      const totalSize = newFiles.reduce((acc, file) => acc + file.size, 0);  
+      const newFiles = prevFiles.filter((_, i) => i !== index);
+      const totalSize = newFiles.reduce((acc, file) => acc + file.size, 0);
       setCurrent_file_size(totalSize);
       return newFiles;
     })
-    
+
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  
+
     setIsFilesSending(true);
     const formData = new FormData();
     files.forEach(file => {
@@ -108,7 +108,7 @@ const FileUpload: React.FC = () => {
     formData.append('email', userEmail);
     formData.append('subject', subject);
     formData.append('description', description);
-  
+
     try {
       await axios.post(`${baseURL}/api/send-file/`, formData, {
         headers: {
@@ -179,7 +179,7 @@ const FileUpload: React.FC = () => {
           </div>
           <p className="progres_percent">{uploadProgress.toFixed(0)}%</p>
           <p className="upload_progres_warning" >Please wait for the files to upload. This may take a couple of minutes.</p>
-          
+
         </div>
       )}
       <div className="files_sent_container">
@@ -192,24 +192,28 @@ const FileUpload: React.FC = () => {
        ${isFilesSending ? 'blur_background' : ''} 
        ${filesAreSent ? 'blur_background' : ''}`}>
         <form onSubmit={handleSubmit}>
+          
           {/* drag and drop container  */}
           <div className="drag_and_drop_container" >
-            <div
-              className={`drag_drop_area ${isDragging ? 'dragging' : ''}`}
-              onDrop={handleDrop}
-              onDragOver={handleDragOver}
-              onDragLeave={handleDragLeave}
-              onClick={handleClick}
-            >
-              <p className="drag_drop_p">Drag & Drop files here or click to select files</p>
-              <input
-                type="file"
-                multiple
-                onChange={handleFileChange}
-                ref={fileInputRef}
-                style={{ display: 'none' }}
-              />
+            <div className="drag_area_contaner" >
+              <div
+                className={`drag_drop_area ${isDragging ? 'dragging' : ''}`}
+                onDrop={handleDrop}
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                onClick={handleClick}
+              >
+                <p className="drag_drop_p">Drag & Drop files here or click to select files</p>
+                <input
+                  type="file"
+                  multiple
+                  onChange={handleFileChange}
+                  ref={fileInputRef}
+                  style={{ display: 'none' }}
+                />
+              </div>
             </div>
+
             {current_file_size > 0 && (
               <div className="filesize_info_container"
               >
@@ -230,7 +234,7 @@ const FileUpload: React.FC = () => {
                   className="remove_icon"
                   onClick={() => handleRemoveFile(index)}
                 />
-                <p className="file_size_in_map" >{(file.size / (1024 * 1024)).toFixed(1) + " MB" }</p>
+                <p className="file_size_in_map" >{(file.size / (1024 * 1024)).toFixed(1) + " MB"}</p>
               </div>
             ))}
           </div>
