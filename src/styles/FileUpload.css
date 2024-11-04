@@ -15,6 +15,7 @@
   left: 50%;
   z-index: 99999999999999999;
   transform: translate(-50%, -50%);
+  margin-left: 14px;
 }
 
 
@@ -115,6 +116,49 @@
 .drag_drop_area.dragging {
   background-color: #00a753;
 }
+.progress_bar{
+  width: 400px;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 10px;
+  position: fixed;
+  background-color: #555555;
+  z-index: 99999999999999999;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.progress {
+  height: 10px;
+  background-color: #4caf50;
+  width: 0;
+  transition: width 0.4s ease !important;
+  border-radius: 30px ;
+
+}
+
+.progres_percent{
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 600;
+  z-index: 99999999999999999;
+}
+
+.upload_progres_warning{
+  position: fixed;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99999999999999999;
+  font-size: 20px;
+  width: max-content ;
+  font-weight: 600;
+}
+
 
 .drag_drop_area {
   border: 2px dashed #00a753;
@@ -180,7 +224,7 @@
   align-items: center;
   gap: 10px;
   position: relative;
-  padding-right: 30px;
+  padding-right: 60px;
 }
 
 .file_preview_item img {
@@ -204,6 +248,15 @@
   color: red;
   transform: scale(1.6);
 }
+
+.file_size_in_map{
+  position: absolute;
+  bottom: 0px;
+  right: 1px;
+  color: #a8a8a8;
+  margin: 0px;
+}
+
 
 /* ==============================  mobile version styles ========================================= */
 
