@@ -110,6 +110,11 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated }) =
     console.log("fullPrice", fullPrice)
   }, [fullPrice, markedServiceCount])
 
+  useEffect(() => {
+    calculate_full_price();
+  }, [markedItems, square_meter]);
+
+
 
   const calculate_full_price = () => {
     console.log("isAuthenticated from clc", isAuthenticated);
@@ -163,7 +168,7 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated }) =
   return (
     <div className="main_calculation_container">
       <div className="parent_div_line">
-        <h2>აირჩიეთ სასურველი სერვისი</h2>
+        <h2 className="select_service_h2" >აირჩიეთ სასურველი სერვისი</h2>
         <div className="child_div_line"></div>
       </div>
       {warning && (
@@ -173,7 +178,7 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated }) =
       )}
       <div className="services_container" >
 
-        <h3>ელექტროობა</h3>
+        <h3 className="service_name" >ელექტროობა</h3>
         {!contentLoaded && (
           <div className="dot-spinner">
             <div className="dot-spinner__dot"></div>
@@ -250,30 +255,30 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated }) =
 
         <div className="calculation_container">
           <h3>ფართობი (m²) </h3>
-          <input
-            className="square_meter_input"
-            placeholder="შეიყვანეთ ფართობი"
-            type="number"
-            value={square_meter !== null ? square_meter : ''}
-            onChange={(e) => {
-              const value = e.target.value;
-              setSquare_meter(value === '' ? null : Number(value));
-            }}
-          />
-          <button className="calculate_button" onClick={calculate_full_price}>
-            <span className="calculate_span">გამოთვლა</span>
-          </button>
+
+          <div className="mobile_input_container" >
+            <input
+              className="square_meter_input"
+              placeholder="შეიყვანეთ ფართობი"
+              type="number"
+              value={square_meter !== null ? square_meter : ''}
+              onChange={(e) => {
+                const value = e.target.value;
+                setSquare_meter(value === '' ? null : Number(value));
+              }}
+            />
+          </div>
 
           <button className="calculate_button clear" onClick={clear_all}>
             <span className="calculate_span">გასუფთავება</span>
           </button>
         </div>
 
-      {fullPrice && (Number(fullPrice) > 1) && (
-        <div className="full_price_container">
-          <h3>სრული ფასი: {Number(fullPrice.toFixed(2))} ₾</h3>
-        </div>
-      )}
+        {fullPrice !== null && fullPrice > 0 && (
+          <div className="full_price_container">
+            <h3>სრული ფასი: {Number(fullPrice.toFixed(2))} ₾</h3>
+          </div>
+        )}
       </div>
 
 

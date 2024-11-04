@@ -11,15 +11,24 @@
   flex-direction: column;
 }
 
-.warning_container{
+.warning_container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   color: tomato;
- }
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+}
 
- 
+ .warning_container.show {
+  max-height: 300px;
+  opacity: 1;
+}
+
+
 .child_div_line {
   width: 70%;
   background-color: #00a753;
@@ -40,7 +49,7 @@
 .project_checkmark {
   background-color: rgb(22, 92, 59);
   width: fit-content;
-  height: 35px;
+  min-height: 35px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -50,7 +59,6 @@
   cursor: pointer;
   margin: 0px;
   transition: background-color 0.3s ease, color 0.3s ease;
-  /* Added transition */
 }
 
 .marked {
@@ -155,10 +163,69 @@ input[type="number"] {
  }
  
 
-
-
-
  .clear{
   background: tomato !important;
   border: 1px solid tomato !important;
  }
+
+
+ /* ==================== mobile styles ======================== */
+
+
+
+
+@media screen and (max-width: 768px) {
+  .first_project_group_container {
+    flex-direction: column;
+  }
+
+.parent_div_line{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.select_service_h2{
+  align-content: center;
+  font-size: 18px;
+}
+
+.project_checkmark{
+  height: auto;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  color: rgb(175, 175, 175);
+}
+
+
+.service_name{
+  font-size: 16px;
+}
+
+  .square_meter_input {
+    margin-right: 0px;
+  }
+
+  .mobile_input_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.calculation_container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.calculate_button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+}
