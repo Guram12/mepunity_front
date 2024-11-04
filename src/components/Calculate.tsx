@@ -255,16 +255,19 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated }) =
 
         <div className="calculation_container">
           <h3>ფართობი (m²) </h3>
-          <input
-            className="square_meter_input"
-            placeholder="შეიყვანეთ ფართობი"
-            type="number"
-            value={square_meter !== null ? square_meter : ''}
-            onChange={(e) => {
-              const value = e.target.value;
-              setSquare_meter(value === '' ? null : Number(value));
-            }}
-          />
+
+          <div className="mobile_input_container" >
+            <input
+              className="square_meter_input"
+              placeholder="შეიყვანეთ ფართობი"
+              type="number"
+              value={square_meter !== null ? square_meter : ''}
+              onChange={(e) => {
+                const value = e.target.value;
+                setSquare_meter(value === '' ? null : Number(value));
+              }}
+            />
+          </div>
 
           <button className="calculate_button clear" onClick={clear_all}>
             <span className="calculate_span">გასუფთავება</span>
