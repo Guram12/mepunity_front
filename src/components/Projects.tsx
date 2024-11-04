@@ -57,7 +57,7 @@ const Projects: React.FC = () => {
     <div className='main_project_containet'>
       <div className="projects_header_container" >
 
-        <h1>Complited Projects</h1>
+        <h1>Completed Projects</h1>
         <div className="project_header_line" ></div>
         {!project_content_loaded && (
           <div className="dot-spinner" style={{ marginTop: "80px" }} >

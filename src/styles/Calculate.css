@@ -40,7 +40,7 @@
 .project_checkmark {
   background-color: rgb(22, 92, 59);
   width: fit-content;
-  height: 35px;
+  min-height: 35px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -50,7 +50,6 @@
   cursor: pointer;
   margin: 0px;
   transition: background-color 0.3s ease, color 0.3s ease;
-  /* Added transition */
 }
 
 .marked {
@@ -155,10 +154,52 @@ input[type="number"] {
  }
  
 
-
-
-
  .clear{
   background: tomato !important;
   border: 1px solid tomato !important;
  }
+
+
+ /* ==================== mobile styles ======================== */
+
+
+
+
+@media screen and (max-width: 768px) {
+  .first_project_group_container {
+    flex-direction: column;
+  }
+
+.parent_div_line{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.select_service_h2{
+  align-content: center;
+  font-size: 18px;
+}
+
+.project_checkmark{
+  height: auto;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  color: rgb(175, 175, 175);
+}
+
+
+.service_name{
+  font-size: 16px;
+}
+
+  .square_meter_input {
+    margin-right: 0px;
+  }
+
+  /* .calculate_button {
+    margin-right: 0px;
+  } */
+}
