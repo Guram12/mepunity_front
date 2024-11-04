@@ -108,7 +108,6 @@ const FileUpload: React.FC = () => {
   };
 
   const handleRemoveFile = (index: number) => {
-    // setFiles(prevFiles => prevFiles.filter((_, i) => i !== index));
     setFiles(prevFiles => {
       const newFiles = prevFiles.filter((_,i) =>  i !== index);
       const totalSize = newFiles.reduce((acc, file) => acc + file.size, 0);  
@@ -139,14 +138,14 @@ const FileUpload: React.FC = () => {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-        // onUploadProgress: (progressEvent) => {
-        //   if (progressEvent.total) {
-        //     const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-        //     setUploadProgress(percentCompleted * 0.2);  // 20% for frontend upload
-        //   } else {
-        //     setUploadProgress(0);
-        //   }
-        // }
+        onUploadProgress: (progressEvent) => {
+          if (progressEvent.total) {
+            const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+            setUploadProgress(percentCompleted * 0.2);  // 20% for frontend upload
+          } else {
+            setUploadProgress(0);
+          }
+        }
       });
     } catch (error) {
       console.error('Error uploading files:', error);
@@ -193,6 +192,8 @@ const FileUpload: React.FC = () => {
             <div className="progress" style={{ width: `${uploadProgress}%` }}></div>
           </div>
           <p className="progres_percent">{uploadProgress.toFixed(0)}%</p>
+          <p className="upload_progres_warning" >Please wait for the files to upload. This may take a couple of minutes.</p>
+          
         </div>
       )}
       <div className="files_sent_container">
