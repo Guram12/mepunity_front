@@ -1,5 +1,5 @@
 import "../styles/FileUpload.css"
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import axios from 'axios';
 import { baseURL } from "../App";
 import { RiUserSearchFill } from "react-icons/ri";
@@ -23,14 +23,43 @@ const FileUpload: React.FC = () => {
   const [isFilesSending, setIsFilesSending] = useState<boolean>(false);
   const [filesAreSent, setFilesAreSent] = useState<boolean>(false);
   const [current_file_size, setCurrent_file_size] = useState<number>(0);
-
+  const [uploadProgress, setUploadProgress] = useState<number>(0);
 
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-
   const MAX_TOTAL_SIZE: number = 2 * 1024 * 1024 * 1024; // 2GB
 
+  useEffect(() => {
+    console.log("current_file_size", current_file_size);
+    console.log("MAX_TOTAL_SIZE", MAX_TOTAL_SIZE);
+    console.log(current_file_size > MAX_TOTAL_SIZE ? 'red' : "white");
+
+
+  }, [current_file_size])
+
+  const pollUploadProgress = () => {
+    console.log('Polling upload progress...');
+    const interval = setInterval(async () => {
+      try {
+        const response = await axios.get(`${baseURL}/api/upload-progress/`);
+        setUploadProgress(response.data.progress);
+        console.log(`Current progress: ${response.data.progress}%`);
+        if (response.data.progress >= 100) {
+          clearInterval(interval);
+          setIsFilesSending(false);
+          setFilesAreSent(true);
+          setUploadProgress(0);
+          setTimeout(() => {
+            setFilesAreSent(false);
+          }, 2000);
+        }
+      } catch (error) {
+        console.error('Error fetching upload progress:', error);
+        clearInterval(interval);
+      }
+    }, 1000); // Poll every second
+  };
 
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -79,7 +108,14 @@ const FileUpload: React.FC = () => {
   };
 
   const handleRemoveFile = (index: number) => {
-    setFiles(prevFiles => prevFiles.filter((_, i) => i !== index));
+    // setFiles(prevFiles => prevFiles.filter((_, i) => i !== index));
+    setFiles(prevFiles => {
+      const newFiles = prevFiles.filter((_,i) =>  i !== index);
+      const totalSize = newFiles.reduce((acc, file) => acc + file.size, 0);  
+      setCurrent_file_size(totalSize);
+      return newFiles;
+    })
+    
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -96,33 +132,28 @@ const FileUpload: React.FC = () => {
     formData.append('subject', subject);
     formData.append('description', description);
 
+    pollUploadProgress();  // Start polling for backend progress immediately
+
     try {
       await axios.post(`${baseURL}/api/send-file/`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
+        // onUploadProgress: (progressEvent) => {
+        //   if (progressEvent.total) {
+        //     const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+        //     setUploadProgress(percentCompleted * 0.2);  // 20% for frontend upload
+        //   } else {
+        //     setUploadProgress(0);
+        //   }
+        // }
       });
-      // setFiles([]);
-      // setName('');
-      // setCompany('');
-      // setUserEmail('');
-      // setSubject('');
-      // setDescription('');
-
-      setIsFilesSending(false);
-      setFilesAreSent(true);
-      setTimeout(() => {
-        setFilesAreSent(false);
-      }, 2000);
     } catch (error) {
       console.error('Error uploading files:', error);
       alert('Error uploading files');
     }
   };
-
   const renderFileIcon = (file: File) => {
-    console.log(file.name, file.type);
-
     if (file.type.startsWith('image/')) {
       if (file.type === 'image/vnd.dwg') {
         return <SiAutodesk className="file_icon" />;
@@ -141,11 +172,13 @@ const FileUpload: React.FC = () => {
 
   const isFormValid = name !== '' && company !== '' && userEmail !== '' && files.reduce((acc, file) => acc + file.size, 0) <= MAX_TOTAL_SIZE;
 
+
+
   return (
     <div>
       {isFilesSending && (
-        <div className="upload_loader_container" >
-          <div className="dot-spinner loader_on_upload ">
+        <div className="upload_loader_container">
+          <div className="dot-spinner loader_on_upload">
             <div className="dot-spinner__dot"></div>
             <div className="dot-spinner__dot"></div>
             <div className="dot-spinner__dot"></div>
@@ -155,10 +188,15 @@ const FileUpload: React.FC = () => {
             <div className="dot-spinner__dot"></div>
             <div className="dot-spinner__dot"></div>
           </div>
+
+          <div className="progress_bar">
+            <div className="progress" style={{ width: `${uploadProgress}%` }}></div>
+          </div>
+          <p className="progres_percent">{uploadProgress.toFixed(0)}%</p>
         </div>
       )}
-      <div className="files_sent_container" >
-        {filesAreSent && <p className="files_are_sent" >Files are sent successfully!</p>}
+      <div className="files_sent_container">
+        {filesAreSent && <p className="files_are_sent">Files are sent successfully!</p>}
       </div>
 
       {/* upload main continer is this  */}
@@ -186,8 +224,11 @@ const FileUpload: React.FC = () => {
               />
             </div>
             {current_file_size > 0 && (
-              <div className="filesize_info_container">
-                <p className="file_size">File size: {current_file_size !== null ? (current_file_size / (1024 * 1024)).toFixed(2) + ' MB' : '0 MB'}</p>
+              <div className="filesize_info_container"
+              >
+                <p className="file_size"
+                  style={{ color: current_file_size > MAX_TOTAL_SIZE ? 'red' : 'inherit' }}
+                >File size: {current_file_size !== null ? (current_file_size / (1024 * 1024)).toFixed(2) + ' MB' : '0 MB'}</p>
                 <p className="file_info" >(Maximum size 2G)</p>
               </div>
             )}
@@ -202,6 +243,7 @@ const FileUpload: React.FC = () => {
                   className="remove_icon"
                   onClick={() => handleRemoveFile(index)}
                 />
+                <p className="file_size_in_map" >{(file.size / (1024 * 1024)).toFixed(1) + " MB" }</p>
               </div>
             ))}
           </div>
