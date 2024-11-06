@@ -145,6 +145,26 @@
   gap: 5px;
 }
 
+
+.login_page_error{
+  color: tomato;
+  font-size: 17px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+
+.login_loading_button_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 20px;
+}
+
+
+
 /* ------------------------------------ login button styles ---------------------- */
 .login_button_container {
   display: flex;

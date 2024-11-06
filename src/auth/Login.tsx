@@ -21,14 +21,18 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
   const [error, setError] = useState<string>('');
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [isGoogleLoggedIn, setIsGoogleLoggedIn] = useState<boolean>(false);
-
+  const [loading, setLoading] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
 
 
+
+  // ===================================== subbmit ====================================
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError('');
+    setLoading(true);
     try {
       const response = await axios.post('http://localhost:8000/auth/token/', {
         email,
@@ -37,7 +41,7 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
       localStorage.setItem('access_token', response.data.access);
       localStorage.setItem('refresh_token', response.data.refresh);
       localStorage.setItem("login_status", "true");
-
+      setLoading(false);
       setIsAuthenticated(true);
       navigate('/');
     } catch (err) {
@@ -45,6 +49,7 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
     }
   };
 
+  // ==================================================================================
 
   const handleRegister = () => {
     navigate('/register')
@@ -122,10 +127,26 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
 
 
               </div>
-              {error && <p>{error}</p>}
 
-              <div className='login_button_container' >
-                <button type="submit" className="login_button">Login</button>
+              <div className="login_loading_button_container" >
+
+                {error && <p className="login_page_error" >{error}</p>}
+                {loading && !error ?
+                  <div className="dot-spinner"  >
+                    <div className="dot-spinner__dot"></div>
+                    <div className="dot-spinner__dot"></div>
+                    <div className="dot-spinner__dot"></div>
+                    <div className="dot-spinner__dot"></div>
+                    <div className="dot-spinner__dot"></div>
+                    <div className="dot-spinner__dot"></div>
+                    <div className="dot-spinner__dot"></div>
+                    <div className="dot-spinner__dot"></div>
+                  </div>
+                  :
+                  <div className='login_button_container' >
+                    <button type="submit" className="login_button">Login</button>
+                  </div>
+                }
               </div>
 
             </form>
@@ -142,7 +163,7 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
 
         <div className='reset_password_container' >
           <p className='reset_password_P' onClick={handlePasswordReset}  >Forgot Password ?</p>
-          <MdLockReset className='reset_password_icon'  onClick={handlePasswordReset} />
+          <MdLockReset className='reset_password_icon' onClick={handlePasswordReset} />
         </div>
 
         <div className='contonue_without_container' >
