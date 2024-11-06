@@ -85,6 +85,7 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
     }
   };
 
+  // rgb(28, 28, 30)
 
   return (
     <div>

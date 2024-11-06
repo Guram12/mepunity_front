@@ -10,6 +10,10 @@ import axios from 'axios';
 import FileUpload from './components/FileUpload';
 import Calculate from './components/Calculate';
 import Footer from './header/Footr';
+import PasswordReset from './auth/PasswordReset';
+import PasswordResetRequest from './auth/PasswordResetRequest';
+
+
 
 let baseURL: string;
 
@@ -55,6 +59,9 @@ const App: React.FC = () => {
     }, 50);
   }, [])
 
+  useEffect(() => {
+    console.log(  "login status",login_status)
+  },[login_status])
 
 
   //======================================== fetch profile data ==================================================
@@ -79,54 +86,54 @@ const App: React.FC = () => {
 
     }
 
-  }, [isAuthenticated, accessToken , refreshToken])
+  }, [isAuthenticated, accessToken, refreshToken])
 
 
-// =================================  validate tokens on website load ==================================
+  // =================================  validate tokens on website load ==================================
 
 
 
-const validateTokens = async () => {
+  const validateTokens = async () => {
 
-  if (accessToken) {
-    try {
-      const response = await axios.post(`${baseURL}/auth/token/verify/`, {
-        token: accessToken,
-      });
-      return response.status === 200;
-    } catch (error) {
-      console.error('Access token is invalid', error);
+    if (accessToken) {
+      try {
+        const response = await axios.post(`${baseURL}/auth/token/verify/`, {
+          token: accessToken,
+        });
+        return response.status === 200;
+      } catch (error) {
+        console.error('Access token is invalid', error);
+      }
     }
-  }
 
-  if (refreshToken) {
-    try {
-      const response = await axios.post(`${baseURL}/auth/token/refresh/`, {
-        refresh: refreshToken,
-      });
-      localStorage.setItem('access_token', response.data.access);
-      return true;
-    } catch (error) {
-      console.error('Refresh token is invalid', error);
+    if (refreshToken) {
+      try {
+        const response = await axios.post(`${baseURL}/auth/token/refresh/`, {
+          refresh: refreshToken,
+        });
+        localStorage.setItem('access_token', response.data.access);
+        return true;
+      } catch (error) {
+        console.error('Refresh token is invalid', error);
+      }
     }
-  }
 
-  return false;
-};
-
-// --------------------------------------------------------------------------------------------------------
-useEffect(() => {
-  const checkAuthentication = async () => {
-    const isValid = await validateTokens();
-    if (isValid) {
-      setIsAuthenticated(true);
-    }
+    return false;
   };
 
-  checkAuthentication();
-}, []);
+  // --------------------------------------------------------------------------------------------------------
+  useEffect(() => {
+    const checkAuthentication = async () => {
+      const isValid = await validateTokens();
+      if (isValid) {
+        setIsAuthenticated(true);
+      }
+    };
 
-// ========================================================================================================
+    checkAuthentication();
+  }, []);
+
+  // ========================================================================================================
 
 
 
@@ -170,12 +177,17 @@ useEffect(() => {
       <div>
         <Router>
           <Routes>
-            <Route path="/" element={<Login
-              setIsAuthenticated={setIsAuthenticated}
-              setContinueWithoutRegistering={setContinueWithoutRegistering}
+            <Route
+              path="/"
+              element={<Login
+                setIsAuthenticated={setIsAuthenticated}
+                setContinueWithoutRegistering={setContinueWithoutRegistering}
 
-            />} />
+              />} />
             <Route path="/register" element={<Register />} />
+
+            <Route path="/password-reset" element={<PasswordResetRequest />} />
+            <Route path="/reset-password/:uidb64/:token" element={<PasswordReset />} />
           </Routes>
         </Router>
       </div>
@@ -189,11 +201,11 @@ useEffect(() => {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/price-calculation" element={<Calculate  profileData={profileData} isAuthenticated={isAuthenticated} />} />
+        <Route path="/price-calculation" element={<Calculate profileData={profileData} isAuthenticated={isAuthenticated} />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/upload-file" element={<FileUpload />} />
       </Routes>
-      <Footer/>
+      <Footer />
     </Router>
   )
 }

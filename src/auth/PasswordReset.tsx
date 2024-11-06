@@ -1,67 +1,87 @@
-import "../styles/Login.css"
-import React, { useState } from 'react';
-import axios from 'axios';
+import "../styles/PasswordReset.css"
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import GoogleSignUp from './GoogleSignUp';
-import { MdOutlineMarkEmailRead } from "react-icons/md";
-import { MdOutlineNextPlan } from "react-icons/md";
-import { PiPasswordBold } from "react-icons/pi";
+import axios from "axios";
+import { useParams } from 'react-router-dom';
+import { baseURL } from "../App";
+import { MdPassword } from "react-icons/md";
 import { MdLockReset } from "react-icons/md";
 
 
-interface LoginProps {
-  setIsAuthenticated: (isAuthenticated: boolean) => void;
-  setContinueWithoutRegistering: (continueWithoutRegistering: boolean) => void;
-}
 
 
-const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutRegistering }) => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [error, setError] = useState<string>('');
+
+const PasswordReset: React.FC = () => {
+  const { uidb64, token } = useParams();
+  const [password1, setPassword1] = useState('');
+  const [password2, setPassword2] = useState('');
+  const [message, setMessage] = useState<string>('');
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [isGoogleLoggedIn, setIsGoogleLoggedIn] = useState<boolean>(false);
-
+  const [loading, setLoading] = useState<boolean>(false);
+  const [password_reseted, setPassword_reseted] = useState<boolean>(false);
+  const [countdown, setCountdown] = useState<number>(5);
+  // password validation states
+  const [isPasswordLengthValid, setIsPasswordLengthValid] = useState<boolean>(false);
+  const [isPasswordNumeric, setIsPasswordNumeric] = useState<boolean>(false);
+  const [hasNumericCharacter, setHasNumericCharacter] = useState<boolean>(false);
+  const [arePasswordsSame, setArePasswordsSame] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (password_reseted) {
+      const timer = setInterval(() => {
+        setCountdown((prevCountdown) => {
+          if (prevCountdown <= 1) {
+            clearInterval(timer);
+            navigate('/'); // Redirect to login page
+          }
+          return prevCountdown - 1;
+        });
+      }, 1000);
+      return () => clearInterval(timer);
+    }
+  }, [password_reseted, navigate]);
+
+
+  useEffect(() => {
+    validatePassword(password1, password2);
+  }, [password1, password2]);
+
+  const validatePassword = (password1: string, password2: string) => {
+    setIsPasswordLengthValid(password1.length >= 8);
+    setIsPasswordNumeric(password1 !== '' && !/^\d+$/.test(password1));
+    setHasNumericCharacter(/\d/.test(password1));
+    setArePasswordsSame(password1 !== '' && password2 !== '' && password1 === password2);
+
+  };
 
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     try {
-      const response = await axios.post('http://localhost:8000/auth/token/', {
-        email,
-        password,
-      });
-      localStorage.setItem('access_token', response.data.access);
-      localStorage.setItem('refresh_token', response.data.refresh);
-      localStorage.setItem("login_status", "true");
-
-      setIsAuthenticated(true);
-      navigate('/');
-    } catch (err) {
-      setError('Invalid email or password');
+      const response = await axios.post(`${baseURL}/auth/password-reset-confirm/${uidb64}/${token}/`, { new_password: password2 });
+      setMessage(response.data.message);
+      setLoading(false);
+      setPassword_reseted(true);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        setMessage(error.response?.data.error || 'An error occurred');
+      } else {
+        setMessage('An unexpected error occurred');
+      }
     }
   };
 
+  // ================================  check if form is valid ================================
+  const isFormValid = isPasswordLengthValid && isPasswordNumeric && hasNumericCharacter && arePasswordsSame
+    && password1 !== '' && password2 !== '';
+  // ============================================================================================
 
-  const handleRegister = () => {
-    navigate('/register')
-  }
-
-
-  const handle_without_register_click = () => {
-    setContinueWithoutRegistering(true)
-    localStorage.setItem("login_status", "true");
-  }
-
-  const handlePasswordReset = () => {
-    navigate('/password-reset')
-  }
 
   return (
-    <div className="login_mother_container" >
+    <div className="password_reset_main_container" >
       <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 549.67 802.83" className='login_company_logo' >
         <path className="cls-3" d="M99.79,438.3c.18.75.06,37.76.12,38.53.13,1.87-18.08,8.45-31.06,10.94-4.02.77-8.15.1-11.69-1.94-7.22-4.15-14.48-8.24-21.71-12.38-8.19-4.68-16.31-9.47-24.58-14.02-2.08-1.15-3.38-3.32-3.38-5.7.08-94.19.07-188.38.07-282.57v-18.66c0-1.94,2.07-3.18,3.75-2.21,7.41,4.23,92.08,51.55,109.11,61.07,1.9,1.06,3.28,2.86,3.81,4.97,5.97,23.53,42.57,162.55,44.8,156.68,15.58-41.09,34.55-90.45,39.86-104.25.77-1.99,3.08-2.83,4.94-1.79,11.1,6.19,45.84,25.57,64.25,36.02,2.18,1.24,2.99,2.58,2.99,5.15-.07,94.68-.07,280.37-.07,303.24,0,1.06-1.1,1.7-2.03,1.18-11.2-6.29-44.75-27.35-51.7-31.37-.8-.46-1.27-1.25-1.26-2.17.03-13.67.27-89.48.61-101.4,0-.27-15.9,49.55-15.9,49.55-.2.63-.63,1.14-1.22,1.42-6.16,2.96-41.52,19.83-44.89,18.72-6.12-2.02-27.16-12.93-36.84-18.01-3.17-1.66-5.48-4.52-6.43-7.97-7.3-26.5-39.8-144.66-55.42-203.59-.21-.8,21.53,69.62,33.87,120.58ZM58.3,481.43c.8.46,1.82-.06,1.82-.98,0-11.1,0-64.23,0-91.04,0-30.33,0-60.66,0-91,0-6.18,3.19-7.53,5.29.53,5.09,18.98,10.13,37.97,15.17,56.97,5.77,21.79,11.52,43.58,17.28,65.37,8.4,31.78,17.83,63.68,26.23,95.47.14.54.42,1.74.92,3.15,1.07,3.01,1.39,4.73,5.88,7.35,11.23,6.54,26.51,14.26,31.2,15.29,1.68.37,3.44-1.25,4.05-2.86,10.41-27.65,22.44-57.22,32.91-84.85,7.99-21.08,15.97-42.15,23.92-63.24.79-2.09,1.58-3.64,4.22-2.48.96.35,1.06,3.74,1.06,3.74l-.14,182.81c0,1.31.66,2.51,1.78,3.18,5.27,3.19,20.86,12.63,28.26,16.85,5.48,3.13,10.98,6.23,16.71,9.48.69.39,1.56-.09,1.56-.88.06-19.83.11-202.05.15-294.78,0-1.45-.78-2.73-2.03-3.45-20.36-11.58-40.68-23.24-60.94-34.99-2.48-1.44-2.87-.12-3.54,1.67-18.36,48.44-54.38,143.59-63.83,167.6-.71,1.8-3.29,1.64-3.79-.24-4.42-16.58-17.23-64.87-24.15-90.94-13.63-51.33-27.28-102.64-40.84-153.99-.63-2.37-2.04-2.8-4.8-4.47-14.37-8.69-49.9-28.89-59.04-34-.79-.44-1.76.12-1.76,1.03,0,21.07,0,202.45-.04,294.9,0,1.49.81,2.81,2.12,3.54,7.55,4.18,15.01,8.52,22.51,12.8,7.14,4.08,14.29,8.15,21.88,12.48Z" />
         <path className="cls-1" d="M17.74,145.54L284.11,14.85c1.05-.51,2.25-.49,3.26.09,7.03,4.01,35.23,20.11,41.47,23.83.51.3.47,1.01-.04,1.29-16.01,8.63-135.49,71.08-173.93,92.18-2.43,1.33-1.92,1.83.03,3.01,16.48,9.98,53.23,35.94,54.83,35.06,29.48-16.3,121.33-65.88,133.99-72.71.93-.5,2.01-.5,2.95-.03,6.53,3.28,32.82,16.48,48.44,24.44.52.27.52.98,0,1.26-40.03,22.08-97.51,53.78-137.37,75.77,3.99,2.44,29.86,18.63,44.56,27.71,2.23,1.38,29.72-15.27,32.1-16.58,47.33-26.21,106.73-54.31,154.45-80.52,1.37-.75,2.96-.79,4.35-.09,9.82,4.93,36.73,18.53,45.81,23.41,1.32.71,1.32,2.58,0,3.3-27.74,15.25-228.25,125.43-251.21,138.05-1.36.75-2.96.72-4.32-.03L17.69,147.76c-.89-.49-.85-1.77.05-2.22ZM544.52,157.62c0-2.29-1.25-4.39-3.29-5.45-9.84-5.14-38.95-20.31-47.93-24.92-1.72-.88-3.7-.89-5.42,0-21.22,10.9-160.5,82.46-161.03,82.29-35.03-11.12,56.23-68.16,71.48-77.47,1.34-.82,2.13-2.26,2.13-3.83v-4.79c0-.58-.32-1.11-.83-1.37l-53.02-27.39c-.9-.46-1.97-.45-2.85.04l-110.78,60.25c-40.28-13.04,79.35-92.48,97.81-104.71,1.51-1,2.39-2.65,2.42-4.46l.06-4.16c.02-1.45-.7-2.79-1.95-3.54-3.15-1.88-9.51-5.68-15.24-9.12-7.68-4.6-20.93-12.63-26.57-16.04-1.67-1.01-3.67-1.13-5.43-.28C257.35,25.56,45.04,127.89,11.95,144.97c-1.49.77-1.49,2.85-.02,3.65,26.57,14.5,202.09,111.24,270.93,149.63q2.83,1.58,5.72-.08c19.85-11.38,40.56-22.89,60.8-34.06,23.5-12.97,55.37-33.83,90.82-46.73,91.53-33.32,104.32,17.99,104.32,17.99v-77.75Z" />
@@ -76,86 +96,107 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
         </g>
       </svg>
 
-
-      <div className='Login_child_container' >
-        {!isGoogleLoggedIn && (
-          <div className='login_form_container' >
-            <div>
-              <h2 className='login_h2'>Login</h2>
+      <div className="password_reset_content_container" >
+        {password_reseted ? <div className="password_reset_message_container" >
+          <h2 className="password_reset_message_h2" >Password has chenged successfully!</h2>
+          <p className="password_reset_message_p">Redirecting to login in {countdown} seconds</p>
+        </div> :
+          <>
+            <div className="reset_header_container" >
+              <h2 className="password_reset_heading" >Reset Password</h2>
             </div>
-            <form onSubmit={handleSubmit} className='form' >
-              <div className='mark_and_input_container'  >
-                <MdOutlineMarkEmailRead className='mark_email_icon' />
-                <input
-                  className='login_inputs'
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder='  Enter Email'
-                  required
-                />
-              </div>
-              <div className='mark_and_input_container'  >
-                <PiPasswordBold className='mark_password_icon' />
-                <input
-                  className='login_inputs'
-                  type={showPassword ? 'text' : 'password'}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  placeholder='  Enter Password'
 
+            <form onSubmit={handleSubmit}>
+              <div className="password_reset_icon_input_container" >
+                <MdPassword className="password_reset_icon" />
+                <input
+                  type={!showPassword ? 'password' : "test"}
+                  className="password_reset_input"
+                  value={password1}
+                  onChange={(e) => setPassword1(e.target.value)}
+                  placeholder=" Enter new password"
+                  required
                 />
               </div>
-              <div className="checkbox_container">
+
+              <div className="password_reset_icon_input_container"  >
+                <MdPassword className="password_reset_icon" />
+
+                <input
+                  type={!showPassword ? 'password' : "test"}
+                  className="password_reset_input"
+                  value={password2}
+                  onChange={(e) => setPassword2(e.target.value)}
+                  placeholder=" Confirm new password"
+                  required
+                />
+              </div>
+
+              <div className="reset_password_checkbox_container">
                 <label style={{ cursor: "pointer" }}  >
                   <input
-                    className="checkbox_input"
+                    className="reset_password_checkbox_input"
                     type="checkbox"
                     checked={showPassword}
                     onChange={() => setShowPassword(!showPassword)}
                   />
-                  <p className='show_password_login' >Show Password</p>
+                  <p className='show_reset_password' >Show Password</p>
                 </label>
-
-                <p onClick={handleRegister} className='no_account'>No Account? Register</p>
-
-
-              </div>
-              {error && <p>{error}</p>}
-
-              <div className='login_button_container' >
-                <button type="submit" className="login_button">Login</button>
               </div>
 
+              <div className="password_reset_validations_container">
+                <p className={`password_validation_p ${isPasswordLengthValid ? "reset_true" : "reset_false"}`} >
+                  * Password must be minimum 8 characters.
+                </p>
+                <p className={`password_reset_validation_p ${hasNumericCharacter ? "reset_true" : "reset_false"}`}  >
+                  * Minimum one numeric character.
+                </p>
+                <p className={`password_reset_validation_p ${isPasswordNumeric ? "reset_true" : "reset_false"}`} >
+                  * Must not be entirely numeric.
+                </p>
+                <p className={`password_reset_validation_p ${arePasswordsSame ? "reset_true" : "reset_false"}`} >
+                  * Passwords must match.
+                </p>
+
+              </div>
+
+              {loading && (
+                <div className="reset_loading_container" >
+                  <div className="dot-spinner"  >
+                    <div className="dot-spinner__dot"></div>
+                    <div className="dot-spinner__dot"></div>
+                    <div className="dot-spinner__dot"></div>
+                    <div className="dot-spinner__dot"></div>
+                    <div className="dot-spinner__dot"></div>
+                    <div className="dot-spinner__dot"></div>
+                    <div className="dot-spinner__dot"></div>
+                    <div className="dot-spinner__dot"></div>
+                  </div>
+                </div>
+              )}
+
+              {!loading && (
+
+                <div className="reset_button_container" >
+                  <button
+                    type="submit"
+                    className={`reset_password_button  ${isFormValid ? "valid_coloure" : "invalide_coloure"} `}
+                    disabled={!isFormValid}
+                  >
+                    Reset Password
+                  </button>
+
+                  <MdLockReset className='reset_password_icon' />
+                </div>
+              )}
+
+              {message && <p>{message}</p>}
             </form>
-          </div>
-        )}
-        <div className='google_login_conrainer'>
-
-          <GoogleSignUp
-            setIsAuthenticated={setIsAuthenticated}
-            setIsGoogleLoggedIn={setIsGoogleLoggedIn}
-            isGoogleLoggedIn={isGoogleLoggedIn}
-          />
-        </div>
-
-        <div className='reset_password_container' >
-          <p className='reset_password_P' onClick={handlePasswordReset}  >Forgot Password ?</p>
-          <MdLockReset className='reset_password_icon'  onClick={handlePasswordReset} />
-        </div>
-
-        <div className='contonue_without_container' >
-          {!isGoogleLoggedIn && (
-            <>
-              <p onClick={handle_without_register_click} className='contonue_without' >Continue without registering</p>
-              <MdOutlineNextPlan className='no_register_icon' />
-            </>
-          )}
-        </div>
+          </>}
       </div>
-    </div>
-  );
-};
 
-export default Login;
+    </div>
+  )
+}
+
+export default PasswordReset;

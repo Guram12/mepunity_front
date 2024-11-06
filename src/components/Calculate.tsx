@@ -1,5 +1,5 @@
 import "../styles/Calculate.css"
-import "../styles/Loadec.css"
+import "../styles/Loader.css"
 import { ProfileData } from "../App"
 import { useEffect, useState } from "react"
 import axios from "axios"
