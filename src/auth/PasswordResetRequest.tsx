@@ -1,19 +1,28 @@
 import "../styles/PasswordResetRequest.css"
 import "../styles/Loader.css"
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { baseURL } from "../App";
 import { BiMailSend } from "react-icons/bi";
 import { GiConfirmed } from "react-icons/gi";
-
+import { FaUserPlus } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 const PasswordResetRequest: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [message, setMessage] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [secondMessage, setSecondMessage] = useState<string>('');
+  const [error, setError] = useState<string>('');
 
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    if (email) {
+      setError('');
+      setLoading(false);
+    }
+  }, [email])
 
 
 
@@ -29,12 +38,16 @@ const PasswordResetRequest: React.FC = () => {
       setLoading(false);
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        setMessage(error.response?.data.error || 'An error occurred');
+        setError(error.response?.data.error + ". Change email or register" || 'An error occurred');
       } else {
-        setMessage('An unexpected error occurred');
+        setError('An unexpected error occurred');
       }
     }
   };
+
+  const handleRegister = () => {
+    navigate('/register');
+  }
 
   return (
     <div className="password_reset_request_main_container">
@@ -76,7 +89,7 @@ const PasswordResetRequest: React.FC = () => {
               <button type="submit" className="reset_request_button" >Send Password Reset Email</button>
             )}
 
-            {loading && (
+            {loading && !error && (
 
               <div className="dot-spinner"  >
                 <div className="dot-spinner__dot"></div>
@@ -100,6 +113,17 @@ const PasswordResetRequest: React.FC = () => {
                 <p className="second_message" >{secondMessage}</p>
               </div>
             }
+            {error &&
+              <div className="reset_request_error_container" >
+                <p className="error_message">{error}</p>
+
+                <div className="request_reset_register_and_icon" >
+                  <p className="reset_page_register_p" onClick={handleRegister} > Register</p>
+                  <FaUserPlus />
+                </div>
+              </div>
+            }
+
           </div>
         </form>
       </div>
@@ -108,3 +132,8 @@ const PasswordResetRequest: React.FC = () => {
 };
 
 export default PasswordResetRequest;
+
+
+
+// g.nishnianidze97@gmail.com
+
