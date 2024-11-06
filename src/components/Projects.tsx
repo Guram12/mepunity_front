@@ -1,5 +1,5 @@
 import "../styles/Projects.css";
-import "../styles/Loadec.css"
+import "../styles/Loader.css"
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { baseURL } from '../App';

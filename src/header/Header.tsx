@@ -38,6 +38,7 @@ const Header: React.FC<HeaderProps> = ({ profileData, isAuthenticated, setContin
 
   const handle_Login_Logout_Click = () => {
     setContinueWithoutRegistering(false)
+    localStorage.setItem("login_status", "false");
     setMenuVisible(false);
   }
 
