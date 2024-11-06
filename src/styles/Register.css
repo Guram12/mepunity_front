@@ -13,7 +13,7 @@
 }
 
 .register_child_container {
-  border: 1px solid #e1e1e1;
+  border: 1px solid #4b4b4b;
   width: 400px;
   height: auto;
   padding: 15px;
@@ -122,6 +122,26 @@
   font-weight: 500;
 }
 
+/* --------------------------------- error massage styles ------------------------- */
+.regster_massages_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register_error_massage{
+  color: tomato;
+  font-size: 17px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.register_success_massage{
+  color: #00a753;
+  font-size: 17px;
+  font-weight: 500;
+  margin-top: 10px;
+}
 /* ------------------------------------ register button styles ---------------------- */
 
 

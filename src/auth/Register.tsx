@@ -24,6 +24,7 @@ const Register: React.FC = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
   const [success, setSuccess] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
 
   const [isPasswordLengthValid, setIsPasswordLengthValid] = useState<boolean>(false);
   const [isPasswordNumeric, setIsPasswordNumeric] = useState<boolean>(false);
@@ -47,6 +48,7 @@ const Register: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await axios.post(`${baseURL}/auth/registration/`, {
         username,
@@ -60,6 +62,7 @@ const Register: React.FC = () => {
       if (response.data.detail === 'Verification e-mail sent.') {
         console.log('Registration successful! Please check your email to confirm your account.');
         setSuccess('Registration successful! Please check your email to confirm your account.');
+        setLoading(false);
         setError("");
         setTimeout(() => {
           navigate('/')
@@ -95,7 +98,7 @@ const Register: React.FC = () => {
   // ============================================================================================
 
 
-  
+
   return (
     <div className='register_parent_container' >
       <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 549.67 802.83" className='register_company_logo' >
@@ -221,19 +224,36 @@ const Register: React.FC = () => {
             </p>
           </div>
 
+          <div className="regster_massages_container" >
 
-          {error && <p style={{ color: 'red' }}>{error}</p>}
-          {success && <p style={{ color: 'green' }}>{success}</p>}
+            {error && <p className="register_error_massage" >{error}</p>}
+            {success && <p className="register_success_massage" > {success}</p>}
+          </div>
 
           <div className="login_and_register_button_container" >
-            <button
-              type="submit"
-              className="registration_button"
-              style={{ backgroundColor: isFormValid ? '#00a753' : '#313131', cursor: isFormValid ? 'pointer' : 'not-allowed' }}
-              disabled={!isFormValid}
-            >
-              Register
-            </button>
+            {loading && (
+
+              <div className="dot-spinner"  >
+                <div className="dot-spinner__dot"></div>
+                <div className="dot-spinner__dot"></div>
+                <div className="dot-spinner__dot"></div>
+                <div className="dot-spinner__dot"></div>
+                <div className="dot-spinner__dot"></div>
+                <div className="dot-spinner__dot"></div>
+                <div className="dot-spinner__dot"></div>
+                <div className="dot-spinner__dot"></div>
+              </div>
+            )}
+            {!loading && (
+              <button
+                type="submit"
+                className="registration_button"
+                style={{ backgroundColor: isFormValid ? '#00a753' : '#313131', cursor: isFormValid ? 'pointer' : 'not-allowed' }}
+                disabled={!isFormValid}
+              >
+                Register
+              </button>
+            )}
           </div>
 
         </form>
