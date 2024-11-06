@@ -226,8 +226,8 @@ const Register: React.FC = () => {
 
           <div className="regster_massages_container" >
 
-            {error && <p className="register_error_massage" >error{error}</p>}
-            {success && <p className="register_success_massage" > success{success}</p>}
+            {error && <p className="register_error_massage" >{error}</p>}
+            {success && <p className="register_success_massage" > {success}</p>}
           </div>
 
           <div className="login_and_register_button_container" >
