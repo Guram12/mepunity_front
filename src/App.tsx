@@ -41,6 +41,9 @@ export interface ProfileData {
 
 
 const App: React.FC = () => {
+  const [language, setLanguage] = useState('ka');
+
+
   const [showSplashScreen, setShowSplashScreen] = useState<boolean>(true);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [profileData, setProfileData] = useState<ProfileData | null>(null);
@@ -60,8 +63,8 @@ const App: React.FC = () => {
   }, [])
 
   useEffect(() => {
-    console.log(  "login status",login_status)
-  },[login_status])
+    console.log("login status", login_status)
+  }, [login_status])
 
 
   //======================================== fetch profile data ==================================================
@@ -196,7 +199,13 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <Header profileData={profileData} isAuthenticated={isAuthenticated} setContinueWithoutRegistering={setContinueWithoutRegistering} />
+      <Header
+        language={language}
+        setLanguage={setLanguage}
+        profileData={profileData}
+        isAuthenticated={isAuthenticated}
+        setContinueWithoutRegistering={setContinueWithoutRegistering}
+      />
       <div style={{ width: "100%", height: "80px" }}></div>
       <Routes>
         <Route path="/" element={<MainPage />} />

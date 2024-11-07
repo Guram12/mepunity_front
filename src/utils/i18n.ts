@@ -10,23 +10,31 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 const resources = {
   en: {
     translation: {
-      "welcome": "Welcome",
-      
-
+      // header
+      "home": "Home",
+      "projects": "Projects",
+      "calculate price": "Calculate Price",
+      "upload file": "Upload File",
+      "discount": "Discount",
+      "guest": "Guest",
+      "log out": "Log Out",
+      "log in": "Log In",
     }
   },
   ka: {
     translation: {
-      "welcome": "კეთილი იყოს თქვენი მობრძანება",
-
+      // header 
+      "home": "მთავარი",
+      "projects": "პროექტები",
+      "calculate price": "ფასის გამოთვლა",
+      "upload file": "ფაილის ატვირთვა",
+      "discount": "ფასდაკლება",
+      "guest": "სტუმარი",
+      "log out": "გასვლა",
+      "log in": "შესვლა",
     }
   },
-  ru: {
-    translation: {
-      "welcome": "Добро пожаловать",
 
-    }
-  }
 };
 
 i18n
@@ -34,8 +42,8 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'en', // default language
-    fallbackLng: 'ka', // fallback language
+    lng: 'ka', // default language
+    fallbackLng: 'en', // fallback language
     interpolation: {
       escapeValue: false
     }

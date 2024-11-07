@@ -3,7 +3,7 @@
   height: 80px;
   /* background-color: #282828; */
   /* background-color: #044343; */
-  background-color:rgb(28, 28, 30);
+  background-color: rgb(28, 28, 30);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -58,7 +58,7 @@
   display: none;
 }
 
-.login_button_mobile{
+.login_button_mobile {
   display: none;
 }
 
@@ -147,9 +147,11 @@
   font-size: small;
 
 }
-.mobile_userdata_container{
+
+.mobile_userdata_container {
   display: none;
 }
+
 /* ==============================  mobile styles ============================== */
 @keyframes slideDown {
   from {
@@ -175,6 +177,23 @@
   }
 }
 
+/* ======================================  language switch styles ======================================= */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.react-select__menu {
+  animation: slideDown 0.3s ease;
+}
+
+
 /* ---------------------------------------- */
 .menu_icon {
   display: none;
@@ -196,8 +215,8 @@
     gap: 15px;
   }
 
-  .login_button_mobile{
-  display: flex;
+  .login_button_mobile {
+    display: flex;
   }
 
   .mobile_discount {
@@ -210,7 +229,7 @@
     margin: 0px;
   }
 
-  .old_discount_remove_on_mobile{
+  .old_discount_remove_on_mobile {
     display: none;
   }
 
@@ -239,7 +258,17 @@
   }
 
   .header_button_container.mobile_hidden {
-
     animation: slideUp 0.3s ease forwards;
+  }
+
+  .language_switch {
+    width: 80px;
+    height: 35px;
+    font-size: 16px;
+    margin-left: 10px;
+    padding-left: 10px;
+    padding-right: 25px;
+    background-position: right 5px center;
+    background-size: 14px 14px;
   }
 }
