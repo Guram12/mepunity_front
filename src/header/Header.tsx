@@ -213,7 +213,7 @@ const handle_profile_update = () => {
           <img src={profileData ? profileData.image : default_profile_image}  onClick={handle_profile_update} alt="profile picture" style={{ width: "40px" }} className='profile_picture' />
         </div>
         {isAuthenticated && (
-          <button onClick={handleLogout} className='header_button logout_button'>Log Out</button>
+          <button onClick={handleLogout} className='header_button logout_button'>{t("log out")}</button>
         )}
 
       </div>
