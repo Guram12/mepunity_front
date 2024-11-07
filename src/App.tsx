@@ -184,6 +184,7 @@ const App: React.FC = () => {
             <Route
               path="/"
               element={<Login
+                language={language}
                 setIsAuthenticated={setIsAuthenticated}
                 setContinueWithoutRegistering={setContinueWithoutRegistering}
 

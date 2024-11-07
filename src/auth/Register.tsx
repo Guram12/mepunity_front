@@ -10,7 +10,7 @@ import { MdBusinessCenter } from "react-icons/md";
 import { ImMobile2 } from "react-icons/im";
 import { TbArrowBack } from "react-icons/tb";
 import { PiPasswordBold } from "react-icons/pi";
-
+import { useTranslation } from "react-i18next";
 
 
 
@@ -30,6 +30,8 @@ const Register: React.FC = () => {
   const [isPasswordNumeric, setIsPasswordNumeric] = useState<boolean>(false);
   const [hasNumericCharacter, setHasNumericCharacter] = useState<boolean>(false);
   const [arePasswordsSame, setArePasswordsSame] = useState<boolean>(false);
+
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
 
@@ -119,7 +121,7 @@ const Register: React.FC = () => {
       <div className='register_child_container' >
 
         <div className="register_header" >
-          <h2 className="register_heder_h2" >Register</h2>
+          <h2 className="register_heder_h2" >{t("Register")}</h2>
         </div>
 
 
@@ -133,7 +135,7 @@ const Register: React.FC = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
               className="register_input"
-              placeholder='  Enter Email'
+              placeholder={t("Enter Email")}
             />
           </div>
 
@@ -145,7 +147,7 @@ const Register: React.FC = () => {
               onChange={(e) => setUsername(e.target.value)}
               required
               className="register_input"
-              placeholder='  Enter Username'
+              placeholder={t("Enter Username")}
             />
           </div>
 
@@ -157,7 +159,7 @@ const Register: React.FC = () => {
               onChange={(e) => setCompany(e.target.value)}
               required
               className="register_input"
-              placeholder="  Enter Company Name"
+              placeholder={t("Enter company name")}
             />
           </div>
 
@@ -169,7 +171,7 @@ const Register: React.FC = () => {
               onChange={(e) => setPhoneNumber(e.target.value)}
               required
               className="register_input"
-              placeholder="  Enter Phone Number"
+              placeholder={t("Enter Phone Number")}
             />
           </div>
 
@@ -182,7 +184,7 @@ const Register: React.FC = () => {
               onChange={(e) => setPassword1(e.target.value)}
               required
               className="register_input"
-              placeholder="  Enter Password"
+              placeholder={t("Enter Password")}
             />
           </div>
 
@@ -194,7 +196,7 @@ const Register: React.FC = () => {
               onChange={(e) => setPassword2(e.target.value)}
               required
               className="register_input"
-              placeholder="  Confirm Password"
+              placeholder={t("Confirm Password")}
 
             />
           </div>
@@ -206,23 +208,23 @@ const Register: React.FC = () => {
                 checked={showPassword}
                 onChange={() => setShowPassword(!showPassword)}
               />
-              <p className="show_passwird_p" >Show Password</p>
+              <p className="show_passwird_p" >{t("Show Password")}</p>
             </label>
           </div>
 
           {!success && (
             <div className="password_validations_container">
               <p className={`password_validation_p ${isPasswordLengthValid ? "true" : "false"}`} >
-                * Password must be minimum 8 characters.
+                {t("* Password must be minimum 8 characters.")}
               </p>
               <p className={`password_validation_p ${hasNumericCharacter ? "true" : "false"}`}  >
-                * Minimum one numeric character.
+                {t("* Minimum one numeric character.")}
               </p>
               <p className={`password_validation_p ${isPasswordNumeric ? "true" : "false"}`} >
-                * Must not be entirely numeric.
+                {t("* Must not be entirely numeric.")}
               </p>
               <p className={`password_validation_p ${arePasswordsSame ? "true" : "false"}`} >
-                * Passwords must match.
+                {t("* Passwords must match.")}
               </p>
             </div>
           )}
@@ -247,6 +249,7 @@ const Register: React.FC = () => {
                 <div className="dot-spinner__dot"></div>
               </div>
             )}
+
             {!loading && (
               <button
                 type="submit"
@@ -254,7 +257,7 @@ const Register: React.FC = () => {
                 style={{ backgroundColor: isFormValid ? '#00a753' : '#313131', cursor: isFormValid ? 'pointer' : 'not-allowed' }}
                 disabled={!isFormValid}
               >
-                Register
+                {t("Register")}
               </button>
             )}
           </div>
@@ -262,7 +265,7 @@ const Register: React.FC = () => {
         </form>
 
         <div className="back_to_login_container" >
-          <p onClick={handleLogin} className="return_to_login_p" > Return to login</p>
+          <p onClick={handleLogin} className="return_to_login_p" >{t("Return to login")}</p>
           <TbArrowBack className="back_to_login_arrow" />
         </div>
       </div>
