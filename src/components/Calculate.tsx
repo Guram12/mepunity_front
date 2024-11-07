@@ -4,8 +4,10 @@ import { ProfileData } from "../App"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { baseURL } from "../App"
+import { useTranslation } from 'react-i18next';
 
 interface CalculateProps {
+  language: string,
   profileData: ProfileData | null,
   isAuthenticated: boolean,
 }
@@ -20,7 +22,7 @@ interface ProjectServicesType {
   price_per_sqm_above: string,
 }
 
-const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated }) => {
+const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated, language }) => {
   const [markedItems, setMarkedItems] = useState<Set<number>>(new Set());
   const [projectServices, setProjectServices] = useState<ProjectServicesType[]>([]);
   const [markedServiceCount, setMarkedServiceCount] = useState<number>(0);
@@ -30,7 +32,7 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated }) =
   const [contentLoaded, setContentLoaded] = useState<boolean>(false);
   const [minimum_space_for_newprice, setMinimum_space_for_newprice] = useState<number>(0);
 
-
+  const { t } = useTranslation();
 
 
   // ===================================   fetch minimum space for new price =========================================
@@ -168,7 +170,7 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated }) =
   return (
     <div className="main_calculation_container">
       <div className="parent_div_line">
-        <h2 className="select_service_h2" >აირჩიეთ სასურველი სერვისი</h2>
+        <h2 className="select_service_h2" >{t("Select the desired service")}</h2>
         <div className="child_div_line"></div>
       </div>
       {warning && (
@@ -178,7 +180,7 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated }) =
       )}
       <div className="services_container" >
 
-        <h3 className="service_name" >ელექტროობა</h3>
+        <h3 className="service_name" >{t("electricity")}</h3>
         {!contentLoaded && (
           <div className="dot-spinner">
             <div className="dot-spinner__dot"></div>
@@ -198,12 +200,12 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated }) =
               className={`project_checkmark ${markedItems.has(service.id) ? 'marked' : 'unmarked'}`}
               onClick={() => handleItemClick(service.id)}
             >
-              {service.name_ka}
+              {language === "en" ? service.name_en : service.name_ka}
             </p>
           ))}
         </div>
 
-        <h3>მექანიკური</h3>
+        <h3>{t("Mechanical")}</h3>
         {!contentLoaded && (
           <div className="dot-spinner">
             <div className="dot-spinner__dot"></div>
@@ -223,12 +225,12 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated }) =
               className={`project_checkmark ${markedItems.has(service.id) ? 'marked' : 'unmarked'}`}
               onClick={() => handleItemClick(service.id)}
             >
-              {service.name_ka}
+              {language === "en" ? service.name_en : service.name_ka}
             </p>
           ))}
         </div>
 
-        <h3>სანტექნიკა</h3>
+        <h3>{t("plumbing")}</h3>
         {!contentLoaded && (
           <div className="dot-spinner">
             <div className="dot-spinner__dot"></div>
@@ -248,18 +250,18 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated }) =
               className={`project_checkmark ${markedItems.has(service.id) ? 'marked' : 'unmarked'}`}
               onClick={() => handleItemClick(service.id)}
             >
-              {service.name_ka}
+              {language === "en" ? service.name_en : service.name_ka}
             </p>
           ))}
         </div>
 
         <div className="calculation_container">
-          <h3>ფართობი (m²) </h3>
+          <h3>{t("Area")}</h3>
 
           <div className="mobile_input_container" >
             <input
               className="square_meter_input"
-              placeholder="შეიყვანეთ ფართობი"
+              placeholder={t("Anter area")}
               type="number"
               value={square_meter !== null ? square_meter : ''}
               onChange={(e) => {
@@ -267,16 +269,16 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated }) =
                 setSquare_meter(value === '' ? null : Number(value));
               }}
             />
-          </div>
 
-          <button className="calculate_button clear" onClick={clear_all}>
-            <span className="calculate_span">გასუფთავება</span>
-          </button>
+            <button className="calculate_button clear" onClick={clear_all}>
+              <span className="calculate_span">{t("Clear")}</span>
+            </button>
+          </div>
         </div>
 
         {fullPrice !== null && fullPrice > 0 && (
           <div className="full_price_container">
-            <h3>სრული ფასი: {Number(fullPrice.toFixed(2))} ₾</h3>
+            <h3>{t("Total price")} {Number(fullPrice.toFixed(2))} ₾</h3>
           </div>
         )}
       </div>
@@ -286,4 +288,48 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated }) =
   );
 }
 
+
 export default Calculate;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ელექტროობა,
+// სახანძრო სიგნალიზაცია,
+//  გახმოვანება, 
+//  საევაკუაციო მანიშნებლები და განათება,
+//   დაშვების კონტროლი,
+//    ვიდეო მეთვალყურეობა, 
+//    CO დეტექცია.
+// ხანძარქრობა,
+// სახანძრო ვენტილაცია,
+// საყოფაცხოვრებო ვენტილაცია,
+//  გათბობა გაგრილება,
+//   კანალიზაცია.
+
+
+// Electricity,
+// Fire alarm,
+// Public address system,
+// Evacuation signs and lighting,
+// Access control,
+// Video surveillance,
+// CO detection,
+// Fire suppression,
+// Fire ventilation,
+// Residential ventilation,
+// Heating and cooling,
+// Sewerage.

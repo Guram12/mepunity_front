@@ -6,16 +6,23 @@ import GoogleSignUp from './GoogleSignUp';
 import { MdOutlineMarkEmailRead } from "react-icons/md";
 import { MdOutlineNextPlan } from "react-icons/md";
 import { PiPasswordBold } from "react-icons/pi";
-import { MdLockReset } from "react-icons/md";
+import { baseURL } from "../App";
+import { useTranslation } from "react-i18next";
+import { FaUserPlus } from "react-icons/fa";
+
+
+
 
 
 interface LoginProps {
+  language: string;
   setIsAuthenticated: (isAuthenticated: boolean) => void;
   setContinueWithoutRegistering: (continueWithoutRegistering: boolean) => void;
+
 }
 
 
-const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutRegistering }) => {
+const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutRegistering, language }) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
@@ -23,6 +30,7 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
   const [isGoogleLoggedIn, setIsGoogleLoggedIn] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
 
@@ -34,7 +42,7 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
     setError('');
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:8000/auth/token/', {
+      const response = await axios.post(`${baseURL}/auth/token/`, {
         email,
         password,
       });
@@ -45,10 +53,19 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
       setIsAuthenticated(true);
       navigate('/');
     } catch (err) {
-      setError('Invalid email or password');
+      setLoading(false);
+      if (axios.isAxiosError(err)) {
+        if (err.response && err.response.status === 400) {
+          const errorMessage = err.response.data.email || 'Invalid email or password';
+          setError(errorMessage);
+        } else {
+          setError('An error occurred. Please try again later.');
+        }
+      } else {
+        setError('An unexpected error occurred. Please try again later.');
+      }
     }
   };
-
   // ==================================================================================
 
   const handleRegister = () => {
@@ -86,7 +103,7 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
         {!isGoogleLoggedIn && (
           <div className='login_form_container' >
             <div>
-              <h2 className='login_h2'>Login</h2>
+              <h2 className='login_h2'>{t("log in")}</h2>
             </div>
             <form onSubmit={handleSubmit} className='form' >
               <div className='mark_and_input_container'  >
@@ -96,7 +113,7 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder='  Enter Email'
+                  placeholder={t("Enter Email")}
                   required
                 />
               </div>
@@ -108,7 +125,7 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  placeholder='  Enter Password'
+                  placeholder={t("Enter Password")}
 
                 />
               </div>
@@ -120,10 +137,12 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
                     checked={showPassword}
                     onChange={() => setShowPassword(!showPassword)}
                   />
-                  <p className='show_password_login' >Show Password</p>
+                  <p className='show_password_login' > {t("Show Password")} </p>
                 </label>
 
-                <p onClick={handleRegister} className='no_account'>No Account? Register</p>
+                {/* <p onClick={handleRegister} className='no_account'>{t("No Account? Register")}</p> */}
+
+                <p className='reset_password_P' onClick={handlePasswordReset}  >{t("Forgot Password ?")}</p>
 
 
               </div>
@@ -158,18 +177,20 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
             setIsAuthenticated={setIsAuthenticated}
             setIsGoogleLoggedIn={setIsGoogleLoggedIn}
             isGoogleLoggedIn={isGoogleLoggedIn}
+            language={language}
           />
         </div>
-
-        <div className='reset_password_container' >
-          <p className='reset_password_P' onClick={handlePasswordReset}  >Forgot Password ?</p>
-          <MdLockReset className='reset_password_icon' onClick={handlePasswordReset} />
-        </div>
+        {!isGoogleLoggedIn && (
+          <div className="login_register_container" >
+            <p onClick={handleRegister} className='no_account'>{t("No Account? Register")}</p>
+            <FaUserPlus className="login_register_icon" />
+          </div>
+        )}
 
         <div className='contonue_without_container' >
           {!isGoogleLoggedIn && (
             <>
-              <p onClick={handle_without_register_click} className='contonue_without' >Continue without registering</p>
+              <p onClick={handle_without_register_click} className='contonue_without' >{t("Continue without registering")}</p>
               <MdOutlineNextPlan className='no_register_icon' />
             </>
           )}

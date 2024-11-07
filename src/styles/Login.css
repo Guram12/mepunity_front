@@ -201,21 +201,36 @@
 
 .show_password_login {
   font-weight: 500;
+  font-size: 15px;
+}
+
+
+
+.login_register_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  margin-top: 20px;
 }
 
 .no_account {
   color: #ffffff;
-  font-size: 15px;
+  font-size: 16px;
   cursor: pointer;
-  margin-right: 15px;
-  font-weight: 500;
+  font-weight: 600;
   transition: color 0.5s ease;
+
+}
+
+.login_register_icon{
+  font-size: 25px;
 }
 
 .no_account:hover {
   color: #00a753;
 }
-
 
 .contonue_without_container {
   display: flex;
@@ -228,6 +243,7 @@
   cursor: pointer;
   font-weight: 500;
   transition: color 0.5s ease;
+  margin: 0px;
 }
 
 .contonue_without:hover {
@@ -251,14 +267,6 @@
 
 /* --------------------- password reset container --------------------------- */
 
-.reset_password_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-top: 20px;
-  gap: 10px;
-}
 
 .reset_password_P {
   font-size: 15px;
@@ -266,18 +274,11 @@
   cursor: pointer;
   margin: 0px;
   transition: color 0.5s ease;
-
+  margin-right: 10px;
 }
 
 .reset_password_P:hover {
   color: tomato;
-}
-
-
-.reset_password_icon{
-  font-size: 20px;
-  cursor: pointer;
-  transition: color 0.5s ease;
 }
 
 

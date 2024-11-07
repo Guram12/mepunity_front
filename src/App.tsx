@@ -12,7 +12,7 @@ import Calculate from './components/Calculate';
 import Footer from './header/Footr';
 import PasswordReset from './auth/PasswordReset';
 import PasswordResetRequest from './auth/PasswordResetRequest';
-
+import ProfileUpdate from './components/ProfileUpdate';
 
 
 let baseURL: string;
@@ -41,9 +41,13 @@ export interface ProfileData {
 
 
 const App: React.FC = () => {
+  const [language, setLanguage] = useState('ka');
+
+
   const [showSplashScreen, setShowSplashScreen] = useState<boolean>(true);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [profileData, setProfileData] = useState<ProfileData | null>(null);
+  const [profileUpdated, setProfileUpdated] = useState<boolean>(false);
 
   const saved_login_status = localStorage.getItem('login_status');
   const login_status = saved_login_status === "true";
@@ -60,8 +64,8 @@ const App: React.FC = () => {
   }, [])
 
   useEffect(() => {
-    console.log(  "login status",login_status)
-  },[login_status])
+    console.log("profileData", profileData)
+  }, [profileData])
 
 
   //======================================== fetch profile data ==================================================
@@ -86,7 +90,7 @@ const App: React.FC = () => {
 
     }
 
-  }, [isAuthenticated, accessToken, refreshToken])
+  }, [isAuthenticated, accessToken, refreshToken, profileUpdated])
 
 
   // =================================  validate tokens on website load ==================================
@@ -180,6 +184,7 @@ const App: React.FC = () => {
             <Route
               path="/"
               element={<Login
+                language={language}
                 setIsAuthenticated={setIsAuthenticated}
                 setContinueWithoutRegistering={setContinueWithoutRegistering}
 
@@ -196,16 +201,33 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <Header profileData={profileData} isAuthenticated={isAuthenticated} setContinueWithoutRegistering={setContinueWithoutRegistering} />
+      <Header
+        language={language}
+        setLanguage={setLanguage}
+        profileData={profileData}
+        isAuthenticated={isAuthenticated}
+        setContinueWithoutRegistering={setContinueWithoutRegistering}
+      />
       <div style={{ width: "100%", height: "80px" }}></div>
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/price-calculation" element={<Calculate profileData={profileData} isAuthenticated={isAuthenticated} />} />
-        <Route path="/projects" element={<Projects />} />
+        <Route path="/price-calculation" element={<Calculate
+          language={language}
+          profileData={profileData}
+          isAuthenticated={isAuthenticated}
+        />} />
+        <Route path="/projects" element={<Projects
+          language={language}
+        />} />
         <Route path="/upload-file" element={<FileUpload />} />
+        <Route path="/profile-update" element={<ProfileUpdate
+          profileData={profileData}
+          setProfileUpdated={setProfileUpdated}
+          profileUpdated={profileUpdated}
+        />} />
       </Routes>
-      <Footer />
+      <Footer language={language} />
     </Router>
   )
 }

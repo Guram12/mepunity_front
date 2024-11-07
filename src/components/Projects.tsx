@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { baseURL } from '../App';
 import SelectedProject from "./SelectedProject";
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -18,12 +19,17 @@ export interface ProjectType {
   description_en: string
 }
 
+interface ProjectsProps {
+  language: string
+}
 
-const Projects: React.FC = () => {
+const Projects: React.FC<ProjectsProps> = ({ language }) => {
   const [projects, setProjects] = useState<ProjectType[]>([]);
   const [selectedProject, setSelectedProject] = useState<ProjectType | null>(null);
   const [isProjectSelected, setIsProjectSelected] = useState<boolean>(false);
   const [project_content_loaded, setProject_content_loaded] = useState<boolean>(false);
+
+  const { t } = useTranslation();
 
 
   useEffect(() => {
@@ -49,15 +55,24 @@ const Projects: React.FC = () => {
   }
 
   useEffect(() => {
+    if (isProjectSelected) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
+  }, [isProjectSelected]);
+
+  useEffect(() => {
     console.log(selectedProject);
 
   }, [selectedProject]);
+
 
   return (
     <div className='main_project_containet'>
       <div className="projects_header_container" >
 
-        <h1>Completed Projects</h1>
+        <h1>{t("Completed Projects")}</h1>
         <div className="project_header_line" ></div>
         {!project_content_loaded && (
           <div className="dot-spinner" style={{ marginTop: "80px" }} >
@@ -80,16 +95,18 @@ const Projects: React.FC = () => {
               <div className="project_image_container" >
                 <img src={project.images[0].image} alt="project_image" />
               </div>
-
-              <h2 className="project_title" >{project.title_en}</h2>
-
+              <h2 className="project_title" >{language === "en" ? project.title_en : project.title_ka}</h2>
             </div>
           )
         })}
       </div>
       {isProjectSelected && (
         <div className="selected_project_component_container">
-          <SelectedProject project={selectedProject} setIsProjectSelected={setIsProjectSelected} />
+          <SelectedProject
+            language={language}
+            project={selectedProject}
+            setIsProjectSelected={setIsProjectSelected}
+          />
         </div>
       )}
 
@@ -98,35 +115,3 @@ const Projects: React.FC = () => {
 }
 
 export default Projects;
-
-
-
-
-
-
-// ელექტროობა,
-// სახანძრო სიგნალიზაცია,
-//  გახმოვანება, 
-//  საევაკუაციო მანიშნებლები და განათება,
-//   დაშვების კონტროლი,
-//    ვიდეო მეთვალყურეობა, 
-//    CO დეტექცია.
-// ხანძარქრობა,
-// სახანძრო ვენტილაცია,
-// საყოფაცხოვრებო ვენტილაცია,
-//  გათბობა გაგრილება,
-//   კანალიზაცია.
-
-
-// Electricity,
-// Fire alarm,
-// Public address system,
-// Evacuation signs and lighting,
-// Access control,
-// Video surveillance,
-// CO detection,
-// Fire suppression,
-// Fire ventilation,
-// Residential ventilation,
-// Heating and cooling,
-// Sewerage.

@@ -49,6 +49,7 @@
 .project_checkmark {
   background-color: rgb(22, 92, 59);
   width: fit-content;
+  font-weight: 400;
   min-height: 35px;
   display: flex;
   justify-content: flex-start;
@@ -81,7 +82,7 @@
 .square_meter_input {
   border: 2px solid #e8e8e8;
   padding: 15px;
-  width: 150px;
+  width: 200px;
   border-radius: 10px;
   background-color: #212121;
   text-align: center;
@@ -213,6 +214,7 @@ input[type="number"] {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
   }
 
   .calculation_container {

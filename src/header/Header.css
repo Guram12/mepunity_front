@@ -3,7 +3,7 @@
   height: 80px;
   /* background-color: #282828; */
   /* background-color: #044343; */
-  background-color:rgb(28, 28, 30);
+  background-color: rgb(28, 28, 30);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -39,16 +39,16 @@
   justify-content: center;
   align-items: center;
   gap: 30px;
-  margin-right: 40px;
+  margin-right: 15px;
   transition: transform 0.3s ease, opacity 0.3s ease;
 
 }
 
 .header_button {
-  font-family: "Lexend", sans-serif;
   font-weight: 500;
-  font-style: normal;
-  font-size: 20px;
+  /* font-size: 18px ; */
+  font-family: 'Fira Sans', sans-serif;
+
 }
 
 
@@ -58,30 +58,20 @@
   display: none;
 }
 
-.login_button_mobile{
+.login_button_mobile {
   display: none;
 }
 
-/* From Uiverse.io by WhiteNervosa */
 .header_button {
   color: #e1e1e1;
-  font-size: 20px;
+  font-size: 18px;
   cursor: pointer;
   position: relative;
   border: none;
   background: none;
-  /* text-transform: uppercase; */
-  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
-  transition-duration: 400ms;
-  transition-property: color;
+  font-weight: 600;
 }
 
-.header_button:focus,
-.header_button:hover {
-  color: #fff;
-}
-
-.header_button:focus:after,
 .header_button:hover:after {
   width: 100%;
   left: 0%;
@@ -95,7 +85,7 @@
   position: absolute;
   width: 0%;
   height: 2px;
-  background-color: #fff;
+  background-color: #00a753;
   transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
   transition-duration: 400ms;
   transition-property: width, left;
@@ -118,7 +108,7 @@
 /* ======================================= header profile data ================================================= */
 .discount {
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 600;
   margin: 0px;
   background: linear-gradient(to right, #FFD700, #ffa600);
   background-clip: text;
@@ -132,6 +122,32 @@
   justify-content: center;
   align-items: center;
   gap: 20px;
+  position: relative;
+  /* Add this */
+}
+
+.tooltip {
+  border: #bdbdbd69 1px solid;
+  visibility: hidden;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s;
+  width: 200px;
+  margin-top: 10px;
+}
+
+.header_profile_data_parent_container:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
 }
 
 .header_profile_data_child_container {
@@ -147,9 +163,11 @@
   font-size: small;
 
 }
-.mobile_userdata_container{
+
+.mobile_userdata_container {
   display: none;
 }
+
 /* ==============================  mobile styles ============================== */
 @keyframes slideDown {
   from {
@@ -175,6 +193,24 @@
   }
 }
 
+/* ======================================  language switch styles ======================================= */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.react-select__menu {
+  animation: slideDown 0.3s ease;
+}
+
+
 /* ---------------------------------------- */
 .menu_icon {
   display: none;
@@ -196,8 +232,8 @@
     gap: 15px;
   }
 
-  .login_button_mobile{
-  display: flex;
+  .login_button_mobile {
+    display: flex;
   }
 
   .mobile_discount {
@@ -210,7 +246,7 @@
     margin: 0px;
   }
 
-  .old_discount_remove_on_mobile{
+  .old_discount_remove_on_mobile {
     display: none;
   }
 
@@ -239,7 +275,17 @@
   }
 
   .header_button_container.mobile_hidden {
-
     animation: slideUp 0.3s ease forwards;
+  }
+
+  .language_switch {
+    width: 80px;
+    height: 35px;
+    font-size: 16px;
+    margin-left: 10px;
+    padding-left: 10px;
+    padding-right: 25px;
+    background-position: right 5px center;
+    background-size: 14px 14px;
   }
 }

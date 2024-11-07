@@ -7,6 +7,8 @@ import { BiMailSend } from "react-icons/bi";
 import { GiConfirmed } from "react-icons/gi";
 import { FaUserPlus } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 
 const PasswordResetRequest: React.FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -15,6 +17,7 @@ const PasswordResetRequest: React.FC = () => {
   const [secondMessage, setSecondMessage] = useState<string>('');
   const [error, setError] = useState<string>('');
 
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -67,7 +70,7 @@ const PasswordResetRequest: React.FC = () => {
 
       <div className="password_reset_conmtent_container" >
         <div className="reset_password_request_container" >
-          <h1 className="reset_password_request_h1" >Reset Password</h1>
+          <h1 className="reset_password_request_h1" >{t("Reset Password")}</h1>
         </div>
         <form
           onSubmit={handleSubmit}>
@@ -79,14 +82,13 @@ const PasswordResetRequest: React.FC = () => {
               className="reset_request_email_input"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="  Enter your email"
+              placeholder={t("Enter your email")}
               required
             />
           </div>
-          {/* <p>g.nishnianidze97@gmail.com</p> */}
           <div className="reset_request_button_container" >
             {!loading && !message && (
-              <button type="submit" className="reset_request_button" >Send Password Reset Email</button>
+              <button type="submit" className="reset_request_button" >{t("Send Password Reset Email")}</button>
             )}
 
             {loading && !error && (

@@ -5,11 +5,12 @@ import { FaAnglesLeft, FaAnglesRight, FaExpand } from "react-icons/fa6";
 import { IoMdCloseCircle } from "react-icons/io";
 
 interface SelectedProjectProps {
+  language: string;
   project: ProjectType | null;
   setIsProjectSelected: (isProjectSelected: boolean) => void;
 }
 
-const SelectedProject: React.FC<SelectedProjectProps> = ({ project, setIsProjectSelected }) => {
+const SelectedProject: React.FC<SelectedProjectProps> = ({ project, setIsProjectSelected , language}) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   if (!project) return null;
@@ -42,7 +43,7 @@ const SelectedProject: React.FC<SelectedProjectProps> = ({ project, setIsProject
   return (
     <div className="selected_project_container">
       <div className='project_header_and_close_container' >
-        <h2>{project.title_en}</h2>
+        <h2>{language === "en" ? project.title_en : project.title_ka}</h2>
         <IoMdCloseCircle className='project_close' onClick={handleClose} />
       </div>
       <div className="slider_and_description_container">
@@ -71,7 +72,7 @@ const SelectedProject: React.FC<SelectedProjectProps> = ({ project, setIsProject
           </div>
         </div>
         <div className="description_container">
-          <p className='project_description' >{project.description_en}</p>
+          <p className='project_description' >{language === "en" ? project.description_en : project.description_ka}</p>
         </div>
       </div>
     </div>

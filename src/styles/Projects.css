@@ -4,6 +4,9 @@
   min-height: 100vh;
 }
 
+.no-scroll {
+  overflow: hidden;
+}
 
 .projects_header_container {
   width: 100%;

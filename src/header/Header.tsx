@@ -5,21 +5,35 @@ import { ProfileData } from '../App';
 import default_profile_image from "../assets/default.jpg"
 import { useState } from 'react';
 import { FaBars } from 'react-icons/fa';
-
+import { useTranslation } from 'react-i18next';
+import geo_flag from "../assets/ka.png";
+import us_flag from "../assets/en.png";
+import Select from 'react-select';
+import { useNavigate } from 'react-router-dom';
 
 
 interface HeaderProps {
   profileData: ProfileData | null,
   isAuthenticated: boolean,
+  language: string,
+  setLanguage: (language: "ka" | "en") => void,
   setContinueWithoutRegistering: (continueWithoutRegistering: boolean) => void
 
 }
 
 
+// ===================================================================================
+const Header: React.FC<HeaderProps> = ({
+  profileData,
+  isAuthenticated,
+  setContinueWithoutRegistering,
+  language,
+  setLanguage
+}) => {
 
-const Header: React.FC<HeaderProps> = ({ profileData, isAuthenticated, setContinueWithoutRegistering }) => {
   const [menuVisible, setMenuVisible] = useState<boolean>(false);
-
+  const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
@@ -42,6 +56,72 @@ const Header: React.FC<HeaderProps> = ({ profileData, isAuthenticated, setContin
     setMenuVisible(false);
   }
 
+  const languageOptions = [
+    { value: 'ka', label: <><img src={geo_flag} alt="Georgian" style={{ width: '20px', marginRight: '8px' }} />GE</> },
+    { value: 'en', label: <><img src={us_flag} alt="English" style={{ width: '20px', marginRight: '8px' }} />EN</> },
+  ];
+
+  const handleLanguageChange = (selectedOption: any) => {
+    setLanguage(selectedOption.value);
+    i18n.changeLanguage(selectedOption.value);
+  };
+
+  const handle_profile_update = () => {
+    navigate("/profile-update");
+  }
+
+  const customStyles = {
+    control: (provided: any, state: any) => ({
+      ...provided,
+      minWidth: 120,
+      backgroundColor: 'rgb(28, 28, 30)',
+      borderColor: state.isFocused ? '#00a753' : '#4b4b4b',
+      boxShadow: state.isFocused ? '0 0 0 0.15vw #00a753' : '0 0 0 0.15vw transparent',
+      transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
+      '&:hover': {
+        borderColor: '#00a753',
+        boxShadow: '0 0 0 0.15vw rgba(135, 207, 235, 0.186)',
+      },
+    }),
+    singleValue: (provided: any) => ({
+      ...provided,
+      color: '#ffffff',
+      transition: 'color 0.3s ease',
+    }),
+    menu: (provided: any) => ({
+      ...provided,
+      backgroundColor: 'rgb(28, 28, 30)',
+      transition: 'opacity 0.3s ease',
+      animation: 'slideDown 0.3s ease',
+    }),
+    option: (provided: any, state: any) => ({
+      ...provided,
+      backgroundColor: state.isSelected ? '#00a753' : state.isFocused ? '#313131' : 'rgb(28, 28, 30)',
+      color: '#ffffff',
+      transition: 'background-color 0.3s ease, color 0.3s ease',
+      '&:hover': {
+        backgroundColor: '#00a75496',
+      },
+    }),
+    placeholder: (provided: any) => ({
+      ...provided,
+      color: '#ffffff',
+      transition: 'color 0.3s ease',
+    }),
+    dropdownIndicator: (provided: any, state: any) => ({
+      ...provided,
+      color: state.isFocused ? '#00a753' : '#4b4b4b',
+      transition: 'color 0.3s ease',
+      '&:hover': {
+        color: '#00a753',
+      },
+    }),
+    indicatorSeparator: (provided: any) => ({
+      ...provided,
+      backgroundColor: '#4b4b4b',
+      transition: 'background-color 0.3s ease',
+    }),
+  };
 
   return (
     <div className='main_header_cont'>
@@ -76,7 +156,7 @@ const Header: React.FC<HeaderProps> = ({ profileData, isAuthenticated, setContin
       )}
 
       {!isAuthenticated && (
-        <div  className='login_button_mobile' >
+        <div className='login_button_mobile' >
           <Link to="/">
             <button onClick={handle_Login_Logout_Click} className='header_button'>Login</button>
           </Link>
@@ -88,45 +168,59 @@ const Header: React.FC<HeaderProps> = ({ profileData, isAuthenticated, setContin
       <div className={`header_button_container ${menuVisible === null ? '' : menuVisible ? 'mobile_visible' : 'mobile_hidden'}`}>
 
         <Link to="/">
-          <button className='header_button' onClick={toggleMenu} >Home</button>
+          <button className='header_button' onClick={toggleMenu} >{t("home")}</button>
         </Link>
 
         <Link to="/projects">
-          <button className='header_button' onClick={toggleMenu} >Projects</button>
+          <button className='header_button' onClick={toggleMenu} >{t("projects")}</button>
         </Link>
 
         <Link to="/price-calculation">
-          <button className='header_button' onClick={toggleMenu}>Calculate Price</button>
+          <button className='header_button' onClick={toggleMenu}>{t("calculate price")}</button>
         </Link>
 
         <Link to="/upload-file">
-          <button className='header_button' onClick={toggleMenu}>Upload File</button>
+          <button className='header_button' onClick={toggleMenu}>{t("upload file")}</button>
         </Link>
 
         {!isAuthenticated && (
           <>
             <Link to="/">
-              <button onClick={handle_Login_Logout_Click} className='header_button'>Login</button>
+              <button onClick={handle_Login_Logout_Click} className='header_button'>{t("log in")}</button>
             </Link>
 
-            {/* <Link to="/register">
-              <button className='header_button'>Register</button>
-            </Link> */}
           </>
         )}
         {isAuthenticated && (
-          <h1 className='discount  old_discount_remove_on_mobile' >Discount: {profileData?.discount} % </h1>
+          <h1 className='discount  old_discount_remove_on_mobile' >{t("Discount")} {profileData?.discount} % </h1>
         )}
+        <Select
+          id="language-select"
+          value={languageOptions.find(option => option.value === language)}
+          onChange={handleLanguageChange}
+          options={languageOptions}
+          styles={customStyles}
+          classNamePrefix="react-select"
+          blurInputOnSelect={true}
+
+        />
 
         <div className='header_profile_data_parent_container' >
           <div className='header_profile_data_child_container' >
-            <p className='header_profile_data_p' > {profileData ? profileData.username : "Guest"}</p>
+            <p className='header_profile_data_p' > {profileData ? profileData.username : t("guest")}</p>
             <p className='header_profile_data_p' > {profileData ? profileData.company : ""}</p>
           </div>
-          <img src={profileData ? profileData.image : default_profile_image} alt="profile picture" style={{ width: "40px" }} className='profile_picture' />
+          <img
+            src={profileData ? profileData.image : default_profile_image}
+            onClick={handle_profile_update}
+            alt="profile picture"
+            style={{ width: "40px" }}
+            className='profile_picture' />
+          <div className="tooltip">{t("Click on image to update profile data")}</div>
+
         </div>
         {isAuthenticated && (
-          <button onClick={handleLogout} className='header_button logout_button'>Log Out</button>
+          <button onClick={handleLogout} className='header_button logout_button'>{t("log out")}</button>
         )}
 
       </div>

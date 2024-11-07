@@ -7,12 +7,13 @@ import { baseURL } from '../App';
 import { RiUserSearchFill } from "react-icons/ri";
 import { MdBusinessCenter } from "react-icons/md";
 import { ImMobile2 } from "react-icons/im";
-
+import { useTranslation } from "react-i18next";
 
 interface GoogleOuthProps {
   setIsAuthenticated: (value: boolean) => void;
   setIsGoogleLoggedIn: (value: boolean) => void;
   isGoogleLoggedIn: boolean;
+  language: string;
 }
 
 interface ProfileData {
@@ -22,14 +23,14 @@ interface ProfileData {
 }
 
 
-const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoogleLoggedIn, isGoogleLoggedIn }) => {
+const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoogleLoggedIn, isGoogleLoggedIn, language }) => {
   const [profileData, setProfileData] = useState<ProfileData>({
     username: '',
     phone_number: '',
     company: '',
   });
 
-
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const handleGoogleLoginSuccess = async (credentialResponse: CredentialResponse) => {
@@ -85,12 +86,11 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
     }
   };
 
-  // rgb(28, 28, 30)
 
   return (
     <div>
       {!isGoogleLoggedIn && (
-        <GoogleOAuthProvider clientId="1006633413820-umehv7r3fdj53sf5duud48bcbl7mie3o.apps.googleusercontent.com">
+        <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
           <GoogleLogin
             onSuccess={handleGoogleLoginSuccess}
             onError={handleGoogleLoginFailure}
@@ -98,7 +98,7 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
             size="large"     // Options: 'small', 'medium', 'large'
             text="signup_with"    // Options: 'signin_with', 'signup_with', 'continue_with', 'signin'
             width="50px"
-            locale="ka"
+            locale={language}
 
           />
         </GoogleOAuthProvider>
@@ -116,7 +116,7 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
                 onChange={(e) => setProfileData({ ...profileData, username: e.target.value.replace(/\s/g, '') })}
                 required
                 className="register_input_google"
-                placeholder='  Enter your name'
+                placeholder={t("Enter your name")}
               />
             </label>
           </div>
@@ -130,7 +130,7 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
                 onChange={(e) => setProfileData({ ...profileData, company: e.target.value })}
                 required
                 className="register_input_google"
-                placeholder="  Enter Company Name"
+                placeholder={t("Enter Company Name")}
               />
             </label>
           </div>
@@ -144,12 +144,12 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
                 onChange={(e) => setProfileData({ ...profileData, phone_number: e.target.value })}
                 required
                 className="register_input_google"
-                placeholder="  Enter Phone Number"
+                placeholder={t("Enter Phone Number")}
               />
             </label>
           </div>
           <div className="google_complite_container" >
-            <button type="submit" className="complite_profile_burron">Complete Profile</button>
+            <button type="submit" className="complite_profile_burron">{t("Complete Profile")}</button>
           </div>
         </form>
       )}
