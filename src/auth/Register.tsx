@@ -84,6 +84,7 @@ const Register: React.FC = () => {
       } else {
         setError('An unknown error occurred.');
       }
+      setLoading(false);
     }
   };
 
@@ -209,20 +210,22 @@ const Register: React.FC = () => {
             </label>
           </div>
 
-          <div className="password_validations_container">
-            <p className={`password_validation_p ${isPasswordLengthValid ? "true" : "false"}`} >
-              * Password must be minimum 8 characters.
-            </p>
-            <p className={`password_validation_p ${hasNumericCharacter ? "true" : "false"}`}  >
-              * Minimum one numeric character.
-            </p>
-            <p className={`password_validation_p ${isPasswordNumeric ? "true" : "false"}`} >
-              * Must not be entirely numeric.
-            </p>
-            <p className={`password_validation_p ${arePasswordsSame ? "true" : "false"}`} >
-              * Passwords must match.
-            </p>
-          </div>
+          {!success && (
+            <div className="password_validations_container">
+              <p className={`password_validation_p ${isPasswordLengthValid ? "true" : "false"}`} >
+                * Password must be minimum 8 characters.
+              </p>
+              <p className={`password_validation_p ${hasNumericCharacter ? "true" : "false"}`}  >
+                * Minimum one numeric character.
+              </p>
+              <p className={`password_validation_p ${isPasswordNumeric ? "true" : "false"}`} >
+                * Must not be entirely numeric.
+              </p>
+              <p className={`password_validation_p ${arePasswordsSame ? "true" : "false"}`} >
+                * Passwords must match.
+              </p>
+            </div>
+          )}
 
           <div className="regster_massages_container" >
 
@@ -231,7 +234,7 @@ const Register: React.FC = () => {
           </div>
 
           <div className="login_and_register_button_container" >
-            {loading && (
+            {loading && !error && (
 
               <div className="dot-spinner"  >
                 <div className="dot-spinner__dot"></div>
@@ -269,30 +272,5 @@ const Register: React.FC = () => {
 };
 
 export default Register;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Password: This password is too short.
-//  It must contain at least 8 characters.
-//  ,This password is too common.,
-//  This password is entirely numeric.
 
 

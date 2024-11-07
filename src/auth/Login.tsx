@@ -7,7 +7,7 @@ import { MdOutlineMarkEmailRead } from "react-icons/md";
 import { MdOutlineNextPlan } from "react-icons/md";
 import { PiPasswordBold } from "react-icons/pi";
 import { MdLockReset } from "react-icons/md";
-
+import { baseURL } from "../App";
 
 interface LoginProps {
   setIsAuthenticated: (isAuthenticated: boolean) => void;
@@ -34,7 +34,7 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
     setError('');
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:8000/auth/token/', {
+      const response = await axios.post(`${baseURL}/auth/token/`, {
         email,
         password,
       });
@@ -45,10 +45,19 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
       setIsAuthenticated(true);
       navigate('/');
     } catch (err) {
-      setError('Invalid email or password');
+      setLoading(false);
+      if (axios.isAxiosError(err)) {
+        if (err.response && err.response.status === 400) {
+          const errorMessage = err.response.data.email || 'Invalid email or password';
+          setError(errorMessage);
+        } else {
+          setError('An error occurred. Please try again later.');
+        }
+      } else {
+        setError('An unexpected error occurred. Please try again later.');
+      }
     }
   };
-
   // ==================================================================================
 
   const handleRegister = () => {
