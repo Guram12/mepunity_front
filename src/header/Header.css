@@ -39,7 +39,7 @@
   justify-content: center;
   align-items: center;
   gap: 30px;
-  margin-right: 40px;
+  margin-right: 15px;
   transition: transform 0.3s ease, opacity 0.3s ease;
 
 }
@@ -70,18 +70,10 @@
   position: relative;
   border: none;
   background: none;
-  /* text-transform: uppercase; */
-  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
-  transition-duration: 400ms;
-  transition-property: color;
+  font-weight: 600;
 }
 
-.header_button:focus,
-.header_button:hover {
-  color: #fff;
-}
-
-.header_button:focus:after,
+/* .header_button:focus:after, */
 .header_button:hover:after {
   width: 100%;
   left: 0%;
@@ -95,7 +87,7 @@
   position: absolute;
   width: 0%;
   height: 2px;
-  background-color: #fff;
+  background-color: #00a753;
   transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
   transition-duration: 400ms;
   transition-property: width, left;
@@ -118,7 +110,7 @@
 /* ======================================= header profile data ================================================= */
 .discount {
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 600;
   margin: 0px;
   background: linear-gradient(to right, #FFD700, #ffa600);
   background-clip: text;
@@ -183,6 +175,7 @@
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

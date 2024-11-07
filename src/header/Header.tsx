@@ -186,8 +186,18 @@ const Header: React.FC<HeaderProps> = ({
           </>
         )}
         {isAuthenticated && (
-          <h1 className='discount  old_discount_remove_on_mobile' >Discount: {profileData?.discount} % </h1>
+          <h1 className='discount  old_discount_remove_on_mobile' >{t("Discount")} {profileData?.discount} % </h1>
         )}
+        <Select
+          id="language-select"
+          value={languageOptions.find(option => option.value === language)}
+          onChange={handleLanguageChange}
+          options={languageOptions}
+          styles={customStyles}
+          classNamePrefix="react-select"
+          blurInputOnSelect={true}
+
+        />
 
         <div className='header_profile_data_parent_container' >
           <div className='header_profile_data_child_container' >
@@ -200,16 +210,6 @@ const Header: React.FC<HeaderProps> = ({
           <button onClick={handleLogout} className='header_button logout_button'>Log Out</button>
         )}
 
-        <Select
-          id="language-select"
-          value={languageOptions.find(option => option.value === language)}
-          onChange={handleLanguageChange}
-          options={languageOptions}
-          styles={customStyles}
-          classNamePrefix="react-select"
-          blurInputOnSelect={true}
-
-        />
       </div>
     </div>
   );

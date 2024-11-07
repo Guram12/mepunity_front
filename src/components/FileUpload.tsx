@@ -11,6 +11,8 @@ import { IoMdRemoveCircleOutline } from "react-icons/io";
 import { FaFilePdf, FaFileAlt } from "react-icons/fa";
 import { FaRegFileZipper } from "react-icons/fa6";
 import { SiAutodesk } from "react-icons/si"; // DWG icon
+import { useTranslation } from "react-i18next";
+
 
 const FileUpload: React.FC = () => {
   const [files, setFiles] = useState<File[]>([]);
@@ -25,8 +27,12 @@ const FileUpload: React.FC = () => {
   const [current_file_size, setCurrent_file_size] = useState<number>(0);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
 
-
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const { t } = useTranslation();
+
+
+
 
   const MAX_TOTAL_SIZE: number = 2 * 1024 * 1024 * 1024; // 2GB
 
@@ -178,12 +184,12 @@ const FileUpload: React.FC = () => {
             <div className="progress" style={{ width: `${uploadProgress}%` }}></div>
           </div>
           <p className="progres_percent">{uploadProgress.toFixed(0)}%</p>
-          <p className="upload_progres_warning" >Please wait for the files to upload. This may take a couple of minutes.</p>
+          <p className="upload_progres_warning" >{t("File upload wait massage")}</p>
 
         </div>
       )}
       <div className="files_sent_container">
-        {filesAreSent && <p className="files_are_sent">Files are sent successfully!</p>}
+        {filesAreSent && <p className="files_are_sent">{t("Files are sent successfully")}</p>}
       </div>
 
       {/* upload main continer is this  */}
@@ -192,7 +198,7 @@ const FileUpload: React.FC = () => {
        ${isFilesSending ? 'blur_background' : ''} 
        ${filesAreSent ? 'blur_background' : ''}`}>
         <form onSubmit={handleSubmit}>
-          
+
           {/* drag and drop container  */}
           <div className="drag_and_drop_container" >
             <div className="drag_area_contaner" >
@@ -203,7 +209,7 @@ const FileUpload: React.FC = () => {
                 onDragLeave={handleDragLeave}
                 onClick={handleClick}
               >
-                <p className="drag_drop_p">Drag & Drop files here or click to select files</p>
+                <p className="drag_drop_p">{t("drag and drop")}</p>
                 <input
                   type="file"
                   multiple
@@ -219,8 +225,8 @@ const FileUpload: React.FC = () => {
               >
                 <p className="file_size"
                   style={{ color: current_file_size > MAX_TOTAL_SIZE ? 'red' : 'inherit' }}
-                >File size: {current_file_size !== null ? (current_file_size / (1024 * 1024)).toFixed(2) + ' MB' : '0 MB'}</p>
-                <p className="file_info" >(Maximum size 2G)</p>
+                >{t("File size:")} {current_file_size !== null ? (current_file_size / (1024 * 1024)).toFixed(2) + ' MB' : '0 MB'}</p>
+                <p className="file_info" >{t("(Maximum size 2G)")}</p>
               </div>
             )}
           </div>
@@ -250,7 +256,7 @@ const FileUpload: React.FC = () => {
                   onChange={(e) => setName(e.target.value)}
                   required
                   className="upload_input"
-                  placeholder='  Enter Username'
+                  placeholder={t("Enter Username")}
                 />
               </div>
 
@@ -262,7 +268,7 @@ const FileUpload: React.FC = () => {
                   onChange={(e) => setCompany(e.target.value)}
                   required
                   className="upload_input"
-                  placeholder='  Enter company name'
+                  placeholder={t("Enter company name")}
                 />
               </div>
             </div>
@@ -277,7 +283,7 @@ const FileUpload: React.FC = () => {
                   onChange={(e) => setUserEmail(e.target.value)}
                   required
                   className="upload_input"
-                  placeholder='  Enter Email'
+                  placeholder={t("Enter Email")}
                 />
               </div>
 
@@ -288,7 +294,7 @@ const FileUpload: React.FC = () => {
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
                   className="upload_input"
-                  placeholder='  Enter Subject'
+                  placeholder={t("Enter Subject")}
                 />
               </div>
             </div>
@@ -300,7 +306,7 @@ const FileUpload: React.FC = () => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               className="upload_input description_upload_input"
-              placeholder=' Enter Description'
+              placeholder={t("Enter Description")}
             />
           </div>
 
@@ -310,7 +316,7 @@ const FileUpload: React.FC = () => {
             style={{ backgroundColor: isFormValid ? '#00a753' : '#313131', cursor: isFormValid ? 'pointer' : 'not-allowed' }}
             disabled={!isFormValid}
           >
-            Send
+            {t("Send")}
           </button>
         </form>
       </div>

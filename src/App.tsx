@@ -210,11 +210,17 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/price-calculation" element={<Calculate profileData={profileData} isAuthenticated={isAuthenticated} />} />
-        <Route path="/projects" element={<Projects />} />
+        <Route path="/price-calculation" element={<Calculate
+          language={language}
+          profileData={profileData}
+          isAuthenticated={isAuthenticated}
+        />} />
+        <Route path="/projects" element={<Projects
+          language={language}
+        />} />
         <Route path="/upload-file" element={<FileUpload />} />
       </Routes>
-      <Footer />
+      <Footer  language={language} />
     </Router>
   )
 }
