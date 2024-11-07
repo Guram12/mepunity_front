@@ -55,6 +55,14 @@ const Projects: React.FC<ProjectsProps> = ({ language }) => {
   }
 
   useEffect(() => {
+    if (isProjectSelected) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
+  }, [isProjectSelected]);
+
+  useEffect(() => {
     console.log(selectedProject);
 
   }, [selectedProject]);
@@ -107,5 +115,3 @@ const Projects: React.FC<ProjectsProps> = ({ language }) => {
 }
 
 export default Projects;
-
-

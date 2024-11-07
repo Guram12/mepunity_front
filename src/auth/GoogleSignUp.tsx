@@ -86,12 +86,11 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
     }
   };
 
-  // rgb(28, 28, 30)
 
   return (
     <div>
       {!isGoogleLoggedIn && (
-        <GoogleOAuthProvider clientId="1006633413820-umehv7r3fdj53sf5duud48bcbl7mie3o.apps.googleusercontent.com">
+        <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
           <GoogleLogin
             onSuccess={handleGoogleLoginSuccess}
             onError={handleGoogleLoginFailure}

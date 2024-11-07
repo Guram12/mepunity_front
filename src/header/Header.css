@@ -45,10 +45,10 @@
 }
 
 .header_button {
-  font-family: "Lexend", sans-serif;
   font-weight: 500;
-  font-style: normal;
-  font-size: 20px;
+  /* font-size: 18px ; */
+  font-family: 'Fira Sans', sans-serif;
+
 }
 
 
@@ -62,10 +62,9 @@
   display: none;
 }
 
-/* From Uiverse.io by WhiteNervosa */
 .header_button {
   color: #e1e1e1;
-  font-size: 20px;
+  font-size: 18px;
   cursor: pointer;
   position: relative;
   border: none;
@@ -73,7 +72,6 @@
   font-weight: 600;
 }
 
-/* .header_button:focus:after, */
 .header_button:hover:after {
   width: 100%;
   left: 0%;

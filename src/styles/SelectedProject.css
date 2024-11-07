@@ -83,7 +83,7 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: none;
   color: #00a753;
   border: none;
   padding: 10px;
@@ -132,7 +132,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: none;
   color: #00a753;
   border: none;
   padding: 10px;
