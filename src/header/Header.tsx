@@ -62,7 +62,6 @@ const Header: React.FC<HeaderProps> = ({
   const handleLanguageChange = (selectedOption: any) => {
     setLanguage(selectedOption.value);
     i18n.changeLanguage(selectedOption.value);
-    
   };
 
   const customStyles = {
