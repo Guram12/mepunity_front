@@ -20,6 +20,7 @@ const resources = {
       "log out": "Log Out",
       "log in": "Log In",
       "Discount": "Discount:",
+      "Click on image to update profile data": "Click on image to update profile data",
 
       //Projects component
       "Completed Projects": "Completed Projects",
@@ -64,7 +65,8 @@ const resources = {
       "log out": "გასვლა",
       "log in": "შესვლა",
       "Discount": "ფასდაკლება:",
-
+      "Click on image to update profile data": "დააწკაპუნეთ სურათზე პროფილის მონაცემების განახლებისთვის",
+      
       //Projects component
       "Completed Projects": "დასრულებული პროექტები",
 
