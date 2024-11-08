@@ -123,10 +123,16 @@ const Header: React.FC<HeaderProps> = ({
     }),
   };
 
+  const hanbdleLgoClick = () => {
+    navigate("/");
+  }
+
+
   return (
     <div className='main_header_cont'>
       <div className='logo_cont'>
         <svg
+          onClick={hanbdleLgoClick}
           id="Layer_1"
           data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"
