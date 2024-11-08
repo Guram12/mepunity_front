@@ -235,6 +235,7 @@ const App: React.FC = () => {
           profileUpdated={profileUpdated}
         />} />
         <Route path="/projects/:projectId" element={<SelectedProject
+        language={language}
         />} />
       </Routes>
       <Footer language={language} />
