@@ -1,30 +1,179 @@
-
-
-
-.profile_update_main_container{
+.loader_on_profiledata {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   min-height: 80vh;
 }
 
 
+.profile_update_main_container {
+  min-height: 80vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+
+
+}
+
+.profile_update_h1 {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 50px;
+}
+
+
+.profile_update_form {
+  width: 500px;
+}
+
+.profileupdate_input_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+
+.profile_update_icons {
+  width: 30px;
+  font-size: 30px;
+
+}
+
+
+/* ========================================  input styles  ======================================  */
+.profile_photo_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 50px;
+}
+
+.profile_update_picture {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #4b4b4b;
+}
+
+/* ------------------------- file input ------------------------- */
+.container-btn-file {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(38, 38, 40);
+  color: #fff;
+  border-style: none;
+  padding: 1em 2em;
+  border-radius: 0.5em;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 4px 8px 10px -3px rgba(0, 0, 0, 0.356);
+  transition: all 250ms;
+}
+
+.container-btn-file input[type="file"] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.container-btn-file>svg {
+  margin-right: 1em;
+}
+
+.container-btn-file::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 0;
+  border-radius: 0.5em;
+  background-color: #00a753;
+  z-index: -1;
+  transition: all 350ms;
+}
+
+.container-btn-file:hover::before {
+  width: 100%;
+}
+
+/* ------------------------------------------------------------------ */
 
 
 
+.profile_update_input {
+  font-weight: 500;
+  font-size: 20px;
+  color: #ffffff;
+  background-color: rgb(28, 28, 30);
+  box-shadow: 0 0 .4vw rgba(0, 0, 0, 0.5), 0 0 0 .15vw transparent;
+  border-radius: 0.4vw;
+  border: none;
+  outline: none;
+  padding: 0.4vw;
+  transition: .4s;
+  width: 80%;
+  height: 40px;
+}
+
+.profile_update_input:hover {
+  box-shadow: 0 0 0 .15vw rgba(135, 207, 235, 0.186);
+}
+
+.profile_update_input:focus {
+  box-shadow: 0 0 0 .15vw #00a753;
+}
+
+.profile_update_button_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 40px;
+}
 
 
+.profile_update_button {
+  background-color: #00a753;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  width: 180px;
+}
 
+.profile_update_button:hover {
+  background-color: #00a75496;
+}
 
+.profileupdate_massage{
+  font-size: 20px;
+  font-weight: 500;
+  
+}
 
+/* ===================================== mobile styles ===================================== */
 
+@media (max-width: 768px) {
 
+  .profile_update_form {
+    width: 90%;
+  }
 
-
-
-
-
-
-
-
-
-
-
-
+}
