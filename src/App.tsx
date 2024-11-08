@@ -245,3 +245,15 @@ const App: React.FC = () => {
 
 
 export default App
+
+
+
+// old CgVercel.json file
+// {
+//   "rewrites": [
+//     {
+//       "source": "/(.*)",
+//       "destination": "/index.html"
+//     }
+//   ]
+// }
