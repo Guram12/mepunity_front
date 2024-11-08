@@ -29,7 +29,7 @@
   font-weight: 500;
 }
 
-.all_inputs_container{
+.all_inputs_container {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -60,14 +60,14 @@
 
 .upload_inpur_cont_fr_description {
 
-  
+
   display: flex;
   align-items: center;
   justify-content: flex-start;
   margin-bottom: 40px;
   gap: 20px;
-} 
-  
+}
+
 
 .upload_input {
   font-weight: 500;
@@ -103,7 +103,7 @@
   font-size: 30px;
 }
 
-.upload_button_container{
+.upload_button_container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -138,7 +138,8 @@
 .drag_drop_area.dragging {
   background-color: #00a753;
 }
-.progress_bar{
+
+.progress_bar {
   width: 400px;
   border-radius: 5px;
   overflow: hidden;
@@ -156,11 +157,11 @@
   background-color: #4caf50;
   width: 0;
   transition: width 0.4s ease !important;
-  border-radius: 30px ;
+  border-radius: 30px;
 
 }
 
-.progres_percent{
+.progres_percent {
   position: fixed;
   top: 55%;
   left: 50%;
@@ -170,23 +171,23 @@
   z-index: 99999999999999999;
 }
 
-.upload_progres_warning{
+.upload_progres_warning {
   position: fixed;
   top: 65%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 99999999999999999;
   font-size: 20px;
-  width: max-content ;
+  width: max-content;
   font-weight: 600;
 }
 
-.drag_and_drop_container{
+.drag_and_drop_container {
   margin-top: 50px;
   margin-bottom: 50px;
 }
 
-.drag_area_contaner{
+.drag_area_contaner {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -213,19 +214,20 @@
 .drag_drop_p {
   font-weight: 500;
 }
-.file_size{
+
+.file_size {
   font-size: 16px;
   color: #ffffff;
   font-weight: 500;
 }
 
-.file_info{
+.file_info {
   font-size: 16px;
   color: #a8a8a8;
   font-weight: 300;
 }
 
-.filesize_info_container{
+.filesize_info_container {
   display: flex;
   gap: 10px;
   align-items: center;
@@ -285,7 +287,7 @@
   transform: scale(1.6);
 }
 
-.file_size_in_map{
+.file_size_in_map {
   position: absolute;
   bottom: 0px;
   right: 1px;
@@ -306,15 +308,16 @@
 
 
   /* ---------drag and droop styles --- */
-  .drag_and_drop_container{
+  .drag_and_drop_container {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-bottom: 0px;
   }
 
-  
+
   .drag_drop_area {
     width: 70%;
     height: auto;
@@ -345,6 +348,10 @@
     width: 100%;
   }
 
+  .filesize_info_container {
+    flex-direction: column;
+  }
+
   .description_upload_input {
     width: 90%;
     height: 160px;
@@ -366,6 +373,10 @@
   .remove_icon:hover {
     transform: none;
     color: tomato;
+  }
+
+  .file_preview {
+    margin-bottom: 30px;
   }
 
   .file_preview_item {
