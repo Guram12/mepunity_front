@@ -8,7 +8,7 @@
   justify-content: space-between;
   align-items: center;
   position: fixed;
-  z-index: 99;
+  z-index: 9999999999999;
 }
 
 .logo_cont {
@@ -71,6 +71,8 @@
   border: none;
   background: none;
   font-weight: 600;
+  transition: color 0.3s ease; /* Add this line */
+
 }
 
 .header_button:hover:after {
@@ -92,6 +94,9 @@
   transition-property: width, left;
 }
 
+.header_button.active {
+  color: #00a753;
+}
 
 .profile_picture {
   width: 40px;
@@ -102,7 +107,7 @@
 }
 
 .logout_button {
-  color: red;
+  color: tomato;
 }
 
 

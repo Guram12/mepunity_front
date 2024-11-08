@@ -69,13 +69,13 @@
 .slider_button_left {
   left: 0;
   margin-left: 10px;
-  z-index: 9999999999999;
+  z-index: 9;
 }
 
 .slider_button_right {
   right: 0;
   margin-right: 20px;
-  z-index: 9999999999999;
+  z-index: 9;
 }
 
 .slider_button_left:hover,

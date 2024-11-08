@@ -10,7 +10,7 @@ import geo_flag from "../assets/ka.png";
 import us_flag from "../assets/en.png";
 import Select from 'react-select';
 import { useNavigate } from 'react-router-dom';
-
+import { useLocation } from 'react-router-dom';
 
 interface HeaderProps {
   profileData: ProfileData | null,
@@ -30,6 +30,7 @@ const Header: React.FC<HeaderProps> = ({
   language,
   setLanguage
 }) => {
+  const location = useLocation();
 
   const [menuVisible, setMenuVisible] = useState<boolean>(false);
   const { t, i18n } = useTranslation();
@@ -68,6 +69,8 @@ const Header: React.FC<HeaderProps> = ({
 
   const handle_profile_update = () => {
     navigate("/profile-update");
+    setMenuVisible(false);
+
   }
 
   const customStyles = {
@@ -174,19 +177,39 @@ const Header: React.FC<HeaderProps> = ({
       <div className={`header_button_container ${menuVisible === null ? '' : menuVisible ? 'mobile_visible' : 'mobile_hidden'}`}>
 
         <Link to="/">
-          <button className='header_button' onClick={toggleMenu} >{t("home")}</button>
+          <button
+            className={`header_button ${location.pathname === '/' ? 'active' : ''}`}
+            onClick={toggleMenu}
+          >
+            {t("home")}
+          </button>
         </Link>
 
         <Link to="/projects">
-          <button className='header_button' onClick={toggleMenu} >{t("projects")}</button>
+          <button
+            className={`header_button ${location.pathname === '/projects' ? 'active' : ''}`}
+            onClick={toggleMenu}
+          >
+            {t("projects")}
+          </button>
         </Link>
 
         <Link to="/price-calculation">
-          <button className='header_button' onClick={toggleMenu}>{t("calculate price")}</button>
+          <button
+            className={`header_button ${location.pathname === '/price-calculation' ? 'active' : ''}`}
+            onClick={toggleMenu}
+          >
+            {t("calculate price")}
+          </button>
         </Link>
 
         <Link to="/upload-file">
-          <button className='header_button' onClick={toggleMenu}>{t("upload file")}</button>
+          <button
+            className={`header_button ${location.pathname === '/upload-file' ? 'active' : ''}`}
+            onClick={toggleMenu}
+          >
+            {t("upload file")}
+          </button>
         </Link>
 
         {!isAuthenticated && (

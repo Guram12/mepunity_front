@@ -245,79 +245,86 @@ const FileUpload: React.FC = () => {
             ))}
           </div>
 
-          <div className="mother_inputs_group" >
-            {/* 1 first big child  */}
-            <div>
-              <div className="upload_input_container">
-                <RiUserSearchFill className="mark_email_icon_upload" />
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                  className="upload_input"
-                  placeholder={t("Enter Username")}
-                />
+          <div className="all_inputs_container" >
+
+            <div className="mother_inputs_group" >
+              {/* 1 first big child  */}
+              <div>
+                <div className="upload_input_container">
+                  <RiUserSearchFill className="mark_email_icon_upload" />
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                    className="upload_input"
+                    placeholder={t("Enter Username")}
+                  />
+                </div>
+
+                <div className="upload_input_container">
+                  <MdBusinessCenter className='mark_email_icon_upload' />
+                  <input
+                    type="text"
+                    value={company}
+                    onChange={(e) => setCompany(e.target.value)}
+                    required
+                    className="upload_input"
+                    placeholder={t("Enter company name")}
+                  />
+                </div>
               </div>
 
-              <div className="upload_input_container">
-                <MdBusinessCenter className='mark_email_icon_upload' />
-                <input
-                  type="text"
-                  value={company}
-                  onChange={(e) => setCompany(e.target.value)}
-                  required
-                  className="upload_input"
-                  placeholder={t("Enter company name")}
-                />
+              {/* 2 second big child  */}
+              <div>
+                <div className="upload_input_container">
+                  <MdOutlineMarkEmailRead className="mark_email_icon_upload" />
+                  <input
+                    type="email"
+                    value={userEmail}
+                    onChange={(e) => setUserEmail(e.target.value)}
+                    required
+                    className="upload_input"
+                    placeholder={t("Enter Email")}
+                  />
+                </div>
+
+                <div className="upload_input_container">
+                  <LuMailSearch className="mark_email_icon_upload" />
+                  <input
+                    type="text"
+                    value={subject}
+                    onChange={(e) => setSubject(e.target.value)}
+                    className="upload_input"
+                    placeholder={t("Enter Subject")}
+                  />
+                </div>
               </div>
             </div>
 
-            {/* 2 second big child  */}
-            <div>
-              <div className="upload_input_container">
-                <MdOutlineMarkEmailRead className="mark_email_icon_upload" />
-                <input
-                  type="email"
-                  value={userEmail}
-                  onChange={(e) => setUserEmail(e.target.value)}
-                  required
-                  className="upload_input"
-                  placeholder={t("Enter Email")}
-                />
-              </div>
-
-              <div className="upload_input_container">
-                <LuMailSearch className="mark_email_icon_upload" />
-                <input
-                  type="text"
-                  value={subject}
-                  onChange={(e) => setSubject(e.target.value)}
-                  className="upload_input"
-                  placeholder={t("Enter Subject")}
-                />
-              </div>
+            <div className="upload_inpur_cont_fr_description">
+              <MdOutlineLibraryBooks className='mark_email_icon_upload' />
+              <textarea
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                className="upload_input description_upload_input"
+                placeholder={t("Enter Description")}
+              />
             </div>
+
           </div>
 
-          <div className="upload_input_container">
-            <MdOutlineLibraryBooks className='mark_email_icon_upload' />
-            <textarea
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              className="upload_input description_upload_input"
-              placeholder={t("Enter Description")}
-            />
+          <div className="upload_button_container">
+            <button
+              className="upload_button"
+              type="submit"
+              style={{ backgroundColor: isFormValid ? '#00a753' : '#313131', cursor: isFormValid ? 'pointer' : 'not-allowed' }}
+              disabled={!isFormValid}
+            >
+              {t("Send")}
+            </button>
           </div>
 
-          <button
-            className="upload_button"
-            type="submit"
-            style={{ backgroundColor: isFormValid ? '#00a753' : '#313131', cursor: isFormValid ? 'pointer' : 'not-allowed' }}
-            disabled={!isFormValid}
-          >
-            {t("Send")}
-          </button>
         </form>
       </div>
     </div>
