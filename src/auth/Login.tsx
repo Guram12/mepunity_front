@@ -115,6 +115,7 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={t("Enter Email")}
                   required
+                  name="email"
                 />
               </div>
               <div className='mark_and_input_container'  >
@@ -126,6 +127,7 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   placeholder={t("Enter Password")}
+                  name="password"
 
                 />
               </div>

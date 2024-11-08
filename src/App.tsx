@@ -40,7 +40,7 @@ export interface ProfileData {
   discount: string;
   email: string;
   id: number;
-  image: string;
+  image: string | null;
   is_email_verified: boolean;
   phone_number: string;
   username: string;
@@ -245,3 +245,15 @@ const App: React.FC = () => {
 
 
 export default App
+
+
+
+// old CgVercel.json file
+// {
+//   "rewrites": [
+//     {
+//       "source": "/(.*)",
+//       "destination": "/index.html"
+//     }
+//   ]
+// }

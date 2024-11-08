@@ -84,6 +84,7 @@ const PasswordResetRequest: React.FC = () => {
               onChange={(e) => setEmail(e.target.value)}
               placeholder={t("Enter your email")}
               required
+              name="email"
             />
           </div>
           <div className="reset_request_button_container" >

@@ -164,10 +164,16 @@
   gap: 3px;
 }
 
+.guest{
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0px;
+  color: rgba(255, 99, 71, 0.801);
+}
+
 .header_profile_data_p {
   margin: 0px;
   font-size: small;
-
 }
 
 .mobile_userdata_container {

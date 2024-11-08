@@ -77,6 +77,8 @@
   z-index: 1;
   box-shadow: 4px 8px 10px -3px rgba(0, 0, 0, 0.356);
   transition: all 250ms;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .container-btn-file input[type="file"] {
@@ -104,6 +106,28 @@
 
 .container-btn-file:hover::before {
   width: 100%;
+}
+
+
+.image_preview_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.down_icon{
+  font-size: 40px;
+  color: #00a753;
+}
+
+.image_preview{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #4b4b4b;
 }
 
 /* ------------------------------------------------------------------ */
@@ -143,7 +167,7 @@
 
 
 .profile_update_button {
-  background-color: #00a753;
+  /* background-color: #00a753; */
   border: none;
   color: white;
   padding: 10px 15px;
@@ -155,7 +179,21 @@
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.3s;
-  width: 180px;
+  width: 230px;
+}
+
+.disabled_btn{
+  background-color: rgb(28, 28, 30);
+  cursor: not-allowed;
+}
+
+.disabled_btn:hover {
+  background-color: rgb(28, 28, 30) !important;
+}
+
+.emabled_btn{
+  background-color: #00a753;
+  cursor: pointer;
 }
 
 .profile_update_button:hover {
@@ -165,9 +203,13 @@
 .profileupdate_massage{
   font-size: 20px;
   font-weight: 500;
-  
+
 }
 
+
+.update_icon{
+  font-size: 25px;
+}
 /* ===================================== mobile styles ===================================== */
 
 @media (max-width: 768px) {
@@ -176,4 +218,7 @@
     width: 90%;
   }
 
+  .profile_update_h1{
+    font-size: 25px;
+  }
 }

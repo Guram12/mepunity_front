@@ -116,6 +116,7 @@ const PasswordReset: React.FC = () => {
                   onChange={(e) => setPassword1(e.target.value)}
                   placeholder=" Enter new password"
                   required
+                  name="password1"
                 />
               </div>
 
@@ -129,6 +130,7 @@ const PasswordReset: React.FC = () => {
                   onChange={(e) => setPassword2(e.target.value)}
                   placeholder=" Confirm new password"
                   required
+                  name="password2"
                 />
               </div>
 

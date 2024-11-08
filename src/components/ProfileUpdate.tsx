@@ -9,7 +9,8 @@ import { MdBusinessCenter } from "react-icons/md";
 import { ImMobile2 } from "react-icons/im";
 import default_profile_image from "../assets/default.jpg"
 import { GrUpdate } from "react-icons/gr";
-
+import { RxDoubleArrowDown } from "react-icons/rx";
+import { useTranslation } from "react-i18next";
 
 interface ProfileUpdateProps {
   profileData: ProfileData | null;
@@ -24,7 +25,10 @@ const ProfileUpdate: React.FC<ProfileUpdateProps> = ({ profileData, profileUpdat
   const [image, setImage] = useState<File | null>(null);
   const [massage, setMassage] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
 
+
+  const { t } = useTranslation();
 
 
   useEffect(() => {
@@ -32,10 +36,25 @@ const ProfileUpdate: React.FC<ProfileUpdateProps> = ({ profileData, profileUpdat
       setPhoneNumber(profileData.phone_number || '');
       setCompany(profileData.company || '');
       setUsername(profileData.username || '');
+      setImagePreview(null);
     }
   }, [profileData]);
 
 
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files ? e.target.files[0] : null;
+    setImage(file);
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setImagePreview(null);
+    }
+  };
 
   // ============================  subbmit and update ============================
 
@@ -72,7 +91,13 @@ const ProfileUpdate: React.FC<ProfileUpdateProps> = ({ profileData, profileUpdat
     }
   };
 
-
+// =========================================   update button validationm ====================================
+const isformvalid = (
+  phoneNumber !== profileData?.phone_number ||
+  company !== profileData?.company ||
+  username !== profileData?.username ||
+  imagePreview !== null
+);
 
 
   if (!profileData) {
@@ -94,21 +119,27 @@ const ProfileUpdate: React.FC<ProfileUpdateProps> = ({ profileData, profileUpdat
 
   return (
     <div className="profile_update_main_container">
-      <h1 className="profile_update_h1" >Profile Update</h1>
+      <h1 className="profile_update_h1" >{t("Profile Update")}</h1>
 
 
       <form className="profile_update_form" onSubmit={handleSubmit}>
         <div className="profile_photo_container">
           <img src={profileData?.image || default_profile_image} alt="profile picture" className="profile_update_picture" />
           <button className="container-btn-file">
-            Change Profile Picture
+            {t("Change Profile Picture")}
             <input
               type="file"
-              onChange={(e) => setImage(e.target.files ? e.target.files[0] : null)}
+              onChange={handleImageChange}
               className="file"
               name="text"
             />
           </button>
+          {imagePreview && (
+            <div className="image_preview_container">
+              <RxDoubleArrowDown className="down_icon" />
+              <img src={imagePreview} alt="Image Preview" className="image_preview" />
+            </div>
+          )}
 
         </div>
 
@@ -119,7 +150,7 @@ const ProfileUpdate: React.FC<ProfileUpdateProps> = ({ profileData, profileUpdat
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             className="profile_update_input"
-            placeholder="  Username"
+            placeholder={t("Enter Username")}
           />
         </div>
 
@@ -130,7 +161,7 @@ const ProfileUpdate: React.FC<ProfileUpdateProps> = ({ profileData, profileUpdat
             value={company}
             onChange={(e) => setCompany(e.target.value)}
             className="profile_update_input"
-            placeholder="  Company"
+            placeholder={t("Enter Company Name")}
           />
         </div>
 
@@ -141,15 +172,21 @@ const ProfileUpdate: React.FC<ProfileUpdateProps> = ({ profileData, profileUpdat
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
             className="profile_update_input"
-            placeholder="  Phone number"
+            placeholder={t("Enter Phone Number")}
           />
         </div>
 
         <div className="profile_update_button_container" >
           {!loading ?
             <>
-              <button type="submit" className="profile_update_button">Update Profile</button>
-              <GrUpdate />
+              <button
+                type="submit"
+                className={`profile_update_button ${!isformvalid ? "disabled_btn" : "emabled_btn"}`}
+                disabled={!isformvalid}
+              >
+                {t("Update Profile")}
+              </button>
+              <GrUpdate  className="update_icon" />
             </>
             :
             <div className="dot-spinner"  >

@@ -82,6 +82,10 @@ const resources = {
       //selectedproject cmponent
       "Description": "Description",
       
+      //profile update component
+      "Profile Update": "Profile Update",
+      "Change Profile Picture": "Change Profile Picture",
+      "Update Profile": "Update Profile",
     }
   },
 
@@ -159,6 +163,11 @@ const resources = {
 
       //selectedproject cmponent
       "Description": "აღწერა",
+
+      //profile update component
+      "Profile Update": "პროფილის განახლება",
+      "Change Profile Picture": "პროფილის სურათის შეცვლა",
+      "Update Profile": "პროფილის განახლება",
     }
   },
 

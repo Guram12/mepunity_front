@@ -117,6 +117,7 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
                 required
                 className="register_input_google"
                 placeholder={t("Enter your name")}
+                name="username"
               />
             </label>
           </div>
@@ -131,6 +132,7 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
                 required
                 className="register_input_google"
                 placeholder={t("Enter Company Name")}
+                name="company"
               />
             </label>
           </div>
@@ -145,6 +147,7 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
                 required
                 className="register_input_google"
                 placeholder={t("Enter Phone Number")}
+                name="phone_number"
               />
             </label>
           </div>
