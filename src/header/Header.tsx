@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
 import { ProfileData } from '../App';
-import default_profile_image from "../assets/default.jpg"
 import { useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
@@ -11,6 +10,9 @@ import us_flag from "../assets/en.png";
 import Select from 'react-select';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import default_image from "../assets/default.jpg";
+
+
 
 interface HeaderProps {
   profileData: ProfileData | null,
@@ -72,6 +74,11 @@ const Header: React.FC<HeaderProps> = ({
     setMenuVisible(false);
 
   }
+
+  useEffect(() => {
+    console.log("profileData  ", profileData)
+  }, [profileData])
+
 
   const customStyles = {
     control: (provided: any, state: any) => ({
@@ -154,7 +161,7 @@ const Header: React.FC<HeaderProps> = ({
       {/* if user is authenticated and also if mobile version, i should show the discount */}
       {isAuthenticated && (
         <div className='mobile_userdata_container' >
-          <img src={profileData ? profileData.image : default_profile_image} alt="profile picture" style={{ width: "40px" }} className='profile_picture' />
+          <img src={profileData?.image || default_image} alt="profile picture" style={{ width: "40px" }} className='profile_picture' />
 
           <div>
             <h1 className='mobile_discount' >Discount: {profileData?.discount} % </h1>
@@ -236,16 +243,21 @@ const Header: React.FC<HeaderProps> = ({
 
         <div className='header_profile_data_parent_container' >
           <div className='header_profile_data_child_container' >
-            <p className='header_profile_data_p' > {profileData ? profileData.username : t("guest")}</p>
+            <p className={`header_profile_data_p ${!profileData ? "guest" : ""}  `} > {profileData ? profileData.username : t("guest")}</p>
             <p className='header_profile_data_p' > {profileData ? profileData.company : ""}</p>
           </div>
-          <img
-            src={profileData ? profileData.image : default_profile_image}
-            onClick={handle_profile_update}
-            alt="profile picture"
-            style={{ width: "40px" }}
-            className='profile_picture' />
-          <div className="tooltip">{t("Click on image to update profile data")}</div>
+          
+          {isAuthenticated && (
+            <>
+              <img
+                src={profileData?.image || default_image}
+                onClick={handle_profile_update}
+                alt="profile picture"
+                style={{ width: "40px" }}
+                className='profile_picture' />
+              <div className="tooltip">{t("Click on image to update profile data")}</div>
+            </>
+          )}
 
         </div>
         {isAuthenticated && (

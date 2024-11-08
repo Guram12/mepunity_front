@@ -136,6 +136,7 @@ const Register: React.FC = () => {
               required
               className="register_input"
               placeholder={t("Enter Email")}
+              name="email"
             />
           </div>
 
@@ -148,6 +149,7 @@ const Register: React.FC = () => {
               required
               className="register_input"
               placeholder={t("Enter Username")}
+              name="username"
             />
           </div>
 
@@ -160,6 +162,7 @@ const Register: React.FC = () => {
               required
               className="register_input"
               placeholder={t("Enter company name")}
+              name="company"
             />
           </div>
 
@@ -172,6 +175,7 @@ const Register: React.FC = () => {
               required
               className="register_input"
               placeholder={t("Enter Phone Number")}
+              name="phone_number"
             />
           </div>
 
@@ -185,6 +189,7 @@ const Register: React.FC = () => {
               required
               className="register_input"
               placeholder={t("Enter Password")}
+              name="password1"
             />
           </div>
 
@@ -197,6 +202,7 @@ const Register: React.FC = () => {
               required
               className="register_input"
               placeholder={t("Confirm Password")}
+              name="password2"
 
             />
           </div>
