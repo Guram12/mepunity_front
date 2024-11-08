@@ -1,4 +1,5 @@
 import "../styles/GoogleSignUp.css"
+import "../styles/Loader.css"
 import { GoogleOAuthProvider, GoogleLogin, CredentialResponse } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
@@ -29,6 +30,8 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
     phone_number: '',
     company: '',
   });
+  const [loading, setLoading] = useState<boolean>(false);
+
 
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -69,6 +72,7 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
 
   const handleProfileSetupSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    setLoading(true);
     try {
       const token = localStorage.getItem('access_token');
       if (token) {
@@ -79,9 +83,12 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
         });
         console.log('Profile setup response:', response.data);
         setIsAuthenticated(true);
+        setLoading(false);
         navigate("/");
+
       }
     } catch (error: any) {
+      setLoading(false);
       console.error('Error during profile setup:', error.response);
     }
   };
@@ -152,7 +159,20 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
             </label>
           </div>
           <div className="google_complite_container" >
-            <button type="submit" className="complite_profile_burron">{t("Complete Profile")}</button>
+            {loading ?
+              <div className="dot-spinner"  >
+                <div className="dot-spinner__dot"></div>
+                <div className="dot-spinner__dot"></div>
+                <div className="dot-spinner__dot"></div>
+                <div className="dot-spinner__dot"></div>
+                <div className="dot-spinner__dot"></div>
+                <div className="dot-spinner__dot"></div>
+                <div className="dot-spinner__dot"></div>
+                <div className="dot-spinner__dot"></div>
+              </div>
+              :
+              <button type="submit" className="complite_profile_burron">{t("Complete Profile")}</button>
+            }
           </div>
         </form>
       )}
