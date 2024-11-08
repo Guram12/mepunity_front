@@ -1,68 +1,120 @@
-import React, { useState } from 'react';
 import "../styles/SelectedProject.css";
-import { ProjectType } from "./Projects";
+import "../styles/Loader.css"
+import { ProjectType } from "../App";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { baseURL } from "../App";
 import { FaAnglesLeft, FaAnglesRight, FaExpand } from "react-icons/fa6";
-import { IoMdCloseCircle } from "react-icons/io";
+import { useTranslation } from "react-i18next";
+
+
+
 
 interface SelectedProjectProps {
   language: string;
-  project: ProjectType | null;
-  setIsProjectSelected: (isProjectSelected: boolean) => void;
 }
 
-const SelectedProject: React.FC<SelectedProjectProps> = ({ project, setIsProjectSelected , language}) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+const SelectedProject: React.FC<SelectedProjectProps> = ({ language }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [project, setProject] = useState<ProjectType | null>(null);
 
-  if (!project) return null;
+  const { projectId } = useParams<{ projectId: string }>();
+  const { t } = useTranslation();
+
+
+
+  useEffect(() => {
+    const fetchSelectedProject = async () => {
+      try {
+        const response = await axios.get(`${baseURL}/api/projects/${projectId}`);
+        setProject(response.data);
+      } catch (error) {
+        console.error("Error fetching selected project data:", error);
+      }
+    };
+    fetchSelectedProject();
+  }, [projectId]);
+
+  useEffect(() => {
+    console.log("project id", projectId);
+    console.log("project", project);
+  }, [project, projectId]);
 
   const handleNextImage = () => {
+    if (!project) return;
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % project.images.length);
-    console.log('next image');
+    console.log("next image");
   };
 
   const handlePrevImage = () => {
+    if (!project) return;
     setCurrentImageIndex((prevIndex) => (prevIndex - 1 + project.images.length) % project.images.length);
-    console.log('prev image');
+    console.log("prev image");
   };
-
-  const handleClose = () => {
-    setIsProjectSelected(false);
-  }
 
   const handleFullscreen = () => {
     const elem = document.querySelector('.slider_container');
     if (elem) {
       if (document.fullscreenElement) {
         document.exitFullscreen();
+        setIsFullScreen(false);
       } else {
         elem.requestFullscreen();
+        setIsFullScreen(true);
       }
     }
   }
 
-  return (
-    <div className="selected_project_container">
-      <div className='project_header_and_close_container' >
-        <h2>{language === "en" ? project.title_en : project.title_ka}</h2>
-        <IoMdCloseCircle className='project_close' onClick={handleClose} />
+
+
+  
+  if (!project) {
+    return (
+      <div className="loader_on_selected_project">
+        <div className="dot-spinner" >
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+          <div className="dot-spinner__dot"></div>
+        </div>
       </div>
-      <div className="slider_and_description_container">
+    )
+  }
+
+  return (
+    <div className="selected_project_main_container">
+      <h1 className="sel_pr_h1" >{language === "en" ? project?.title_en : project?.title_ka}</h1>
+      <div className="selected_project_child_cont">
+        {!isFullScreen && (
+          <FaAnglesLeft className="slider_button_left" onClick={handlePrevImage} />
+        )}
         <div className="slider_container">
-          <FaAnglesLeft className='slider_button_left' onClick={handlePrevImage} />
-          <div className="image_wrapper">
-            {project.images.map((image, index) => (
+          {isFullScreen && (
+            <FaAnglesLeft className="onfullscreen_slider_button_left" onClick={handlePrevImage} />
+          )}
+          <div className="image_wrapper" style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}>
+            {project?.images?.map((image, index) => (
               <img
                 key={image.id}
                 src={image.image}
                 alt={`project_image_${index}`}
-                className={`main_slider_image ${index === currentImageIndex ? 'active' : ''}`}
+                className={`main_slider_image ${index === currentImageIndex ? "active" : ""}`}
               />
             ))}
           </div>
-          <FaAnglesRight className='slider_button_right' onClick={handleNextImage} />
           <FaExpand className='fullscreen_button' onClick={handleFullscreen} />
+          {isFullScreen && (
+            <FaAnglesRight className="onfullscreen_slider_button_right" onClick={handleNextImage} />
+          )}
+          {/* dot container  */}
           <div className="dots_container">
-            {project.images.map((_, index) => (
+            {project?.images?.map((_, index) => (
               <span
                 key={index}
                 className={`dot ${index === currentImageIndex ? 'active' : ''}`}
@@ -71,9 +123,15 @@ const SelectedProject: React.FC<SelectedProjectProps> = ({ project, setIsProject
             ))}
           </div>
         </div>
-        <div className="description_container">
-          <p className='project_description' >{language === "en" ? project.description_en : project.description_ka}</p>
-        </div>
+        {!isFullScreen && (
+          <FaAnglesRight className="slider_button_right" onClick={handleNextImage} />
+        )}
+      </div>
+
+      <h1 className="descr_header_sel_pr" >{t("Description")}</h1>
+
+      <div className="selectedproject_description_continer">
+        <p className="description_selectedproject" >{language === "en" ? project?.description_en : project?.description_ka}</p>
       </div>
     </div>
   );

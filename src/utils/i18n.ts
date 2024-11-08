@@ -78,6 +78,9 @@ const resources = {
       "Enter your name": "  Enter your name",
       "Enter Company Name": "  Enter Company Name",
       "Complete Profile": "Complete Profile",
+
+      //selectedproject cmponent
+      "Description": "Description",
       
     }
   },
@@ -153,6 +156,9 @@ const resources = {
       "Enter your name": "  სახელი",
       "Enter Company Name": " კომპანიის სახელი",
       "Complete Profile": "პროფილის დასრულება",
+
+      //selectedproject cmponent
+      "Description": "აღწერა",
     }
   },
 

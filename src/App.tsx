@@ -13,7 +13,7 @@ import Footer from './header/Footr';
 import PasswordReset from './auth/PasswordReset';
 import PasswordResetRequest from './auth/PasswordResetRequest';
 import ProfileUpdate from './components/ProfileUpdate';
-
+import SelectedProject from './components/SelectedProject';
 
 let baseURL: string;
 
@@ -26,6 +26,14 @@ if (process.env.NODE_ENV === 'production') {
 
 export { baseURL };
 
+export interface ProjectType {
+  id: number,
+  images: { id: number, image: string }[],
+  title_ka: string,
+  title_en: string,
+  description_ka: string,
+  description_en: string
+}
 
 export interface ProfileData {
   company: string;
@@ -225,6 +233,9 @@ const App: React.FC = () => {
           profileData={profileData}
           setProfileUpdated={setProfileUpdated}
           profileUpdated={profileUpdated}
+        />} />
+        <Route path="/projects/:projectId" element={<SelectedProject
+        language={language}
         />} />
       </Routes>
       <Footer language={language} />
