@@ -65,6 +65,32 @@ const App: React.FC = () => {
   const refreshToken: string | null = localStorage.getItem('refresh_token');
 
 
+  // ========================================== google gtag function ==============================================
+  const gtagId = import.meta.env.VITE_GTAG_ID;
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${gtagId}`;
+    script.async = true;
+    document.head.appendChild(script);
+
+    const script2 = document.createElement('script');
+    script2.innerHTML = `
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '${gtagId}');
+  `;
+    document.head.appendChild(script2);
+  }, []);
+
+
+  // ===================================================================================================================
+
+
+
+
+
   useEffect(() => {
     setTimeout(() => {
       setShowSplashScreen(false)
@@ -235,7 +261,7 @@ const App: React.FC = () => {
           profileUpdated={profileUpdated}
         />} />
         <Route path="/projects/:projectId" element={<SelectedProject
-        language={language}
+          language={language}
         />} />
       </Routes>
       <Footer language={language} />
