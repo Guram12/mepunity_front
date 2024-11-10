@@ -90,10 +90,17 @@ const BackgroundCanvas: React.FC = () => {
       drawGrid();
 
       shapeObjects.forEach((shapeObj) => {
-        shapeObj.opacity += shapeObj.fadeDirection * 0.01;
+        shapeObj.opacity += shapeObj.fadeDirection * 0.001;
         if (shapeObj.opacity <= 0 || shapeObj.opacity >= 1) {
           shapeObj.fadeDirection *= -1;
         }
+
+        shapeObj.x += shapeObj.dx;
+        shapeObj.y += shapeObj.dy;
+
+        // Keep shapes within canvas bounds
+        if (shapeObj.x < 0 || shapeObj.x > canvas.width) shapeObj.dx *= -1;
+        if (shapeObj.y < 0 || shapeObj.y > canvas.height) shapeObj.dy *= -1;
 
         drawShape(shapeObj.shape, shapeObj.x, shapeObj.y, shapeObj.size, shapeObj.opacity);
       });
@@ -109,6 +116,8 @@ const BackgroundCanvas: React.FC = () => {
       size: Math.random() * 50,
       opacity: Math.random(),
       fadeDirection: Math.random() > 0.5 ? 1 : -1,
+      dx: (Math.random() - 0.5) * 0.5, // Small random movement in x direction
+      dy: (Math.random() - 0.5) * 0.5, // Small random movement in y direction
     }));
 
     resizeCanvas();
