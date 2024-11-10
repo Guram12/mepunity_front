@@ -60,6 +60,21 @@ const BackgroundCanvas: React.FC = () => {
           }
           ctx.closePath();
           break;
+        case 'plug':
+          // Draw the square
+          ctx.rect(x - size / 2, y - size / 2, size, size);
+          ctx.stroke();
+
+          // Draw the two little circles inside the square
+          const circleRadius = size / 8;
+          ctx.beginPath();
+          ctx.arc(x - size / 4, y, circleRadius, 0, 2 * Math.PI);
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.arc(x + size / 4, y, circleRadius, 0, 2 * Math.PI);
+          ctx.stroke();
+          break;
       }
       ctx.stroke();
       ctx.globalAlpha = 1; // Reset alpha
@@ -108,7 +123,7 @@ const BackgroundCanvas: React.FC = () => {
       requestAnimationFrame(animate);
     };
 
-    const shapes = ['pentagon', 'line', 'triangle', 'hexagon'];
+    const shapes = ['pentagon', 'line', 'triangle', 'hexagon' , 'plug'];
     const shapeObjects = Array.from({ length: 50 }, () => ({
       shape: shapes[Math.floor(Math.random() * shapes.length)],
       x: Math.random() * window.innerWidth,
