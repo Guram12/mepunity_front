@@ -121,15 +121,7 @@ const BackgroundCanvas: React.FC = () => {
     }));
 
     resizeCanvas();
-    window.addEventListener('resize', () => {
-      resizeCanvas();
-      // Reinitialize shape positions and sizes on resize
-      shapeObjects.forEach((shapeObj) => {
-        shapeObj.x = Math.random() * window.innerWidth;
-        shapeObj.y = Math.random() * window.innerHeight;
-        shapeObj.size = Math.random() * 50;
-      });
-    });
+    window.addEventListener('resize', resizeCanvas);
     animate();
 
     return () => {
@@ -137,7 +129,7 @@ const BackgroundCanvas: React.FC = () => {
     };
   }, []);
 
-  return <canvas ref={canvasRef} style={{ position: 'absolute', top: 0, left: 0, zIndex: -1 }} />;
+  return <canvas ref={canvasRef} style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1 }} />;
 };
 
 export default BackgroundCanvas;
