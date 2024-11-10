@@ -15,13 +15,11 @@ import PasswordResetRequest from './auth/PasswordResetRequest';
 import ProfileUpdate from './components/ProfileUpdate';
 import SelectedProject from './components/SelectedProject';
 
-let baseURL: string;
 
-if (process.env.NODE_ENV === 'production') {
-  baseURL = 'https://api.mepunity.com';
-} else {
-  baseURL = 'http://localhost:8000';
-}
+
+
+const baseURL = 'https://api.mepunity.com';
+// const baseURL = 'http://localhost:8000';
 
 
 export { baseURL };
