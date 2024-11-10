@@ -60,6 +60,21 @@ const BackgroundCanvas: React.FC = () => {
           }
           ctx.closePath();
           break;
+        case 'plug':
+          // Draw the square
+          ctx.rect(x - size / 2, y - size / 2, size, size);
+          ctx.stroke();
+
+          // Draw the two little circles inside the square
+          const circleRadius = size / 8;
+          ctx.beginPath();
+          ctx.arc(x - size / 4, y, circleRadius, 0, 2 * Math.PI);
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.arc(x + size / 4, y, circleRadius, 0, 2 * Math.PI);
+          ctx.stroke();
+          break;
       }
       ctx.stroke();
       ctx.globalAlpha = 1; // Reset alpha
@@ -90,10 +105,17 @@ const BackgroundCanvas: React.FC = () => {
       drawGrid();
 
       shapeObjects.forEach((shapeObj) => {
-        shapeObj.opacity += shapeObj.fadeDirection * 0.01;
+        shapeObj.opacity += shapeObj.fadeDirection * 0.001;
         if (shapeObj.opacity <= 0 || shapeObj.opacity >= 1) {
           shapeObj.fadeDirection *= -1;
         }
+
+        shapeObj.x += shapeObj.dx;
+        shapeObj.y += shapeObj.dy;
+
+        // Keep shapes within canvas bounds
+        if (shapeObj.x < 0 || shapeObj.x > canvas.width) shapeObj.dx *= -1;
+        if (shapeObj.y < 0 || shapeObj.y > canvas.height) shapeObj.dy *= -1;
 
         drawShape(shapeObj.shape, shapeObj.x, shapeObj.y, shapeObj.size, shapeObj.opacity);
       });
@@ -101,7 +123,7 @@ const BackgroundCanvas: React.FC = () => {
       requestAnimationFrame(animate);
     };
 
-    const shapes = ['pentagon', 'line', 'triangle', 'hexagon'];
+    const shapes = ['pentagon', 'line', 'triangle', 'hexagon' , 'plug'];
     const shapeObjects = Array.from({ length: 50 }, () => ({
       shape: shapes[Math.floor(Math.random() * shapes.length)],
       x: Math.random() * window.innerWidth,
@@ -109,18 +131,12 @@ const BackgroundCanvas: React.FC = () => {
       size: Math.random() * 50,
       opacity: Math.random(),
       fadeDirection: Math.random() > 0.5 ? 1 : -1,
+      dx: (Math.random() - 0.5) * 0.5, // Small random movement in x direction
+      dy: (Math.random() - 0.5) * 0.5, // Small random movement in y direction
     }));
 
     resizeCanvas();
-    window.addEventListener('resize', () => {
-      resizeCanvas();
-      // Reinitialize shape positions and sizes on resize
-      shapeObjects.forEach((shapeObj) => {
-        shapeObj.x = Math.random() * window.innerWidth;
-        shapeObj.y = Math.random() * window.innerHeight;
-        shapeObj.size = Math.random() * 50;
-      });
-    });
+    window.addEventListener('resize', resizeCanvas);
     animate();
 
     return () => {
@@ -128,7 +144,7 @@ const BackgroundCanvas: React.FC = () => {
     };
   }, []);
 
-  return <canvas ref={canvasRef} style={{ position: 'absolute', top: 0, left: 0, zIndex: -1 }} />;
+  return <canvas ref={canvasRef} style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1 }} />;
 };
 
 export default BackgroundCanvas;
