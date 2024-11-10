@@ -1,4 +1,4 @@
-.main_logo_container {
+/* .main_logo_container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -43,6 +43,24 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-10px); /* Adjust the value as needed */
+    transform: translateY(-10px);
   }
+} */
+
+
+
+
+
+
+
+
+
+
+.mainpage_main_container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
+
+

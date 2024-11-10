@@ -5,26 +5,33 @@
 
 /* For WebKit browsers (Chrome, Safari) */
 ::-webkit-scrollbar {
-  width: 8px; /* Adjust the width as needed */
+  width: 8px;
+  /* Adjust the width as needed */
 }
 
 ::-webkit-scrollbar-track {
-  background: #6d6d6d; /* Background color of the scrollbar track */
+  background: #6d6d6d;
+  /* Background color of the scrollbar track */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1d1d1d; /* Background color of the scrollbar thumb */
-  border-radius: 10px; /* Rounded corners of the scrollbar thumb */
+  background: #1d1d1d;
+  /* Background color of the scrollbar thumb */
+  border-radius: 10px;
+  /* Rounded corners of the scrollbar thumb */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #424242; /* Background color of the scrollbar thumb on hover */
+  background: #424242;
+  /* Background color of the scrollbar thumb on hover */
 }
 
 /* For Firefox */
 * {
-  scrollbar-width: thin; /* Make the scrollbar thinner */
-  scrollbar-color: #121212 #979797; /* Thumb color and track color */
+  scrollbar-width: thin;
+  /* Make the scrollbar thinner */
+  scrollbar-color: #121212 #979797;
+  /* Thumb color and track color */
 }
 
 
@@ -43,6 +50,12 @@ body {
   font-optical-sizing: auto;
   font-weight: 200;
   font-style: normal;
+  overflow-x: hidden;
 }
 
-
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
