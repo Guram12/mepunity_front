@@ -12,7 +12,7 @@ import { FaFilePdf, FaFileAlt } from "react-icons/fa";
 import { FaRegFileZipper } from "react-icons/fa6";
 import { SiAutodesk } from "react-icons/si"; // DWG icon
 import { useTranslation } from "react-i18next";
-
+import { scrollToTop } from "../utils/ScrollToTop";
 
 const FileUpload: React.FC = () => {
   const [files, setFiles] = useState<File[]>([]);
@@ -33,7 +33,11 @@ const FileUpload: React.FC = () => {
 
 
 
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
+  // =========================================================================================
   const MAX_TOTAL_SIZE: number = 2 * 1024 * 1024 * 1024; // 2GB
 
   useEffect(() => {

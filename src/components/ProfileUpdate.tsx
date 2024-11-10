@@ -11,6 +11,9 @@ import default_profile_image from "../assets/default.jpg"
 import { GrUpdate } from "react-icons/gr";
 import { RxDoubleArrowDown } from "react-icons/rx";
 import { useTranslation } from "react-i18next";
+import { scrollToTop } from "../utils/ScrollToTop";
+
+
 
 interface ProfileUpdateProps {
   profileData: ProfileData | null;
@@ -30,7 +33,11 @@ const ProfileUpdate: React.FC<ProfileUpdateProps> = ({ profileData, profileUpdat
 
   const { t } = useTranslation();
 
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
+  // =========================================================================================
   useEffect(() => {
     if (profileData) {
       setPhoneNumber(profileData.phone_number || '');

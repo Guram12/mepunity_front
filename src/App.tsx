@@ -18,8 +18,21 @@ import SelectedProject from './components/SelectedProject';
 
 
 
-const baseURL = 'https://api.mepunity.com';
+
+
+// const baseURL = 'https://api.mepunity.com';
 // const baseURL = 'http://localhost:8000';
+// export { baseURL };
+
+
+let baseURL: string = "";
+
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:8000';
+} else {
+  baseURL = 'https://api.mepunity.com';
+}
+
 
 
 export { baseURL };

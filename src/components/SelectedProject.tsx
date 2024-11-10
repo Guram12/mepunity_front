@@ -7,7 +7,7 @@ import axios from "axios";
 import { baseURL } from "../App";
 import { FaAnglesLeft, FaAnglesRight, FaExpand } from "react-icons/fa6";
 import { useTranslation } from "react-i18next";
-
+import { scrollToTop } from "../utils/ScrollToTop";
 
 
 
@@ -24,7 +24,11 @@ const SelectedProject: React.FC<SelectedProjectProps> = ({ language }) => {
   const { t } = useTranslation();
 
 
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
+  // =========================================================================================
   useEffect(() => {
     const fetchSelectedProject = async () => {
       try {
@@ -69,7 +73,7 @@ const SelectedProject: React.FC<SelectedProjectProps> = ({ language }) => {
 
 
 
-  
+
   if (!project) {
     return (
       <div className="loader_on_selected_project">
