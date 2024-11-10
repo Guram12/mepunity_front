@@ -6,7 +6,7 @@ import axios from "axios"
 import { baseURL } from "../App"
 import { useTranslation } from 'react-i18next';
 import { scrollToTop } from "../utils/ScrollToTop"
-
+import { motion } from 'framer-motion';
 
 interface CalculateProps {
   language: string,
@@ -37,9 +37,9 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated, lan
   const { t } = useTranslation();
 
 
-useEffect(() => {
-  scrollToTop();
-}, [])
+  useEffect(() => {
+    scrollToTop();
+  }, [])
 
   // ===================================   fetch minimum space for new price =========================================
 
@@ -173,6 +173,18 @@ useEffect(() => {
     setWarning('');
   }
 
+
+  const itemVariants = {
+    hidden: { x: 100, opacity: 0 },
+    visible: (index: number) => ({
+      x: 0,
+      opacity: 1,
+      transition: {
+        delay: index * 0.1, // Adjust the delay between animations
+      },
+    }),
+  };
+
   return (
     <div className="main_calculation_container">
       <div className="parent_div_line">
@@ -199,17 +211,23 @@ useEffect(() => {
             <div className="dot-spinner__dot"></div>
           </div>
         )}
-        <div className="first_project_group_container">
-          {electricalServices.map((service) => (
-            <p
+        <motion.div
+          className="first_project_group_container"
+          initial="hidden"
+          animate="visible"
+        >
+          {electricalServices.map((service, index) => (
+            <motion.p
               key={service.id}
               className={`project_checkmark ${markedItems.has(service.id) ? 'marked' : 'unmarked'}`}
               onClick={() => handleItemClick(service.id)}
+              custom={index}
+              variants={itemVariants}
             >
               {language === "en" ? service.name_en : service.name_ka}
-            </p>
+            </motion.p>
           ))}
-        </div>
+        </motion.div>
 
         <h3>{t("Mechanical")}</h3>
         {!contentLoaded && (
@@ -224,17 +242,23 @@ useEffect(() => {
             <div className="dot-spinner__dot"></div>
           </div>
         )}
-        <div className="first_project_group_container">
-          {mechanicalServices.map((service) => (
-            <p
+        <motion.div
+          className="first_project_group_container"
+          initial="hidden"
+          animate="visible"
+        >
+          {mechanicalServices.map((service, index) => (
+            <motion.p
               key={service.id}
               className={`project_checkmark ${markedItems.has(service.id) ? 'marked' : 'unmarked'}`}
               onClick={() => handleItemClick(service.id)}
+              custom={index}
+              variants={itemVariants}
             >
               {language === "en" ? service.name_en : service.name_ka}
-            </p>
+            </motion.p>
           ))}
-        </div>
+        </motion.div>
 
         <h3>{t("plumbing")}</h3>
         {!contentLoaded && (
@@ -249,17 +273,24 @@ useEffect(() => {
             <div className="dot-spinner__dot"></div>
           </div>
         )}
-        <div className="first_project_group_container">
-          {plumbingServices.map((service) => (
-            <p
+        <motion.div
+          className="first_project_group_container"
+          initial="hidden"
+          animate="visible"
+        >
+          {plumbingServices.map((service, index) => (
+            <motion.p
               key={service.id}
               className={`project_checkmark ${markedItems.has(service.id) ? 'marked' : 'unmarked'}`}
               onClick={() => handleItemClick(service.id)}
+              custom={index}
+              variants={itemVariants}
             >
               {language === "en" ? service.name_en : service.name_ka}
-            </p>
+            </motion.p>
           ))}
-        </div>
+        </motion.div>
+
 
         <div className="calculation_container">
           <h3>{t("Area")}</h3>
@@ -283,9 +314,14 @@ useEffect(() => {
         </div>
 
         {fullPrice !== null && fullPrice > 0 && (
-          <div className="full_price_container">
+          <motion.div
+            className="full_price_container"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
             <h3>{t("Total price")} {Number(fullPrice.toFixed(2))} ₾</h3>
-          </div>
+          </motion.div>
         )}
       </div>
 

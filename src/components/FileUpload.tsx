@@ -13,6 +13,8 @@ import { FaRegFileZipper } from "react-icons/fa6";
 import { SiAutodesk } from "react-icons/si"; // DWG icon
 import { useTranslation } from "react-i18next";
 import { scrollToTop } from "../utils/ScrollToTop";
+import { motion } from "framer-motion"
+
 
 const FileUpload: React.FC = () => {
   const [files, setFiles] = useState<File[]>([]);
@@ -167,7 +169,16 @@ const FileUpload: React.FC = () => {
 
   const isFormValid = name !== '' && company !== '' && userEmail !== '' && files.reduce((acc, file) => acc + file.size, 0) <= MAX_TOTAL_SIZE;
 
-
+  const itemVariants = {
+    hidden: { x: 100, opacity: 0 },
+    visible: (index: number) => ({
+      x: 0,
+      opacity: 1,
+      transition: {
+        delay: index * 0.1, // Adjust the delay between animations
+      },
+    }),
+  };
 
   return (
     <div>
@@ -204,7 +215,11 @@ const FileUpload: React.FC = () => {
         <form onSubmit={handleSubmit}>
 
           {/* drag and drop container  */}
-          <div className="drag_and_drop_container" >
+          <motion.div className="drag_and_drop_container"
+            initial={{ y: -100 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 1 }}
+          >
             <div className="drag_area_contaner" >
               <div
                 className={`drag_drop_area ${isDragging ? 'dragging' : ''}`}
@@ -233,11 +248,21 @@ const FileUpload: React.FC = () => {
                 <p className="file_info" >{t("(Maximum size 2G)")}</p>
               </div>
             )}
-          </div>
+          </motion.div>
+
           {/* file preview container  */}
-          <div className="file_preview">
+          <motion.div className="file_preview"
+            initial="hidden"
+            animate="visible"
+          >
             {files.map((file, index) => (
-              <div key={index} className="file_preview_item">
+              <motion.div
+                key={index}
+                custom={index}
+                variants={itemVariants}
+
+                className="file_preview_item"
+              >
                 {renderFileIcon(file)}
                 <span className="uploaded_file_name">{file.name}</span>
                 <IoMdRemoveCircleOutline
@@ -245,16 +270,23 @@ const FileUpload: React.FC = () => {
                   onClick={() => handleRemoveFile(index)}
                 />
                 <p className="file_size_in_map" >{(file.size / (1024 * 1024)).toFixed(1) + " MB"}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           <div className="all_inputs_container" >
 
             <div className="mother_inputs_group" >
               {/* 1 first big child  */}
-              <div>
-                <div className="upload_input_container">
+              <motion.div
+                initial={{ x: 100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 1 }}
+              >
+                <div
+                  className="upload_input_container"
+
+                >
                   <RiUserSearchFill className="mark_email_icon_upload" />
                   <input
                     type="text"
@@ -263,6 +295,7 @@ const FileUpload: React.FC = () => {
                     required
                     className="upload_input"
                     placeholder={t("Enter Username")}
+
                   />
                 </div>
 
@@ -277,10 +310,14 @@ const FileUpload: React.FC = () => {
                     placeholder={t("Enter company name")}
                   />
                 </div>
-              </div>
+              </motion.div>
 
               {/* 2 second big child  */}
-              <div>
+              <motion.div
+                initial={{ x: 100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 1, delay: 0.5 }}
+              >
                 <div className="upload_input_container">
                   <MdOutlineMarkEmailRead className="mark_email_icon_upload" />
                   <input
@@ -303,10 +340,15 @@ const FileUpload: React.FC = () => {
                     placeholder={t("Enter Subject")}
                   />
                 </div>
-              </div>
+              </motion.div>
             </div>
 
-            <div className="upload_inpur_cont_fr_description">
+            <motion.div
+              className="upload_inpur_cont_fr_description"
+              initial={{ x: 100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 1, delay: 1 }}
+            >
               <MdOutlineLibraryBooks className='mark_email_icon_upload' />
               <textarea
                 value={description}
@@ -314,11 +356,15 @@ const FileUpload: React.FC = () => {
                 className="upload_input description_upload_input"
                 placeholder={t("Enter Description")}
               />
-            </div>
+            </motion.div>
 
           </div>
 
-          <div className="upload_button_container">
+          < motion.div className="upload_button_container"
+            initial={{ x: 100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1, delay: 1.5 }}
+          >
             <button
               className="upload_button"
               type="submit"
@@ -327,7 +373,7 @@ const FileUpload: React.FC = () => {
             >
               {t("Send")}
             </button>
-          </div>
+          </motion.div>
 
         </form>
       </div>

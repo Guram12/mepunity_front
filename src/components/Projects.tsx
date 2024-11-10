@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { ProjectType } from "../App";
 import { useNavigate } from "react-router-dom";
 import { scrollToTop } from "../utils/ScrollToTop";
+import { motion } from 'framer-motion';
 
 interface ProjectsProps {
   language: string
@@ -19,14 +20,10 @@ const Projects: React.FC<ProjectsProps> = ({ language }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-
-
-
   useEffect(() => {
     scrollToTop();
   }, []);
 
-  // =========================================================================================
   useEffect(() => {
     console.log("Base URL:", baseURL);
     const fetchData = async () => {
@@ -42,18 +39,23 @@ const Projects: React.FC<ProjectsProps> = ({ language }) => {
     fetchData();
   }, []);
 
-
-
-
   const handle_project_click = (project: ProjectType) => {
     navigate(`/projects/${project.id}`);
   }
 
+  const oddAnimation = {
+    hidden: { opacity: 0, x: 100 },
+    visible: { opacity: 1, x: 0 }
+  };
+
+  const evenAnimation = {
+    hidden: { opacity: 0, x: -100 },
+    visible: { opacity: 1, x: 0 }
+  };
 
   return (
     <div className='main_project_containet'>
       <div className="projects_header_container" >
-
         <h1>{t("Completed Projects")}</h1>
         <div className="project_header_line" ></div>
         {!project_content_loaded && (
@@ -72,13 +74,22 @@ const Projects: React.FC<ProjectsProps> = ({ language }) => {
 
       <div className="projects_parent_container" >
         {projects.map((project, i) => {
+          const animation = i % 2 === 0 ? evenAnimation : oddAnimation;
           return (
-            <div key={i} className="project_container" onClick={() => handle_project_click(project)} >
+            <motion.div
+              key={i}
+              className="project_container"
+              onClick={() => handle_project_click(project)}
+              initial="hidden"
+              animate="visible"
+              variants={animation}
+              transition={{ duration: 0.5 }}
+            >
               <div className="project_image_container" >
                 <img src={project?.images[0]?.image} alt="project_image" />
               </div>
               <h2 className="project_title" >{language === "en" ? project.title_en : project.title_ka}</h2>
-            </div>
+            </motion.div>
           )
         })}
       </div>

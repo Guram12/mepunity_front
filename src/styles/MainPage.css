@@ -1,66 +1,47 @@
-/* .main_logo_container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  height: 700px;
-  height: 100vh;
-}
+/* MainPage.css */
 
-.logo_image{
-  width: 800px;
-  margin-top: 50px;
-  z-index: 9;
-  cursor: pointer;
-}
-
-
-
-
-.background_for_logo{
-  mask-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1));
-  position: absolute;
-  width: 100%;
-}
-
-.slogan{
-  width: 400px;
-  color: aliceblue;
-  mask-image: none;
-  font-family: "Anton", sans-serif;
-  font-weight: 200;
-  font-style: normal;
-  font-size: 42px;
-  opacity: 1;
-  z-index: 9;
-}
-
-
-@keyframes moveUpDown {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-} */
-
-
-
-
-
-
-
-
-
-
+/* Existing styles */
 .mainpage_main_container {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 80vh;
   overflow: hidden;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
 }
 
+.main_logo_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.mainpage_logo {
+  width: 400px;
+}
+
+.mainpage_header {
+  font-family: "Anton", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 35px;
+  color: aliceblue;
+  text-align: center; 
+  margin-top: 50px;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .mainpage_logo {
+    width: 300px; /* Adjust logo size for mobile */
+  }
+
+  .mainpage_header {
+    font-size: 20px; /* Adjust header size for mobile */
+    margin-top: 20px;
+    text-align: center; /* Center align text for better readability */
+    padding: 0 10px; /* Add some padding for better spacing */
+  }
+}
