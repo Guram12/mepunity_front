@@ -105,7 +105,7 @@ const App: React.FC = () => {
   useEffect(() => {
     setTimeout(() => {
       setShowSplashScreen(false)
-    }, 50);
+    }, 5000);
   }, [])
 
   useEffect(() => {
