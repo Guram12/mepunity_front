@@ -31,6 +31,7 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
     company: '',
   });
   const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null); // State for error messages
 
 
   const { t } = useTranslation();
@@ -61,12 +62,16 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
       }
     } catch (error: any) {
       console.error('Error during Google login:', error.response);
+      setError(error.response?.data?.detail || 'Error during Google login. Please try again.'); // Set error message
+
     }
   };
 
   // Handle Google Login failure
   const handleGoogleLoginFailure = () => {
     console.error('Google login error');
+    setError('Google login error. Please try again.'); // Set error message
+
   };
 
 
@@ -90,6 +95,9 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
     } catch (error: any) {
       setLoading(false);
       console.error('Error during profile setup:', error.response);
+      const errorMessage = error.response?.data?.username?.[0] || error.response?.data?.detail || 'Error during profile setup. Please try again.';
+      setError(errorMessage); // Set error message
+
     }
   };
 
@@ -176,6 +184,8 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
           </div>
         </form>
       )}
+      {error && <div className="google_complite_error">{error}</div>} {/* Display error message */}
+
     </div>
   );
 };
