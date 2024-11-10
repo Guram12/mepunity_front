@@ -6,7 +6,7 @@ import { baseURL } from '../App';
 import { useTranslation } from 'react-i18next';
 import { ProjectType } from "../App";
 import { useNavigate } from "react-router-dom";
-
+import { scrollToTop } from "../utils/ScrollToTop";
 
 interface ProjectsProps {
   language: string
@@ -20,7 +20,15 @@ const Projects: React.FC<ProjectsProps> = ({ language }) => {
   const { t } = useTranslation();
 
 
+
+
   useEffect(() => {
+    scrollToTop();
+  }, []);
+
+  // =========================================================================================
+  useEffect(() => {
+    console.log("Base URL:", baseURL);
     const fetchData = async () => {
       try {
         const response = await axios.get(`${baseURL}/api/projects/`);

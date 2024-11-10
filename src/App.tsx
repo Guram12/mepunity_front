@@ -18,8 +18,8 @@ import SelectedProject from './components/SelectedProject';
 
 
 
-const baseURL = 'https://api.mepunity.com';
-// const baseURL = 'http://localhost:8000';
+// const baseURL = 'https://api.mepunity.com';
+const baseURL = 'http://localhost:8000';
 
 
 export { baseURL };

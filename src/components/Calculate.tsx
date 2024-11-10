@@ -5,6 +5,8 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import { baseURL } from "../App"
 import { useTranslation } from 'react-i18next';
+import { scrollToTop } from "../utils/ScrollToTop"
+
 
 interface CalculateProps {
   language: string,
@@ -34,6 +36,10 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated, lan
 
   const { t } = useTranslation();
 
+
+useEffect(() => {
+  scrollToTop();
+}, [])
 
   // ===================================   fetch minimum space for new price =========================================
 
