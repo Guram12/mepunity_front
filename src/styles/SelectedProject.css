@@ -17,6 +17,7 @@
 .sel_pr_h1 {
   font-size: 40px;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .selected_project_child_cont {
@@ -173,6 +174,8 @@
 .descr_header_sel_pr {
   font-size: 36px;
   margin-bottom: 20px;
+  margin-top: 60px;
+
 }
 
 .selectedproject_description_continer {
@@ -184,6 +187,8 @@
 
 .description_selectedproject {
   font-size: 20px;
+  padding: 20px;
+  font-weight: 300;
 }
 
 /* ======================================== mobile styles ======================================== */
@@ -201,6 +206,7 @@
 
   .selected_project_child_cont {
     height: auto;
+    position: relative;
   }
 
   .slider_container {
@@ -215,12 +221,11 @@
   .slider_button_left,
   .slider_button_right {
     position: absolute;
-    top: 45%;
-    transform: translateY(-50%);
+    top: 100%;
+    /* transform: translateY(-50%); */
     background-color: none;
     color: #00a753;
     border: none;
-
   }
 
   .slider_button_left:hover,
