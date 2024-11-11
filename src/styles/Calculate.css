@@ -228,7 +228,16 @@ input[type="number"] {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: 0px;
   }
 
+  .calculate_button.clear::before {
+    content: none;
+  }
 
+  .calculate_button.clear:active {
+    background-color: darkred; /* Change to a darker shade of tomato */
+    transform: scale(0.95); /* Slightly scale down the button */
+  
+  }
 }

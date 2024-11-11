@@ -56,7 +56,7 @@ const Projects: React.FC<ProjectsProps> = ({ language }) => {
   return (
     <div className='main_project_containet'>
       <div className="projects_header_container" >
-        <h1>{t("Completed Projects")}</h1>
+        <h1 className="completed_h1" >{t("Completed Projects")}</h1>
         <div className="project_header_line" ></div>
         {!project_content_loaded && (
               <img src={loader} alt="custom loader" className="projects_loader"/>
