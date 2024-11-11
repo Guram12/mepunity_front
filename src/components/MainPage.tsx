@@ -1,6 +1,5 @@
 import '../styles/MainPage.css';
 import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
 
 const MainPage: React.FC = () => {
 
