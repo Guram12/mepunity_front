@@ -10,12 +10,10 @@ import { useTranslation } from 'react-i18next';
 
 
 
-interface MainPageProps {
-  language: string
-}
 
 
-const MainPage: React.FC<MainPageProps> = ({ language }) => {
+
+const MainPage: React.FC = ( ) => {
   const { t } = useTranslation();
 
 

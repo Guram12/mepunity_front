@@ -255,9 +255,7 @@ const App: React.FC = () => {
       />
       <div style={{ width: "100%", height: "80px" }}></div>
       <Routes>
-        <Route path="/" element={<MainPage
-          language={language}
-        />} />
+        <Route path="/" element={<MainPage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/price-calculation" element={<Calculate
           language={language}
