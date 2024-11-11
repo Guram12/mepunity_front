@@ -81,11 +81,14 @@ const resources = {
 
       //selectedproject cmponent
       "Description": "Description",
-      
+
       //profile update component
       "Profile Update": "Profile Update",
       "Change Profile Picture": "Change Profile Picture",
       "Update Profile": "Update Profile",
+
+      //mainpage copmponent
+      "mainpage header": "Electric and Mechanical Projects with the highest quality standards",
     }
   },
 
@@ -168,6 +171,9 @@ const resources = {
       "Profile Update": "პროფილის განახლება",
       "Change Profile Picture": "პროფილის სურათის შეცვლა",
       "Update Profile": "პროფილის განახლება",
+
+      //mainpage copmponent
+      "mainpage header": "ელექტრო და მექანიკური პროექტები უმაღლესი ხარისხის სტანდარტებით",
     }
   },
 
