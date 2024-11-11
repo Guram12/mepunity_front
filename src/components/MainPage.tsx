@@ -1,8 +1,22 @@
 import '../styles/MainPage.css';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
-const MainPage: React.FC = () => {
 
+
+
+
+
+
+
+
+interface MainPageProps {
+  language: string
+}
+
+
+const MainPage: React.FC<MainPageProps> = ({ language }) => {
+  const { t } = useTranslation();
 
 
 
@@ -32,16 +46,16 @@ const MainPage: React.FC = () => {
         </motion.svg>
       </div>
 
-      <h1 className='mainpage_header'>
+      <div className='mainpage_header'>
         <span className="words">
-          <span className="word">ელექტრო</span>
-          <span className="word">სანტექნიკური</span>
-          <span className="word">მექანიკური</span>
+        <span className="word"><span className="inner-word">{t("electric")}</span></span>
+    <span className="word"><span className="inner-word">{t("mechanical")}</span></span>
+    <span className="word"><span className="inner-word">{t("plumbing_2")}</span></span>
         </span>
-        <>
-        {' '}პროექტები უმაღლესი ხარისხის სტანდარტებით
-        </>
-      </h1>
+        <p className='second_part_p' >
+          {' '}{t("second_header_part")}
+        </p>
+      </div>
 
 
     </div>
