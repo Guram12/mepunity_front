@@ -38,7 +38,9 @@ const MainPage: React.FC = () => {
           <span className="word">სანტექნიკური</span>
           <span className="word">მექანიკური</span>
         </span>
+        <>
         {' '}პროექტები უმაღლესი ხარისხის სტანდარტებით
+        </>
       </h1>
 
 
