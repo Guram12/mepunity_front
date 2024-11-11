@@ -89,6 +89,12 @@ const resources = {
 
       //mainpage copmponent
       "mainpage header": "Electric and Mechanical Projects with the highest quality standards",
+
+      //mainpage copmponent
+      "electric": "Electric",
+      "mechanical": "Mechanical",
+      "plumbing_2": "Plumbing",
+      "second_header_part": "Projects with the highest quality standards",
     }
   },
 
@@ -173,7 +179,10 @@ const resources = {
       "Update Profile": "პროფილის განახლება",
 
       //mainpage copmponent
-      "mainpage header": "ელექტრო და მექანიკური პროექტები უმაღლესი ხარისხის სტანდარტებით",
+      "electric": "ელექტრული",
+      "mechanical": "მექანიკური",
+      "plumbing_2": "სანტექნიკური",
+      "second_header_part": "პროექტები უმაღლესი ხარისხის სტანდარტებით",
     }
   },
 
