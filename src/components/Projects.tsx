@@ -8,6 +8,8 @@ import { ProjectType } from "../App";
 import { useNavigate } from "react-router-dom";
 import { scrollToTop } from "../utils/ScrollToTop";
 import { motion } from 'framer-motion';
+import loader from "../assets/loader.svg"
+
 
 interface ProjectsProps {
   language: string
@@ -59,16 +61,7 @@ const Projects: React.FC<ProjectsProps> = ({ language }) => {
         <h1>{t("Completed Projects")}</h1>
         <div className="project_header_line" ></div>
         {!project_content_loaded && (
-          <div className="dot-spinner" style={{ marginTop: "80px" }} >
-            <div className="dot-spinner__dot"></div>
-            <div className="dot-spinner__dot"></div>
-            <div className="dot-spinner__dot"></div>
-            <div className="dot-spinner__dot"></div>
-            <div className="dot-spinner__dot"></div>
-            <div className="dot-spinner__dot"></div>
-            <div className="dot-spinner__dot"></div>
-            <div className="dot-spinner__dot"></div>
-          </div>
+              <img src={loader} alt="custom loader" className="projects_loader"/>
         )}
       </div>
 

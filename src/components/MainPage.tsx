@@ -1,8 +1,7 @@
 import '../styles/MainPage.css';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import img from "../assets/button_svg.svg"
-
+import loader from "../assets/loader.svg"
 const MainPage: React.FC = () => {
   const { t } = useTranslation();
 
@@ -34,8 +33,6 @@ const MainPage: React.FC = () => {
           </g>
         </motion.svg>
       </div>
-
-      <img src={img}  style={{width: "200px" }} alt="" />
 
       <motion.h1
         initial={{ x: 200 }}
