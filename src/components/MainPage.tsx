@@ -2,9 +2,7 @@ import '../styles/MainPage.css';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
-
 const MainPage: React.FC = () => {
-  const { t } = useTranslation();
 
 
 
@@ -35,13 +33,15 @@ const MainPage: React.FC = () => {
         </motion.svg>
       </div>
 
-      <motion.h1
-        initial={{ x: 200 }}
-        animate={{ x: 0 }}
-        transition={{ duration: 1.4 }}
+      <h1 className='mainpage_header'>
+        <span className="words">
+          <span className="word">ელექტრო</span>
+          <span className="word">სანტექნიკური</span>
+          <span className="word">მექანიკური</span>
+        </span>
+        {' '}პროექტები უმაღლესი ხარისხის სტანდარტებით
+      </h1>
 
-        className='mainpage_header'
-      > {t("mainpage header")}</motion.h1>
 
     </div>
   )
