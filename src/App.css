@@ -132,7 +132,14 @@
 }
 
 
-
+@media screen and (max-width: 768px) {
+  .main_logo_svg {
+    max-width: 300px;
+  }
+  .shpash_screen_container{
+    padding-left: 10px;
+  }
+}
 
 
 
