@@ -1,7 +1,6 @@
 import "../styles/Register.css"
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { baseURL } from '../App';
+import axiosInstance from "../utils/axiosInstance";
 import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { MdOutlineMarkEmailRead } from "react-icons/md";
@@ -52,7 +51,7 @@ const Register: React.FC = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post(`${baseURL}/auth/registration/`, {
+      const response = await axiosInstance.post(`$/auth/registration/`, {
         username,
         email,
         company: company,

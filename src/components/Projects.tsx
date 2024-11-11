@@ -1,15 +1,14 @@
 import "../styles/Projects.css";
 import "../styles/Loader.css"
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { baseURL } from '../App';
+// import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { ProjectType } from "../App";
 import { useNavigate } from "react-router-dom";
 import { scrollToTop } from "../utils/ScrollToTop";
 import { motion } from 'framer-motion';
 import loader from "../assets/loader.svg"
-
+import axiosInstance from "../utils/axiosInstance";
 
 interface ProjectsProps {
   language: string
@@ -27,10 +26,9 @@ const Projects: React.FC<ProjectsProps> = ({ language }) => {
   }, []);
 
   useEffect(() => {
-    console.log("Base URL:", baseURL);
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${baseURL}/api/projects/`);
+        const response = await axiosInstance.get(`/api/projects/`);
         console.log(response.data);
         setProjects(response.data);
         setProject_content_loaded(true);

@@ -3,8 +3,7 @@ import "../styles/Loader.css"
 import { ProjectType } from "../App";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
-import { baseURL } from "../App";
+import axiosInstance from "../utils/axiosInstance";
 import { FaAnglesLeft, FaAnglesRight, FaExpand } from "react-icons/fa6";
 import { useTranslation } from "react-i18next";
 import { scrollToTop } from "../utils/ScrollToTop";
@@ -32,7 +31,7 @@ const SelectedProject: React.FC<SelectedProjectProps> = ({ language }) => {
   useEffect(() => {
     const fetchSelectedProject = async () => {
       try {
-        const response = await axios.get(`${baseURL}/api/projects/${projectId}`);
+        const response = await axiosInstance.get(`/api/projects/${projectId}`);
         setProject(response.data);
       } catch (error) {
         console.error("Error fetching selected project data:", error);

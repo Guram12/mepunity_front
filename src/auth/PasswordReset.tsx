@@ -1,9 +1,9 @@
 import "../styles/PasswordReset.css"
+import axios from "axios";
+import axiosInstance from "../utils/axiosInstance";
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from "axios";
 import { useParams } from 'react-router-dom';
-import { baseURL } from "../App";
 import { MdPassword } from "react-icons/md";
 import { MdLockReset } from "react-icons/md";
 
@@ -61,7 +61,7 @@ const PasswordReset: React.FC = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post(`${baseURL}/auth/password-reset-confirm/${uidb64}/${token}/`, { new_password: password2 });
+      const response = await axiosInstance.post(`/auth/password-reset-confirm/${uidb64}/${token}/`, { new_password: password2 });
       setMessage(response.data.message);
       setLoading(false);
       setPassword_reseted(true);
