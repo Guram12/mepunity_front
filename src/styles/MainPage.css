@@ -33,19 +33,6 @@
   position: relative;
 }
 
-/* Mobile styles */
-@media (max-width: 768px) {
-  .mainpage_logo {
-    width: 300px; /* Adjust logo size for mobile */
-  }
-
-  .mainpage_header {
-    font-size: 20px; /* Adjust header size for mobile */
-    margin-top: 20px;
-    text-align: center; /* Center align text for better readability */
-    padding: 0 10px; /* Add some padding for better spacing */
-  }
-}
 
 
 /* ===================================================================================== */
@@ -168,5 +155,132 @@
   }
   100% {
     width: 260px;
+  }
+}
+
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .mainpage_logo {
+    width: 300px; /* Adjust logo size for mobile */
+  }
+
+  .mainpage_header {
+    font-size: 20px; /* Adjust header size for mobile */
+    margin-top: 20px;
+    text-align: center; /* Center align text for better readability */
+    padding: 0 10px; /* Add some padding for better spacing */
+    font-size: 20px; /* Adjust header size for mobile */
+    margin-top: 20px;
+    text-align: center; /* Center align text for better readability */
+    padding: 0 10px; /* Add some padding for better spacing */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .words {
+    width: 160px; /* Adjust width for mobile */
+    height: 30px; /* Adjust height for mobile */
+
+  }
+
+  .word {
+    height: 30px; /* Adjust height for mobile */
+    width: 160px; /* Adjust width for mobile */
+  }
+
+  @keyframes changewordfirst {
+    0% {
+      width: 160px;
+    }
+    16.5% {
+      width: 160px;
+    }
+    25% {
+      width: 0;
+    }
+    93.75% {
+      width: 0;
+    }
+    100% {
+      width: 160px;
+    }
+  }
+
+  @keyframes changewordsecond {
+    0% {
+      width: 0;
+    }
+    25% {
+      width: 0;
+    }
+    33% {
+      width: 160px;
+    }
+    50% {
+      width: 160px;
+    }
+    58.25% {
+      width: 0;
+    }
+    100% {
+      width: 0;
+    }
+  }
+
+  @keyframes changewordthird {
+    0% {
+      width: 0;
+    }
+    58.25% {
+      width: 0;
+    }
+    66% {
+      width: 160px;
+    }
+    85% {
+      width: 160px;
+    }
+    93.75% {
+      width: 0;
+    }
+    100% {
+      width: 0;
+    }
+  }
+
+  @keyframes changewords {
+    0% {
+      width: 160px;
+    }
+    16.5% {
+      width: 160px;
+    }
+    25% {
+      width: 0;
+    }
+    33% {
+      width: 160px;
+    }
+    50% {
+      width: 160px;
+    }
+    58.25% {
+      width: 0;
+    }
+    66% {
+      width: 160px;
+    }
+    85% {
+      width: 160px;
+    }
+    93.75% {
+      width: 0;
+    }
+    100% {
+      width: 160px;
+    }
   }
 }
