@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import MyCustomSVG from '../assets/smoke_svg.svg';
+import ButtonSVG from '../assets/button_svg.svg';
 
 const BackgroundCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -25,19 +26,6 @@ const BackgroundCanvas: React.FC = () => {
       ctx.globalAlpha = opacity;
 
       switch (shape) {
-        case 'pentagon':
-          for (let i = 0; i < 5; i++) {
-            const angle = (i * 2 * Math.PI) / 5 - Math.PI / 2;
-            const xPos = x + size * Math.cos(angle);
-            const yPos = y + size * Math.sin(angle);
-            if (i === 0) {
-              ctx.moveTo(xPos, yPos);
-            } else {
-              ctx.lineTo(xPos, yPos);
-            }
-          }
-          ctx.closePath();
-          break;
         case 'line':
           ctx.moveTo(x, y);
           ctx.lineTo(x + size, y + size);
@@ -77,6 +65,7 @@ const BackgroundCanvas: React.FC = () => {
           ctx.stroke();
           break;
         case 'customSVG':
+        case 'buttonSVG':
           if (img) {
             ctx.globalAlpha = 1; // Ensure full opacity for the SVG
             ctx.drawImage(img, x, y, size, size);
@@ -107,7 +96,7 @@ const BackgroundCanvas: React.FC = () => {
       }
     };
 
-    const animate = (img: HTMLImageElement) => {
+    const animate = (images: { [key: string]: HTMLImageElement }) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       drawGrid();
 
@@ -124,13 +113,13 @@ const BackgroundCanvas: React.FC = () => {
         if (shapeObj.x < 0 || shapeObj.x > canvas.width) shapeObj.dx *= -1;
         if (shapeObj.y < 0 || shapeObj.y > canvas.height) shapeObj.dy *= -1;
 
-        drawShape(shapeObj.shape, shapeObj.x, shapeObj.y, shapeObj.size, shapeObj.opacity, img);
+        drawShape(shapeObj.shape, shapeObj.x, shapeObj.y, shapeObj.size, shapeObj.opacity, images[shapeObj.shape]);
       });
 
-      requestAnimationFrame(() => animate(img));
+      requestAnimationFrame(() => animate(images));
     };
 
-    const shapes = ['customSVG', 'pentagon', 'line', 'triangle', 'hexagon', 'plug', 'customSVG'];
+    const shapes = ['customSVG', 'buttonSVG',  'line', 'triangle', 'hexagon', 'plug'];
     const shapeObjects = Array.from({ length: 100 }, () => ({
       shape: shapes[Math.floor(Math.random() * shapes.length)],
       x: Math.random() * window.innerWidth,
@@ -145,12 +134,25 @@ const BackgroundCanvas: React.FC = () => {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Load the SVG and start the animation
-    const img = new Image();
-    img.src = MyCustomSVG;
-    img.onload = () => {
-      animate(img);
+    // Load the SVGs and start the animation
+    const images: { [key: string]: HTMLImageElement } = {};
+    const loadImage = (src: string, key: string) => {
+      return new Promise<void>((resolve) => {
+        const img = new Image();
+        img.src = src;
+        img.onload = () => {
+          images[key] = img;
+          resolve();
+        };
+      });
     };
+
+    Promise.all([
+      loadImage(MyCustomSVG, 'customSVG'),
+      loadImage(ButtonSVG, 'buttonSVG'),
+    ]).then(() => {
+      animate(images);
+    });
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
@@ -161,6 +163,7 @@ const BackgroundCanvas: React.FC = () => {
     <>
       <canvas ref={canvasRef} style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1 }} />
       <img id="hidden-svg" src={MyCustomSVG} style={{ display: 'none' }} alt="hidden-svg" />
+      <img id="hidden-button-svg" src={ButtonSVG} style={{ display: 'none' }} alt="hidden-button-svg" />
     </>
   );
 };

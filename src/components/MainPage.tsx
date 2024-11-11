@@ -1,7 +1,7 @@
 import '../styles/MainPage.css';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import img from "../assets/smoke_svg.svg"
+import img from "../assets/button_svg.svg"
 
 const MainPage: React.FC = () => {
   const { t } = useTranslation();
