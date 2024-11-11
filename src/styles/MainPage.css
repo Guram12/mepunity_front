@@ -30,6 +30,7 @@
   color: aliceblue;
   text-align: center; 
   margin-top: 50px;
+  position: relative;
 }
 
 /* Mobile styles */
@@ -47,6 +48,125 @@
 }
 
 
+/* ===================================================================================== */
+.words {
+  text-align: left;
+  width: 250px;
+  height: 40px;
+  display: inline-block;
+  overflow: hidden;
+  animation: changewords 7s infinite;
+}
 
+.word {
+  color: #de6449;
+  position: absolute;
+  top: 0;
+  height: 60px;
+  width: 260px;
+  overflow: hidden;
+  animation: changewordfirst 7s infinite;
+}
 
+.word:nth-of-type(2) {
+  color: #791e94;
+  animation: changewordsecond 7s infinite;
+}
 
+.word:nth-of-type(3) {
+  color: #41d3bd;
+  animation: changewordthird 7s infinite;
+}
+
+@keyframes changewordfirst {
+  0% {
+    width: 260px;
+  }
+  16.5% {
+    width: 260px;
+  }
+  25% {
+    width: 0;
+  }
+  93.75% {
+    width: 0;
+  }
+  100% {
+    width: 260px;
+  }
+}
+
+@keyframes changewordsecond {
+  0% {
+    width: 0;
+  }
+  25% {
+    width: 0;
+  }
+  33% {
+    width: 260px;
+  }
+  50% {
+    width: 260px;
+  }
+  58.25% {
+    width: 0;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes changewordthird {
+  0% {
+    width: 0;
+  }
+  58.25% {
+    width: 0;
+  }
+  66% {
+    width: 260px;
+  }
+  85% {
+    width: 260px;
+  }
+  93.75% {
+    width: 0;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes changewords {
+  0% {
+    width: 260px;
+  }
+  16.5% {
+    width: 260px;
+  }
+  25% {
+    width: 0;
+  }
+  33% {
+    width: 260px;
+  }
+  50% {
+    width: 260px;
+  }
+  58.25% {
+    width: 0;
+  }
+  66% {
+    width: 260px;
+  }
+  85% {
+    width: 260px;
+  }
+  93.75% {
+    width: 0;
+  }
+  100% {
+    width: 260px;
+  }
+}
