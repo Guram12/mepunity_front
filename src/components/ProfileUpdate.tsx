@@ -1,8 +1,7 @@
 import "../styles/ProfileUpdate.css";
 import "../styles/Loader.css"
-import axios from "axios";
+import axiosInstance from "../utils/axiosInstance";
 import React, { useState, useEffect } from 'react';
-import { baseURL } from "../App";
 import { ProfileData } from "../App";
 import { RiUserSearchFill } from "react-icons/ri";
 import { MdBusinessCenter } from "react-icons/md";
@@ -78,7 +77,7 @@ const ProfileUpdate: React.FC<ProfileUpdateProps> = ({ profileData, profileUpdat
 
     try {
       const accessToken = localStorage.getItem('access_token');
-      await axios.put(`${baseURL}/auth/profile/update/`, formData, {
+      await axiosInstance.put(`/auth/profile/update/`, formData, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
           'Content-Type': 'multipart/form-data',

@@ -1,12 +1,12 @@
 import "../styles/Login.css"
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from "axios";
+import axiosInstance from "../utils/axiosInstance";
 import { useNavigate } from 'react-router-dom';
 import GoogleSignUp from './GoogleSignUp';
 import { MdOutlineMarkEmailRead } from "react-icons/md";
 import { MdOutlineNextPlan } from "react-icons/md";
 import { PiPasswordBold } from "react-icons/pi";
-import { baseURL } from "../App";
 import { useTranslation } from "react-i18next";
 import { FaUserPlus } from "react-icons/fa";
 
@@ -42,7 +42,7 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
     setError('');
     setLoading(true);
     try {
-      const response = await axios.post(`${baseURL}/auth/token/`, {
+      const response = await axiosInstance.post(`/auth/token/`, {
         email,
         password,
       });

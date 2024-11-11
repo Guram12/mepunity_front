@@ -1,7 +1,6 @@
 import "../styles/FileUpload.css"
 import { useState, useRef, useEffect } from "react";
-import axios from 'axios';
-import { baseURL } from "../App";
+import axiosInstance from "../utils/axiosInstance";
 import { RiUserSearchFill } from "react-icons/ri";
 import { MdBusinessCenter } from "react-icons/md";
 import { MdOutlineMarkEmailRead } from "react-icons/md";
@@ -122,7 +121,7 @@ const FileUpload: React.FC = () => {
     formData.append('description', description);
 
     try {
-      await axios.post(`${baseURL}/api/send-file/`, formData, {
+      await axiosInstance.post(`/api/send-file/`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

@@ -3,8 +3,7 @@ import "../styles/Loader.css"
 import { GoogleOAuthProvider, GoogleLogin, CredentialResponse } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
-import axios from 'axios';
-import { baseURL } from '../App';
+import axiosInstance from "../utils/axiosInstance";
 import { RiUserSearchFill } from "react-icons/ri";
 import { MdBusinessCenter } from "react-icons/md";
 import { ImMobile2 } from "react-icons/im";
@@ -40,7 +39,7 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
   const handleGoogleLoginSuccess = async (credentialResponse: CredentialResponse) => {
     console.log('Google login success:', credentialResponse);
     try {
-      const response = await axios.post(`${baseURL}/dj-rest-auth/google/`, {
+      const response = await axiosInstance.post(`/dj-rest-auth/google/`, {
         id_token: credentialResponse.credential,  // Send credential as id_token
       });
       console.log('Google login response:', response.data);
@@ -49,7 +48,7 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
         localStorage.setItem('refresh_token', response.data.refresh);
 
         // Fetch user profile to get the user_id
-        const profileResponse = await axios.get(`${baseURL}/auth/profile/`, {
+        const profileResponse = await axiosInstance.get(`/auth/profile/`, {
           headers: {
             Authorization: `Bearer ${response.data.access}`,
           },
@@ -81,7 +80,7 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
     try {
       const token = localStorage.getItem('access_token');
       if (token) {
-        const response = await axios.put(`${baseURL}/auth/profile/complite/`, profileData, {
+        const response = await axiosInstance.put(`/auth/profile/complite/`, profileData, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

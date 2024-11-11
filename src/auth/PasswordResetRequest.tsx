@@ -1,8 +1,8 @@
 import "../styles/PasswordResetRequest.css"
 import "../styles/Loader.css"
-import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { baseURL } from "../App";
+import React, { useEffect, useState } from 'react';
+import axiosInstance from "../utils/axiosInstance";
 import { BiMailSend } from "react-icons/bi";
 import { GiConfirmed } from "react-icons/gi";
 import { FaUserPlus } from "react-icons/fa6";
@@ -34,7 +34,7 @@ const PasswordResetRequest: React.FC = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post(`${baseURL}/auth/password-reset/`, { email });
+      const response = await axiosInstance.post(`/auth/password-reset/`, { email });
       setMessage(response.data.message);
       setEmail('');
       setSecondMessage("Please check youre email for password reset link");

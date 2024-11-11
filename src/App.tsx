@@ -6,7 +6,6 @@ import Header from './header/Header';
 import Projects from './components/Projects';
 import Login from './auth/Login';
 import Register from './auth/Register';
-import axios from 'axios';
 import FileUpload from './components/FileUpload';
 import Calculate from './components/Calculate';
 import Footer from './header/Footr';
@@ -14,28 +13,10 @@ import PasswordReset from './auth/PasswordReset';
 import PasswordResetRequest from './auth/PasswordResetRequest';
 import ProfileUpdate from './components/ProfileUpdate';
 import SelectedProject from './components/SelectedProject';
+import axiosInstance from './utils/axiosInstance';
 
 
 
-
-
-
-// const baseURL = 'https://api.mepunity.com';
-// const baseURL = 'http://localhost:8000';
-// export { baseURL };
-
-
-let baseURL: string = "";
-
-if (process.env.NODE_ENV === 'development') {
-  baseURL = 'http://localhost:8000';
-} else {
-  baseURL = 'https://api.mepunity.com';
-}
-
-
-
-export { baseURL };
 
 export interface ProjectType {
   id: number,
@@ -119,7 +100,7 @@ const App: React.FC = () => {
     if (accessToken) {
       try {
         const fetchprofile = async () => {
-          const response = await axios.get(`${baseURL}/auth/profile/`, {
+          const response = await axiosInstance.get(`/auth/profile/`, {
             headers: {
               Authorization: `Bearer ${accessToken}`
             }
@@ -146,7 +127,7 @@ const App: React.FC = () => {
 
     if (accessToken) {
       try {
-        const response = await axios.post(`${baseURL}/auth/token/verify/`, {
+        const response = await axiosInstance.post(`/auth/token/verify/`, {
           token: accessToken,
         });
         return response.status === 200;
@@ -157,7 +138,7 @@ const App: React.FC = () => {
 
     if (refreshToken) {
       try {
-        const response = await axios.post(`${baseURL}/auth/token/refresh/`, {
+        const response = await axiosInstance.post(`/auth/token/refresh/`, {
           refresh: refreshToken,
         });
         localStorage.setItem('access_token', response.data.access);
