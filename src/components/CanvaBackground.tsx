@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import MyCustomSVG from '../assets/smoke_svg.svg';
 import ButtonSVG from '../assets/button_svg.svg';
+import el_switch from '../assets/el_switch.svg';
 
 const BackgroundCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -66,6 +67,7 @@ const BackgroundCanvas: React.FC = () => {
           break;
         case 'customSVG':
         case 'buttonSVG':
+        case 'el_switch':
           if (img) {
             ctx.globalAlpha = 1; // Ensure full opacity for the SVG
             ctx.drawImage(img, x, y, size, size);
@@ -119,7 +121,7 @@ const BackgroundCanvas: React.FC = () => {
       requestAnimationFrame(() => animate(images));
     };
 
-    const shapes = ['customSVG', 'buttonSVG',  'line', 'triangle', 'hexagon', 'plug'];
+    const shapes = ['customSVG', 'buttonSVG', 'line', 'triangle', 'hexagon', 'plug', "el_switch"];
     const shapeObjects = Array.from({ length: 100 }, () => ({
       shape: shapes[Math.floor(Math.random() * shapes.length)],
       x: Math.random() * window.innerWidth,
@@ -150,6 +152,7 @@ const BackgroundCanvas: React.FC = () => {
     Promise.all([
       loadImage(MyCustomSVG, 'customSVG'),
       loadImage(ButtonSVG, 'buttonSVG'),
+      loadImage(el_switch, 'el_switch'),
     ]).then(() => {
       animate(images);
     });

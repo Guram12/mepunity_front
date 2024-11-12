@@ -1,11 +1,11 @@
 import '../styles/MainPage.css';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import image from '../assets/el_switch.svg';
 
 
 
-
-const MainPage: React.FC = ( ) => {
+const MainPage: React.FC = () => {
   const { t } = useTranslation();
 
 
@@ -35,12 +35,12 @@ const MainPage: React.FC = ( ) => {
           </g>
         </motion.svg>
       </div>
-
+      <img src={image}  style={{width: "200px"}} alt="wefwefwe " />
       <div className='mainpage_header'>
         <span className="words">
-        <span className="word"><span className="inner-word">{t("electric")}</span></span>
-    <span className="word"><span className="inner-word">{t("mechanical")}</span></span>
-    <span className="word"><span className="inner-word">{t("plumbing_2")}</span></span>
+          <span className="word"><span className="inner-word">{t("electric")}</span></span>
+          <span className="word"><span className="inner-word">{t("mechanical")}</span></span>
+          <span className="word"><span className="inner-word">{t("plumbing_2")}</span></span>
         </span>
         <p className='second_part_p' >
           {' '}{t("second_header_part")}
