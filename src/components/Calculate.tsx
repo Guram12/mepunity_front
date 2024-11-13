@@ -103,7 +103,6 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated, lan
   const mechanicalServices = filterServicesByType("mechanical");
   const plumbingServices = filterServicesByType("plumbing");
 
-  // ===============================================================================================================
   // ============================== count  marked service number ===================================================
 
   useEffect(() => {
@@ -374,13 +373,3 @@ export default Calculate;
 // Residential ventilation,
 // Heating and cooling,
 // Sewerage.
-
-
-
-// this is website for company that is working on autodesk autocad's electrical and mechanical projects.
-//  and i want to do some animation in mainpage,i have one idea. what if i open autocad clear drawing ,
-//   and when user scrolls down, some drawings should be happe itself
-
-
-
-

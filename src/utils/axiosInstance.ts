@@ -6,6 +6,8 @@ const axiosInstance = axios.create({
   baseURL: baseURL,
 });
 
+
+
 // Request interceptor to add the access token to headers
 axiosInstance.interceptors.request.use(
   (config) => {
@@ -19,6 +21,8 @@ axiosInstance.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+
+
 
 // Response interceptor to handle token refresh
 axiosInstance.interceptors.response.use(
