@@ -50,6 +50,7 @@ const FileUpload: React.FC = () => {
   }, [current_file_size])
 
 
+  // ===============================================================================================================
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -82,6 +83,7 @@ const FileUpload: React.FC = () => {
       setFiles(prevFiles => [...prevFiles, ...newFiles]);
     }
   };
+  // ===============================================================================================================
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -95,6 +97,7 @@ const FileUpload: React.FC = () => {
   const handleClick = () => {
     fileInputRef.current?.click();
   };
+  // ===============================================================================================================
 
   const handleRemoveFile = (index: number) => {
     setFiles(prevFiles => {
@@ -105,6 +108,7 @@ const FileUpload: React.FC = () => {
     })
 
   };
+  // ===============================================================================================================
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -147,6 +151,7 @@ const FileUpload: React.FC = () => {
       setIsFilesSending(false);
     }
   };
+  // ===============================================================================================================
 
 
   const renderFileIcon = (file: File) => {
@@ -166,6 +171,7 @@ const FileUpload: React.FC = () => {
     }
   };
 
+  // ===============================================================================================================
   const isFormValid = name !== '' && company !== '' && userEmail !== '' && files.reduce((acc, file) => acc + file.size, 0) <= MAX_TOTAL_SIZE;
 
   const itemVariants = {
