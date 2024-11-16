@@ -80,7 +80,7 @@ const App: React.FC = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setShowSplashScreen(false);
-    }, 4000);
+    }, 40);
 
     return () => clearTimeout(timeoutId);
   }, []);
@@ -205,7 +205,6 @@ const App: React.FC = () => {
         isAuthenticated={isAuthenticated}
       />
       <MarginElement />
-      
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/register" element={<Register />} />
