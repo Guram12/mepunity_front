@@ -73,7 +73,9 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, language }) => {
 
 
   const handle_without_register_click = () => {
-   navigate("/")
+    navigate("/")
+    localStorage.removeItem("axxess_token")
+    localStorage.removeItem("refresh_token")
   }
 
   const handlePasswordReset = () => {
