@@ -80,9 +80,9 @@ const App: React.FC = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setShowSplashScreen(false);
-    }, 50);
+    }, 4000);
 
-    return () => clearTimeout(timeoutId); // Clear timeout when component unmounts
+    return () => clearTimeout(timeoutId); 
   }, []);
 
 

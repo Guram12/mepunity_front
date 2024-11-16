@@ -40,10 +40,6 @@ const SelectedProject: React.FC<SelectedProjectProps> = ({ language }) => {
     fetchSelectedProject();
   }, [projectId]);
 
-  useEffect(() => {
-    console.log("project id", projectId);
-    console.log("project", project);
-  }, [project, projectId]);
 
   const handleNextImage = () => {
     if (!project) return;

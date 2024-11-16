@@ -41,14 +41,6 @@ const FileUpload: React.FC = () => {
   // =========================================================================================
   const MAX_TOTAL_SIZE: number = 2 * 1024 * 1024 * 1024; // 2GB
 
-  useEffect(() => {
-    console.log("current_file_size", current_file_size);
-    console.log("MAX_TOTAL_SIZE", MAX_TOTAL_SIZE);
-    console.log(current_file_size > MAX_TOTAL_SIZE ? 'red' : "white");
-
-
-  }, [current_file_size])
-
 
   // ===============================================================================================================
 

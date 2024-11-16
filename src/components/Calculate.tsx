@@ -26,7 +26,7 @@ interface ProjectServicesType {
 const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated, language }) => {
   const [markedItems, setMarkedItems] = useState<Set<number>>(new Set());
   const [projectServices, setProjectServices] = useState<ProjectServicesType[]>([]);
-  const [markedServiceCount, setMarkedServiceCount] = useState<number>(0);
+  // const [markedServiceCount, setMarkedServiceCount] = useState<number>(0);
   const [square_meter, setSquare_meter] = useState<number | null>(null);
   const [fullPrice, setFullPrice] = useState<number | null>(null);
   const [warning, setWarning] = useState<string>('');
@@ -47,7 +47,6 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated, lan
       try {
         const response = await axiosInstance.get(`/api/minimum-space`);
         if (response.data) {
-          // console.log("response.data.space", response.data[0].space)
           setMinimum_space_for_newprice(response.data[0].space);
         } else {
           console.error("API response is not an array:", response.data);
@@ -105,16 +104,12 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated, lan
 
   // ============================== count  marked service number ===================================================
 
-  useEffect(() => {
-    setMarkedServiceCount(markedItems.size);
-  }, [markedItems]);
+  // useEffect(() => {
+  //   setMarkedServiceCount(markedItems.size);
+  // }, [markedItems]);
 
   // ===============================================================================================================
 
-  useEffect(() => {
-    console.log("markedServiceCount", markedServiceCount)
-    console.log("fullPrice", fullPrice)
-  }, [fullPrice, markedServiceCount])
 
   useEffect(() => {
     calculate_full_price();
@@ -123,7 +118,6 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated, lan
 
 
   const calculate_full_price = () => {
-    console.log("isAuthenticated from clc", isAuthenticated);
     if (markedItems.size === 0) {
       setWarning('აირჩიეთ სერვისი');
       return;
@@ -134,12 +128,12 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated, lan
       const service = projectServices?.find(service => service.id === id);
       if (service && square_meter) {
         setWarning('');
-        console.log(
-          `Service: ${service.name_ka}, 
-          price_per_sqm_below: ${service.price_per_sqm_below}, 
-          , price_per_sqm_above: ${service.price_per_sqm_above},
-          Square meter: ${square_meter}`
-        );
+        // console.log(
+        //   `Service: ${service.name_ka}, 
+        //   price_per_sqm_below: ${service.price_per_sqm_below}, 
+        //   , price_per_sqm_above: ${service.price_per_sqm_above},
+        //   Square meter: ${square_meter}`
+        // );
 
 
         let price_per_sqm = Number(square_meter) > minimum_space_for_newprice ? Number(service.price_per_sqm_above) : Number(service.price_per_sqm_below);
@@ -153,12 +147,12 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated, lan
 
     if (isAuthenticated && profileData) {
       const discount = Number(profileData?.discount);
-      console.log(`Total price before discount: ${full_price}`);
+      // console.log(`Total price before discount: ${full_price}`);
       const full_price_with_discount = full_price - (full_price * discount / 100);
-      console.log(`Total price after discount: ${full_price_with_discount}`);
+      // console.log(`Total price after discount: ${full_price_with_discount}`);
       setFullPrice(full_price_with_discount);
     } else {
-      console.log(`Total price: ${full_price}`);
+      // console.log(`Total price: ${full_price}`);
       setFullPrice(full_price);
     }
   };
