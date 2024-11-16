@@ -205,7 +205,6 @@ const App: React.FC = () => {
         isAuthenticated={isAuthenticated}
       />
       <MarginElement />
-      
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/register" element={<Register />} />

@@ -44,9 +44,14 @@ axiosInstance.interceptors.response.use(
         return axiosInstance(originalRequest);
       } catch (refreshError) {
         console.error('Refresh token is invalid', refreshError);
-        // if refresh tokenhj is invalid then redirect to login page
-        window.location.href = '/login';
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+        window.location.href = '/login'; 
       }
+    } else if (error.response.status === 401) {
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('refresh_token');
+      window.location.href = '/login'; 
     }
     return Promise.reject(error);
   }

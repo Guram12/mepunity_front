@@ -54,8 +54,10 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
           },
         });
         localStorage.setItem('user_id', profileResponse.data.id);
+        console.log("-->>",profileResponse.data.username, profileResponse.data.company, profileResponse.data.phone_number);
         if (profileResponse.data.username | profileResponse.data.company | profileResponse.data.phone_number) {
           setIsAuthenticated(true);
+          navigate("/");
         }
         setIsGoogleLoggedIn(true);
       }
