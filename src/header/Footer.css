@@ -4,7 +4,9 @@
   margin-top: 50px;
 }
 
-
+.remove_footer{
+  display: none;
+}
 .footer_content_container {
   display: flex;
   justify-content: space-evenly;

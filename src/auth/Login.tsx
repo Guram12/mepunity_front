@@ -17,12 +17,11 @@ import { FaUserPlus } from "react-icons/fa";
 interface LoginProps {
   language: string;
   setIsAuthenticated: (isAuthenticated: boolean) => void;
-  setContinueWithoutRegistering: (continueWithoutRegistering: boolean) => void;
 
 }
 
 
-const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutRegistering, language }) => {
+const Login: React.FC<LoginProps> = ({ setIsAuthenticated, language }) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
@@ -74,8 +73,7 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, setContinueWithoutReg
 
 
   const handle_without_register_click = () => {
-    setContinueWithoutRegistering(true)
-    localStorage.setItem("login_status", "true");
+   navigate("/")
   }
 
   const handlePasswordReset = () => {

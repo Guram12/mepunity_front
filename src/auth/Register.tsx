@@ -91,7 +91,7 @@ const Register: React.FC = () => {
 
 
   const handleLogin = () => {
-    navigate('/')
+    navigate('/login');
   }
 
   // ================================  check if form is valid ================================
