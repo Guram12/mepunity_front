@@ -13,13 +13,11 @@ import { useLocation } from 'react-router-dom';
 import default_image from "../assets/default.jpg";
 
 
-
 interface HeaderProps {
   profileData: ProfileData | null,
   isAuthenticated: boolean,
   language: string,
   setLanguage: (language: "ka" | "en") => void,
-  setContinueWithoutRegistering: (continueWithoutRegistering: boolean) => void
 
 }
 
@@ -28,10 +26,12 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({
   profileData,
   isAuthenticated,
-  setContinueWithoutRegistering,
   language,
   setLanguage
 }) => {
+
+
+  const [showHeader, setShowHeader] = useState<boolean>(true);
   const location = useLocation();
 
   const [menuVisible, setMenuVisible] = useState<boolean>(false);
@@ -54,7 +54,6 @@ const Header: React.FC<HeaderProps> = ({
   }
 
   const handle_Login_Logout_Click = () => {
-    setContinueWithoutRegistering(false)
     localStorage.setItem("login_status", "false");
     setMenuVisible(false);
   }
@@ -138,8 +137,20 @@ const Header: React.FC<HeaderProps> = ({
   }
 
 
+  useEffect(() => {
+    if (location.pathname === "/login" || location.pathname === "/register" ||
+      location.pathname === "/password-reset" || location.pathname === "/reset-password/:uidb64/:token"
+    ) {
+      setShowHeader(false);
+    }
+    else {
+      setShowHeader(true);
+    }
+  },[location.pathname])
+
+
   return (
-    <div className='main_header_cont'>
+    <div className={`main_header_cont  ${!showHeader? "remove_header" : ""}`} >
       <div className='logo_cont'>
         <svg
           onClick={hanbdleLgoClick}
@@ -173,7 +184,7 @@ const Header: React.FC<HeaderProps> = ({
 
       {!isAuthenticated && (
         <div className='login_button_mobile' >
-          <Link to="/">
+          <Link to="/login">
             <button onClick={handle_Login_Logout_Click} className='header_button'>Login</button>
           </Link>
         </div>
@@ -221,7 +232,7 @@ const Header: React.FC<HeaderProps> = ({
 
         {!isAuthenticated && (
           <>
-            <Link to="/">
+            <Link to="/login">
               <button onClick={handle_Login_Logout_Click} className='header_button'>{t("log in")}</button>
             </Link>
 
@@ -246,7 +257,7 @@ const Header: React.FC<HeaderProps> = ({
             <p className={`header_profile_data_p ${!profileData ? "guest" : ""}  `} > {profileData ? profileData.username : t("guest")}</p>
             <p className='header_profile_data_p' > {profileData ? profileData.company : ""}</p>
           </div>
-          
+
           {isAuthenticated && (
             <>
               <img

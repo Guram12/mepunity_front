@@ -11,6 +11,10 @@
   z-index: 9999999999999;
 }
 
+.remove_header{
+  display: none;
+}
+
 .logo_cont {
   margin-left: 40px;
 }

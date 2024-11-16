@@ -49,9 +49,6 @@ const App: React.FC = () => {
   const [profileData, setProfileData] = useState<ProfileData | null>(null);
   const [profileUpdated, setProfileUpdated] = useState<boolean>(false);
 
-  const saved_login_status = localStorage.getItem('login_status');
-  const login_status = saved_login_status === "true";
-  const [continueWithoutRegistering, setContinueWithoutRegistering] = useState<boolean>(login_status);
 
   const accessToken: string | null = localStorage.getItem('access_token');
   const refreshToken: string | null = localStorage.getItem('refresh_token');
@@ -80,18 +77,13 @@ const App: React.FC = () => {
   // ===================================================================================================================
 
 
-
-
-
   useEffect(() => {
-    setTimeout(() => {
-      setShowSplashScreen(false)
-    }, 5000);
-  }, [])
+    const timeoutId = setTimeout(() => {
+      setShowSplashScreen(false);
+    }, 50);
 
-  useEffect(() => {
-    console.log("profileData", profileData)
-  }, [profileData])
+    return () => clearTimeout(timeoutId); // Clear timeout when component unmounts
+  }, []);
 
 
   //======================================== fetch profile data ==================================================
@@ -167,6 +159,8 @@ const App: React.FC = () => {
 
 
 
+
+
   if (showSplashScreen) {
     return (
       <div className='shpash_screen_container' >
@@ -196,65 +190,33 @@ const App: React.FC = () => {
             </g>
           </g>
         </svg>
-
-
       </div>
     )
   }
 
-  if (!isAuthenticated && !continueWithoutRegistering) {
-    return (
-      <div>
-        <Router>
-          <Routes>
-            <Route
-              path="/"
-              element={<Login
-                language={language}
-                setIsAuthenticated={setIsAuthenticated}
-                setContinueWithoutRegistering={setContinueWithoutRegistering}
-
-              />} />
-            <Route path="/register" element={<Register />} />
-
-            <Route path="/password-reset" element={<PasswordResetRequest />} />
-            <Route path="/reset-password/:uidb64/:token" element={<PasswordReset />} />
-          </Routes>
-        </Router>
-      </div>
-    )
-  }
 
   return (
     <Router>
+
       <Header
         language={language}
         setLanguage={setLanguage}
         profileData={profileData}
         isAuthenticated={isAuthenticated}
-        setContinueWithoutRegistering={setContinueWithoutRegistering}
       />
+
       <div style={{ width: "100%", height: "80px" }}></div>
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/price-calculation" element={<Calculate
-          language={language}
-          profileData={profileData}
-          isAuthenticated={isAuthenticated}
-        />} />
-        <Route path="/projects" element={<Projects
-          language={language}
-        />} />
+        <Route path="/price-calculation" element={<Calculate language={language} profileData={profileData} isAuthenticated={isAuthenticated} />} />
+        <Route path="/projects" element={<Projects language={language} />} />
         <Route path="/upload-file" element={<FileUpload />} />
-        <Route path="/profile-update" element={<ProfileUpdate
-          profileData={profileData}
-          setProfileUpdated={setProfileUpdated}
-          profileUpdated={profileUpdated}
-        />} />
-        <Route path="/projects/:projectId" element={<SelectedProject
-          language={language}
-        />} />
+        <Route path="/profile-update" element={<ProfileUpdate profileData={profileData} setProfileUpdated={setProfileUpdated} profileUpdated={profileUpdated} />} />
+        <Route path="/projects/:projectId" element={<SelectedProject language={language} />} />
+        <Route path="/login" element={<Login language={language} setIsAuthenticated={setIsAuthenticated}  />} />
+        <Route path="/password-reset" element={<PasswordResetRequest />} />
+        <Route path="/reset-password/:uidb64/:token" element={<PasswordReset />} />
       </Routes>
       <Footer language={language} />
     </Router>

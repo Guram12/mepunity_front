@@ -3,8 +3,8 @@ import React from "react";
 import { MdOutlinePhoneInTalk } from "react-icons/md";
 import { CgMail } from "react-icons/cg";
 import { useTranslation } from "react-i18next";
-
-
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 
 interface FooterProps {
@@ -15,9 +15,23 @@ interface FooterProps {
 
 
 const Footer: React.FC<FooterProps> = ({ language }) => {
+
+  const [showFooter, setShowFooter] = useState<boolean>(true);
+  const location = useLocation();
   const { t } = useTranslation();
 
 
+
+  useEffect(() => {
+    if (location.pathname === "/login" || location.pathname === "/register" ||
+      location.pathname === "/password-reset" || location.pathname === "/reset-password/:uidb64/:token"
+    ) {
+      setShowFooter(false);
+    }
+    else {
+      setShowFooter(true);
+    }
+  }, [location.pathname])
 
 
   const change_about_language = (language: string) => {
@@ -30,7 +44,7 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
 
 
   return (
-    <footer className="site_footer">
+    <footer className={`site_footer  ${!showFooter ? "remove_footer" : ""}`}>
       <div className="footer_content_container">
 
         <div className="about_continer" >
