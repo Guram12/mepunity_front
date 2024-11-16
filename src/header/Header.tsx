@@ -40,8 +40,6 @@ const Header: React.FC<HeaderProps> = ({
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
-    console.log("clicked");
-    console.log(menuVisible);
   }
 
 
@@ -73,10 +71,6 @@ const Header: React.FC<HeaderProps> = ({
     setMenuVisible(false);
 
   }
-
-  useEffect(() => {
-    console.log("profileData  ", profileData)
-  }, [profileData])
 
 
   const customStyles = {

@@ -29,7 +29,6 @@ const Projects: React.FC<ProjectsProps> = ({ language }) => {
     const fetchData = async () => {
       try {
         const response = await axiosInstance.get(`/api/projects/`);
-        console.log(response.data);
         setProjects(response.data);
         setProject_content_loaded(true);
       } catch (error) {
