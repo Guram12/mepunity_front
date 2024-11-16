@@ -44,7 +44,8 @@ axiosInstance.interceptors.response.use(
         return axiosInstance(originalRequest);
       } catch (refreshError) {
         console.error('Refresh token is invalid', refreshError);
-        // Optionally, i can handle logout or redirect to login page here
+        // if refresh tokenhj is invalid then redirect to login page
+        window.location.href = '/login';
       }
     }
     return Promise.reject(error);
