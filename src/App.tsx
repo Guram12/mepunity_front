@@ -14,7 +14,7 @@ import PasswordResetRequest from './auth/PasswordResetRequest';
 import ProfileUpdate from './components/ProfileUpdate';
 import SelectedProject from './components/SelectedProject';
 import axiosInstance from './utils/axiosInstance';
-
+import MarginElement from './components/Margin_element';
 
 
 
@@ -82,7 +82,7 @@ const App: React.FC = () => {
       setShowSplashScreen(false);
     }, 4000);
 
-    return () => clearTimeout(timeoutId); 
+    return () => clearTimeout(timeoutId);
   }, []);
 
 
@@ -204,8 +204,8 @@ const App: React.FC = () => {
         profileData={profileData}
         isAuthenticated={isAuthenticated}
       />
-
-      <div style={{ width: "100%", height: "80px" }}></div>
+      <MarginElement />
+      
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/register" element={<Register />} />
@@ -214,7 +214,7 @@ const App: React.FC = () => {
         <Route path="/upload-file" element={<FileUpload />} />
         <Route path="/profile-update" element={<ProfileUpdate profileData={profileData} setProfileUpdated={setProfileUpdated} profileUpdated={profileUpdated} />} />
         <Route path="/projects/:projectId" element={<SelectedProject language={language} />} />
-        <Route path="/login" element={<Login language={language} setIsAuthenticated={setIsAuthenticated}  />} />
+        <Route path="/login" element={<Login language={language} setIsAuthenticated={setIsAuthenticated} />} />
         <Route path="/password-reset" element={<PasswordResetRequest />} />
         <Route path="/reset-password/:uidb64/:token" element={<PasswordReset />} />
       </Routes>
