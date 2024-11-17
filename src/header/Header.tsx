@@ -11,6 +11,12 @@ import Select from 'react-select';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import default_image from "../assets/default.jpg";
+import { TbInfoCircle } from "react-icons/tb";
+import { Tooltip } from 'react-tooltip'
+
+
+
+
 
 
 interface HeaderProps {
@@ -32,12 +38,46 @@ const Header: React.FC<HeaderProps> = ({
 
 
   const [showHeader, setShowHeader] = useState<boolean>(true);
+  const [menuVisible, setMenuVisible] = useState<boolean>(false);
+  const [is_desktop_TooltipOpen, setIs_desktop_TooltipOpen] = useState<boolean>(false);
+  const [is_mobile_TooltipOpen, setIs_mobile_TooltipOpen] = useState<boolean>(false);
+
+
   const location = useLocation();
 
-  const [menuVisible, setMenuVisible] = useState<boolean>(false);
   const { t, i18n } = useTranslation();
+
   const navigate = useNavigate();
 
+
+  useEffect(() => {
+    const showTooltipTimeout = setTimeout(() => {
+      setIs_desktop_TooltipOpen(true);
+      const hideTooltipTimeout = setTimeout(() => {
+        setIs_desktop_TooltipOpen(false);
+      }, 4000);
+      return () => clearTimeout(hideTooltipTimeout);
+    }, 3000);
+    return () => clearTimeout(showTooltipTimeout);
+  }, []);
+
+
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      const showTooltipTimeout = setTimeout(() => {
+        setIs_mobile_TooltipOpen(true);
+        const hideTooltipTimeout = setTimeout(() => {
+          setIs_mobile_TooltipOpen(false);
+        }, 4000);
+        return () => clearTimeout(hideTooltipTimeout);
+      }, 3000);
+      return () => clearTimeout(showTooltipTimeout);
+    }
+  }, []);
+
+
+
+  // ==============================================================================
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
   }
@@ -131,6 +171,7 @@ const Header: React.FC<HeaderProps> = ({
   }
 
 
+
   useEffect(() => {
     if (location.pathname === "/login" || location.pathname === "/register" ||
       location.pathname === "/password-reset" || location.pathname === "/reset-password/:uidb64/:token"
@@ -154,7 +195,6 @@ const Header: React.FC<HeaderProps> = ({
           version="1.1" viewBox="0 -80 600 600"
           className='logo'
         >
-          {/* <path className="logo_m" d="M418.07,279.08" /> */}
           <g>
             <path className="header_little_logo_path" d="M170.33,323.58c.13.55.05,27.77.09,28.33.1,1.37-13.3,6.21-22.85,8.04-2.97.57-6.04.04-8.67-1.47-5.29-3.04-10.6-6.03-15.89-9.06-6.02-3.44-12-6.96-18.07-10.31-1.53-.84-2.49-2.44-2.49-4.19.06-69.26.05-138.52.05-207.78v-13.72c0-1.43,1.52-2.34,2.76-1.63,5.45,3.11,67.71,37.91,80.23,44.9,1.4.78,2.41,2.1,2.8,3.65,4.39,17.3,31.3,119.52,32.94,115.2,11.46-30.22,25.42-66.53,29.32-76.67.56-1.45,2.27-2.07,3.63-1.31,8.16,4.55,33.7,18.8,47.24,26.48,1.6.91,2.2,1.9,2.2,3.79-.05,69.63-.05,206.19-.05,222.97,0,.76-.81,1.24-1.48.87-8.23-4.62-32.99-20.16-38.05-23.08-.57-.33-.91-.92-.91-1.58.02-10.04.2-65.79.45-74.56,0-.2-11.69,36.43-11.69,36.43-.14.46-.46.84-.9,1.05-4.53,2.18-30.53,14.58-33.01,13.76-4.5-1.49-19.99-9.52-27.1-13.25-2.32-1.22-4.01-3.33-4.71-5.85-5.36-19.47-29.27-106.37-40.75-149.71-.16-.59,15.83,51.19,24.9,88.66ZM139.96,355.39c.57.33,1.3-.08,1.3-.74,0-8.16,0-47.28,0-67.02,0-22.33,0-44.65,0-66.98,0-4.55,2.35-5.54,3.89.39,3.74,13.97,7.46,27.95,11.16,41.93,4.25,16.04,8.48,32.08,12.72,48.12,6.18,23.39,13.13,46.87,19.31,70.26.1.4.31,1.28.67,2.32.79,2.22,1.02,3.48,4.33,5.41,8.27,4.81,19.51,10.5,22.96,11.25,1.24.27,2.53-.92,2.98-2.11,7.66-20.35,16.52-42.12,24.23-62.45,5.88-15.51,11.76-31.02,17.6-46.55.58-1.54,1.16-2.68,3.11-1.83.71.26.78,2.75.78,2.75l-.1,134.56c0,.96.49,1.85,1.32,2.35,3.88,2.35,15.35,9.29,20.79,12.4,4.04,2.3,8.09,4.59,12.31,6.98.5.29,1.14-.07,1.14-.65.04-14.58.08-148.73.11-216.98,0-1.04-.56-1.99-1.46-2.51-15-8.53-29.96-17.11-44.89-25.77-1.82-1.06-2.11-.09-2.61,1.23-13.51,35.65-40.02,105.68-46.98,123.35-.52,1.32-2.42,1.21-2.79-.16-3.25-12.2-12.68-47.75-17.78-66.95-10.03-37.78-20.08-75.55-30.06-113.34-.46-1.74-1.5-2.06-3.53-3.29-10.58-6.4-36.75-21.28-43.47-25.03-.58-.32-1.29.09-1.29.75,0,15.45,0,149.02-.03,217.07,0,1.08.58,2.05,1.53,2.57,5.57,3.08,11.07,6.28,16.6,9.44,5.27,3.01,10.54,6.01,16.15,9.21Z" />
             <path className="header_little_logo_path" d="M110.07,108.32L305.93,12.22c.77-.38,1.66-.36,2.4.06,5.17,2.95,25.9,14.79,30.5,17.53.37.22.35.74-.03.95-11.77,6.35-99.63,52.27-127.89,67.78-1.79.98-1.42,1.34.02,2.21,12.12,7.34,39.14,26.43,40.32,25.78,21.68-11.98,89.21-48.44,98.52-53.47.68-.37,1.48-.37,2.17-.02,4.8,2.41,24.13,12.12,35.62,17.97.38.2.39.72,0,.93-29.44,16.24-71.7,39.55-101,55.71,2.93,1.79,21.95,13.7,32.77,20.38,1.64,1.02,21.85-11.22,23.6-12.19,34.8-19.27,78.47-39.93,113.57-59.2,1.01-.55,2.18-.58,3.2-.06,7.22,3.63,27.01,13.62,33.68,17.22.97.52.97,1.89,0,2.43-20.39,11.22-167.83,92.23-184.72,101.5-1,.55-2.18.53-3.18-.02L110.03,109.95c-.65-.36-.63-1.3.04-1.63ZM497.51,117.17c0-1.69-.94-3.23-2.43-4.01-7.27-3.79-28.72-14.98-35.35-18.38-1.27-.65-2.73-.66-3.99,0-15.65,8.04-118.38,60.82-118.77,60.69-25.83-8.2,41.41-50.23,52.71-57.13.99-.6,1.58-1.67,1.58-2.83v-3.26c0-.42-.23-.81-.61-1.01l-39.42-20.37c-.67-.34-1.46-.33-2.12.03l-82.37,44.8c-29.95-9.7,58.99-68.76,72.72-77.85,1.12-.74,1.78-1.97,1.8-3.32l.05-3.09c.02-1.07-.53-2.06-1.45-2.61-2.33-1.39-7.03-4.2-11.27-6.74-5.7-3.42-15.55-9.38-19.69-11.89-1.2-.73-2.69-.8-3.96-.19-19.71,9.5-176.77,85.2-201.24,97.83-1.1.57-1.1,2.11-.02,2.7,19.65,10.72,149.44,82.26,200.33,110.64q2.09,1.17,4.23-.06c14.68-8.42,29.99-16.93,44.96-25.19,17.38-9.59,40.94-25.01,67.16-34.55,67.68-24.64,77.14,13.3,77.14,13.3v-57.53Z" />
@@ -163,6 +203,7 @@ const Header: React.FC<HeaderProps> = ({
           </g>
         </svg>
       </div>
+
       {/* if user is authenticated and also if mobile version, i should show the discount */}
       {isAuthenticated && (
         <div className='mobile_userdata_container'
@@ -187,8 +228,22 @@ const Header: React.FC<HeaderProps> = ({
       {!isAuthenticated && (
         <div className='login_button_mobile' >
           <Link to="/login">
-            <button onClick={handle_Login_Logout_Click} className='header_button'>Login</button>
+            <button onClick={handle_Login_Logout_Click} className='header_button'>{t("log in")}</button>
           </Link>
+
+          {/* ------------- tooltip container ---------------------- */}
+          <div className='info_container'>
+            <TbInfoCircle
+              className='info_sign'
+              data-tooltip-id='infoTooltipMobile'
+              data-tooltip-events='click'
+              onMouseEnter={() => setIs_mobile_TooltipOpen(true)}
+              onMouseLeave={() => setIs_mobile_TooltipOpen(false)}
+            />
+            <Tooltip id='infoTooltipMobile' place="top" openOnClick={true} isOpen={is_mobile_TooltipOpen} >
+              <h3 className='tooltip_h3 info_fot_mobile'>{t("For custom discount, please log in or register")}</h3>
+            </Tooltip>
+          </div>
         </div>
       )}
 
@@ -231,14 +286,28 @@ const Header: React.FC<HeaderProps> = ({
             {t("upload file")}
           </button>
         </Link>
-
         {!isAuthenticated && (
-          <>
+          <div className='login_and_warinng_cont' >
             <Link to="/login">
               <button onClick={handle_Login_Logout_Click} className='header_button'>{t("log in")}</button>
             </Link>
 
-          </>
+          {/* ------------- tooltip container ---------------------- */}
+            <div className='info_container'>
+              <TbInfoCircle
+                className='info_sign'
+                data-tooltip-id='infoTooltipDesktop'
+                data-tooltip-events='hover'
+                onMouseEnter={() => setIs_desktop_TooltipOpen(true)}
+                onMouseLeave={() => setIs_desktop_TooltipOpen(false)}
+              />
+              <Tooltip id='infoTooltipDesktop' place="top" openOnClick={false} isOpen={is_desktop_TooltipOpen}>
+                <h3 className='tooltip_h3'>For custom discount, please log in or register</h3>
+              </Tooltip>
+              <div className='info_container'>
+              </div>
+            </div>
+          </div>
         )}
         {isAuthenticated && (
           <h1 className='discount  old_discount_remove_on_mobile' >{t("Discount")} {profileData?.discount} % </h1>

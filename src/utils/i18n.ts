@@ -21,6 +21,7 @@ const resources = {
       "log in": "Log In",
       "Discount": "Discount:",
       "Click on image to update profile data": "Click on image to update profile data",
+      "For custom discount, please log in or register": "For custom discount, please log in or register",
 
       //Projects component
       "Completed Projects": "Completed Projects",
@@ -117,6 +118,7 @@ const resources = {
       "log in": "შესვლა",
       "Discount": "ფასდაკლება:",
       "Click on image to update profile data": "დააწკაპუნეთ სურათზე პროფილის მონაცემების განახლებისთვის",
+      "For custom discount, please log in or register" : "ინდივიდუალური ფასდაკლებისთვის გთხოვთ შეხვიდეთ სისტემაში ან დარეგისტრირდეთ",
 
       //Projects component
       "Completed Projects": "დასრულებული პროექტები",

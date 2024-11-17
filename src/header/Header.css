@@ -11,7 +11,7 @@
   z-index: 9;
 }
 
-.remove_header{
+.remove_header {
   display: none;
 }
 
@@ -75,7 +75,8 @@
   border: none;
   background: none;
   font-weight: 600;
-  transition: color 0.3s ease; /* Add this line */
+  transition: color 0.3s ease;
+  /* Add this line */
 
 }
 
@@ -114,6 +115,48 @@
   color: tomato;
 }
 
+/* ============================================ warning sign =================================================== */
+.login_and_warinng_cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo_cont {
+  margin-left: 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.info_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+
+.info_sign {
+  width: 23px;
+  height: 23px;
+  color: rgba(255, 99, 71, 0.788);
+  cursor: pointer;
+}
+
+
+
+.tooltip_h3 {
+  margin: 0px;
+  font-size: 15px;
+  color: #fff;
+}
+
+.info_fot_mobile {
+  max-width: 300px;
+  text-align: center;
+}
 
 /* ======================================= header profile data ================================================= */
 .discount {
@@ -168,7 +211,7 @@
   gap: 3px;
 }
 
-.guest{
+.guest {
   font-size: 20px;
   font-weight: 600;
   margin: 0px;
