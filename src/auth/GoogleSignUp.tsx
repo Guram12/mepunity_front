@@ -16,7 +16,7 @@ interface GoogleOuthProps {
   language: string;
 }
 
-interface ProfileData {
+export interface ProfileData {
   username: string;
   company: string;
   phone_number: string;
