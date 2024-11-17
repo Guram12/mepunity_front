@@ -41,11 +41,11 @@ const resources = {
       "drag and drop": "Drag & Drop files here or click to select files",
       "File size:": "File size: ",
       "(Maximum size 2G)": "(Maximum size 2G)",
-      "Enter Username": "  Enter Username", // registration component also uses this key
-      "Enter company name": "  Enter Company Name", // registration component also uses this key
-      "Enter Email": "  Enter Email", // registration component also uses this key
-      "Enter Subject": "  Enter Subject",
-      "Enter Description": " Enter Description",
+      "Enter Username": "Enter Username", // registration component also uses this key
+      "Enter company name": "Enter Company Name", // registration component also uses this key
+      "Enter Email": "Enter Email", // registration component also uses this key
+      "Enter Subject": "Enter Subject",
+      "Enter Description": "Enter Description",
       "Send": "Send",
 
       //footer component
@@ -54,9 +54,9 @@ const resources = {
 
       //registration component
       "Register": "Register",
-      "Enter Phone Number": "  Enter Phone Number",
-      "Enter Password": "  Enter Password",
-      "Confirm Password": "  Confirm Password",
+      "Enter Phone Number": "Enter Phone Number",
+      "Enter Password": "Enter Password",
+      "Confirm Password": "Confirm Password",
       "* Password must be minimum 8 characters.": "* Password must be minimum 8 characters.",
       "* Minimum one numeric character.": "* Minimum one numeric character.",
       "* Must not be entirely numeric.": "* Must not be entirely numeric.",
@@ -69,14 +69,19 @@ const resources = {
       "Forgot Password ?": "Forgot Password ?",
       "Continue without registering": "Continue without registering",
 
-      //password reset component
+      //password reset request component
       "Reset Password": "Reset Password",
-      "Enter your email": "  Enter your email",
+      "Enter your email": "Enter your email",
       "Send Password Reset Email": "Send Password Reset Email",
 
+      //password reset component 
+      "Password has chenged successfully!": "Password has chenged successfully!",
+      "Redirecting to login in": "Redirecting to login in ",
+      "seconds": "seconds",
+      
       //profile complite component
-      "Enter your name": "  Enter your name",
-      "Enter Company Name": "  Enter Company Name",
+      "Enter your name": "Enter your name",
+      "Enter Company Name": "Enter Company Name",
       "Complete Profile": "Complete Profile",
 
       //selectedproject cmponent
@@ -132,11 +137,11 @@ const resources = {
       "drag and drop": "ჩააგდეთ ფაილები აქ ან დააწკაპუნეთ ასარჩევად",
       "File size:": "ფაილის ზომა: ",
       "(Maximum size 2G)": "(მაქსიმალური ზომა 2G)",
-      "Enter Username": "  სახელი",
-      "Enter company name": "  კომპანიის სახელი",
-      "Enter Email": "  ელ. ფოსტა",
-      "Enter Subject": "  თემა",
-      "Enter Description": " აღწერა",
+      "Enter Username": "სახელი",
+      "Enter company name": "კომპანიის სახელი",
+      "Enter Email": "ელ. ფოსტა",
+      "Enter Subject": "თემა",
+      "Enter Description": "აღწერა",
       "Send": "გაგზავნა",
 
       //footer component
@@ -145,9 +150,9 @@ const resources = {
 
       //registration component
       "Register": "რეგისტრაცია",
-      "Enter Phone Number": " ტელეფონს ნომერი",
-      "Enter Password": "  პაროლი",
-      "Confirm Password": "  დაადასტურე პაროლი",
+      "Enter Phone Number": "ტელეფონს ნომერი",
+      "Enter Password": "პაროლი",
+      "Confirm Password": "დაადასტურე პაროლი",
       "* Password must be minimum 8 characters.": "* პაროლი უნდა შეიცავდეს მინიმუმ 8 სიმბოლოს.",
       "* Minimum one numeric character.": "* მინიმუმ ერთი ციფრი.",
       "* Must not be entirely numeric.": "* არ შეიცავდეს მხოლოდ ციფრებს.",
@@ -160,14 +165,19 @@ const resources = {
       "Forgot Password ?": "დაგავიწყდა პაროლი?",
       "Continue without registering": "რეგისტრაციის გარეშე შესვლა",
 
-      //password reset component
+      //password reset request component
       "Reset Password": "პაროლის განახლება",
-      "Enter your email": "  ელ. ფოსტა",
+      "Enter your email": "ელ. ფოსტა",
       "Send Password Reset Email": "გაგზავნა",
+
+      //password reset component
+      "Password has chenged successfully!": "პაროლი შეიცვალა წარმატებით!",
+      "Redirecting to login in": "გადასვლა შესვლის გვერდზე ",
+      "seconds": "წამში",
 
       //profile complite component
       "Enter your name": "  სახელი",
-      "Enter Company Name": " კომპანიის სახელი",
+      "Enter Company Name": "კომპანიის სახელი",
       "Complete Profile": "პროფილის დასრულება",
 
       //selectedproject cmponent
