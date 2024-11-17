@@ -6,15 +6,14 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { MdPassword } from "react-icons/md";
 import { MdLockReset } from "react-icons/md";
-
-
+import { useTranslation } from "react-i18next";
 
 
 
 const PasswordReset: React.FC = () => {
   const { uidb64, token } = useParams();
-  const [password1, setPassword1] = useState('');
-  const [password2, setPassword2] = useState('');
+  const [password1, setPassword1] = useState<string>('');
+  const [password2, setPassword2] = useState<string>('');
   const [message, setMessage] = useState<string>('');
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -27,6 +26,8 @@ const PasswordReset: React.FC = () => {
   const [arePasswordsSame, setArePasswordsSame] = useState<boolean>(false);
 
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
 
   useEffect(() => {
     if (password_reseted) {
@@ -98,12 +99,12 @@ const PasswordReset: React.FC = () => {
 
       <div className="password_reset_content_container" >
         {password_reseted ? <div className="password_reset_message_container" >
-          <h2 className="password_reset_message_h2" >Password has chenged successfully!</h2>
-          <p className="password_reset_message_p">Redirecting to login in {countdown} seconds</p>
+          <h2 className="password_reset_message_h2" >{t("Password has chenged successfully!")}</h2>
+          <p className="password_reset_message_p">{t("Redirecting to login in")} {countdown} {t("seconds")}</p>
         </div> :
           <>
             <div className="reset_header_container" >
-              <h2 className="password_reset_heading" >Reset Password</h2>
+              <h2 className="password_reset_heading" >{t("Reset Password")}</h2>
             </div>
 
             <form onSubmit={handleSubmit}>
@@ -142,22 +143,22 @@ const PasswordReset: React.FC = () => {
                     checked={showPassword}
                     onChange={() => setShowPassword(!showPassword)}
                   />
-                  <p className='show_reset_password' >Show Password</p>
+                  <p className='show_reset_password' >{t("Show Password")}</p>
                 </label>
               </div>
 
               <div className="password_reset_validations_container">
                 <p className={`password_validation_p ${isPasswordLengthValid ? "reset_true" : "reset_false"}`} >
-                  * Password must be minimum 8 characters.
+                  {t("* Password must be minimum 8 characters.")}
                 </p>
                 <p className={`password_reset_validation_p ${hasNumericCharacter ? "reset_true" : "reset_false"}`}  >
-                  * Minimum one numeric character.
+                  {t("* Minimum one numeric character.")}
                 </p>
                 <p className={`password_reset_validation_p ${isPasswordNumeric ? "reset_true" : "reset_false"}`} >
-                  * Must not be entirely numeric.
+                  {t("* Must not be entirely numeric.")}
                 </p>
                 <p className={`password_reset_validation_p ${arePasswordsSame ? "reset_true" : "reset_false"}`} >
-                  * Passwords must match.
+                  {t("* Passwords must match.")}
                 </p>
 
               </div>
@@ -185,7 +186,7 @@ const PasswordReset: React.FC = () => {
                     className={`reset_password_button  ${isFormValid ? "valid_coloure" : "invalide_coloure"} `}
                     disabled={!isFormValid}
                   >
-                    Reset Password
+                   {t("Reset Password")}
                   </button>
 
                   <MdLockReset className='reset_password_icon' />

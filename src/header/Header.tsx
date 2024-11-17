@@ -140,11 +140,11 @@ const Header: React.FC<HeaderProps> = ({
     else {
       setShowHeader(true);
     }
-  },[location.pathname])
+  }, [location.pathname])
 
 
   return (
-    <div className={`main_header_cont  ${!showHeader? "remove_header" : ""}`} >
+    <div className={`main_header_cont  ${!showHeader ? "remove_header" : ""}`} >
       <div className='logo_cont'>
         <svg
           onClick={hanbdleLgoClick}
@@ -165,8 +165,16 @@ const Header: React.FC<HeaderProps> = ({
       </div>
       {/* if user is authenticated and also if mobile version, i should show the discount */}
       {isAuthenticated && (
-        <div className='mobile_userdata_container' >
-          <img src={profileData?.image || default_image} alt="profile picture" style={{ width: "40px" }} className='profile_picture' />
+        <div className='mobile_userdata_container'
+          onClick={handle_profile_update}
+        >
+          <img
+            src={profileData?.image || default_image}
+            alt="profile picture"
+            style={{ width: "40px" }}
+            className='profile_picture'
+          />
+
 
           <div>
             <h1 className='mobile_discount' >Discount: {profileData?.discount} % </h1>

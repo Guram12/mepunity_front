@@ -91,6 +91,7 @@
   transition: .4s;
   width: 80%;
   height: 40px;
+  padding-left: 15px;
 }
 
 .login_inputs:hover {
