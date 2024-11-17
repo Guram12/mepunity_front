@@ -15,7 +15,6 @@ import ProfileUpdate from './components/ProfileUpdate';
 import SelectedProject from './components/SelectedProject';
 import axiosInstance from './utils/axiosInstance';
 import MarginElement from './components/Margin_element';
-import GoogleOneTapLogin from './components/GoogleOneTapLogin';
 
 
 export interface ProjectType {
@@ -218,7 +217,6 @@ const App: React.FC = () => {
         <Route path="/reset-password/:uidb64/:token" element={<PasswordReset />} />
       </Routes>
       <Footer language={language} />
-      <GoogleOneTapLogin />
     </Router>
   )
 }
