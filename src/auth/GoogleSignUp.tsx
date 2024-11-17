@@ -37,12 +37,10 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
   const navigate = useNavigate();
 
   const handleGoogleLoginSuccess = async (credentialResponse: CredentialResponse) => {
-    console.log('Google login success:', credentialResponse);
     try {
       const response = await axiosInstance.post(`/dj-rest-auth/google/`, {
         id_token: credentialResponse.credential,  // Send credential as id_token
       });
-      console.log('Google login response:', response.data);
       if (response.data.access && response.data.refresh) {
         localStorage.setItem('access_token', response.data.access);
         localStorage.setItem('refresh_token', response.data.refresh);
@@ -54,7 +52,6 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
           },
         });
         localStorage.setItem('user_id', profileResponse.data.id);
-        console.log("-->>",profileResponse.data.username, profileResponse.data.company, profileResponse.data.phone_number);
         if (profileResponse.data.username | profileResponse.data.company | profileResponse.data.phone_number) {
           setIsAuthenticated(true);
           navigate("/");
@@ -82,12 +79,11 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
     try {
       const token = localStorage.getItem('access_token');
       if (token) {
-        const response = await axiosInstance.put(`/auth/profile/complite/`, profileData, {
+        await axiosInstance.put(`/auth/profile/complite/`, profileData, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log('Profile setup response:', response.data);
         setIsAuthenticated(true);
         setLoading(false);
         navigate("/");
@@ -185,7 +181,7 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
           </div>
         </form>
       )}
-      {error && <div className="google_complite_error">{error}</div>} {/* Display error message */}
+      {error && <div className="google_complite_error">{error}</div>} 
 
     </div>
   );
