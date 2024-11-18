@@ -308,6 +308,42 @@
     flex-direction: column;
   }
 
+  .progress_bar {
+    width: 300px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 10px;
+    position: fixed;
+    background-color: #555555;
+    z-index: 99999999999999999;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .upload_progres_warning {
+    position: fixed;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99999999999999999;
+    font-size: 20px;
+    max-width: 300px;
+    text-align: center;
+    font-weight: 600;
+    margin-top: 60px;
+  }
+
+  .progres_percent {
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 600;
+    z-index: 99999999999999999;
+
+  }
 
   /* ---------drag and droop styles --- */
   .drag_and_drop_container {
