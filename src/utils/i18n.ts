@@ -134,7 +134,7 @@ const resources = {
       "Total price": "სრული ფასი : ",
 
       // file upload component
-      "File upload wait massage": "გთხოვთ, დაელოდოთ ფაილების ატვირთვას. ამას შეიძლება რამდენიმე წუთი დასჭირდეს.",
+      "File upload wait massage": "გთხოვთ, დაელოდოთ ფაილების ატვირთვას. პროცესი შეიძლება რამდენიმე წუთი გაგრძელდეს.",
       "Files are sent successfully": "ფაილები წარმატებით გაიგზავნა!",
       "drag and drop": "ჩააგდეთ ფაილები აქ ან დააწკაპუნეთ ასარჩევად",
       "File size:": "ფაილის ზომა: ",

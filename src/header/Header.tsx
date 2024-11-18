@@ -239,6 +239,7 @@ const Header: React.FC<HeaderProps> = ({
               data-tooltip-events='click'
               onMouseEnter={() => setIs_mobile_TooltipOpen(true)}
               onMouseLeave={() => setIs_mobile_TooltipOpen(false)}
+              onClick={() =>setMenuVisible(false)}
             />
             <Tooltip id='infoTooltipMobile' place="top" openOnClick={true} isOpen={is_mobile_TooltipOpen} >
               <h3 className='tooltip_h3 info_fot_mobile'>{t("For custom discount, please log in or register")}</h3>
@@ -292,21 +293,29 @@ const Header: React.FC<HeaderProps> = ({
               <button onClick={handle_Login_Logout_Click} className='header_button'>{t("log in")}</button>
             </Link>
 
-          {/* ------------- tooltip container ---------------------- */}
-            <div className='info_container'>
-              <TbInfoCircle
-                className='info_sign'
-                data-tooltip-id='infoTooltipDesktop'
-                data-tooltip-events='hover'
-                onMouseEnter={() => setIs_desktop_TooltipOpen(true)}
-                onMouseLeave={() => setIs_desktop_TooltipOpen(false)}
-              />
-              <Tooltip id='infoTooltipDesktop' place="top" openOnClick={false} isOpen={is_desktop_TooltipOpen}>
-                <h3 className='tooltip_h3'>For custom discount, please log in or register</h3>
-              </Tooltip>
+            {/* ------------- tooltip container ---------------------- */}
+            {!is_mobile_TooltipOpen && (
               <div className='info_container'>
+                <TbInfoCircle
+                  className='info_sign'
+                  data-tooltip-id='infoTooltipDesktop'
+                  data-tooltip-events='hover'
+                  onMouseEnter={() => setIs_desktop_TooltipOpen(true)}
+                  onMouseLeave={() => setIs_desktop_TooltipOpen(false)}
+                />
+                <Tooltip
+                  id='infoTooltipDesktop'
+                  place="top"
+                  openOnClick={false} isOpen={is_desktop_TooltipOpen}
+                // style={{ backgroundColor: "#121212", border: "1px solid #00a753" }}
+                >
+                  <h3 className='tooltip_h3'>{t("For custom discount, please log in or register")}</h3>
+                </Tooltip>
+                <div className='info_container'>
+                </div>
               </div>
-            </div>
+            )}
+
           </div>
         )}
         {isAuthenticated && (

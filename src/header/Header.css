@@ -149,9 +149,15 @@
 
 .tooltip_h3 {
   margin: 0px;
-  font-size: 15px;
-  color: #fff;
+  padding: 2px;
+  font-size: 16px;
+  color: tomato;
+  width: 330px;
+  height: auto;
+  text-align: center;
 }
+
+
 
 .info_fot_mobile {
   max-width: 300px;
