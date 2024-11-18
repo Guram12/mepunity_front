@@ -14,7 +14,7 @@ MepUnity is a web application designed for managing electric, mechanical, and pl
 1. Clone the repository:
 
 ```bash
-git clone [https://github.com/yourusername/mepunity.git](https://github.com/Guram12/mepunity_front.git)
+git clone https://github.com/Guram12/mepunity_front.git
 
 ```
 
