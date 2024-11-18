@@ -1,51 +1,82 @@
-# React + TypeScript + Vite
+# MepUnity Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+MepUnity is a web application designed for managing electric, mechanical, and plumbing projects using AutoCAD and ArchiCAD. This project allows users to upload files, calculate project costs, and manage their profiles.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Installation](#installation)
+- [Usage](#usage)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. Clone the repository:
 
-- Configure the top-level `parserOptions` property like this:
+```bash
+git clone https://github.com/yourusername/mepunity.git
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. Navigate to the project directory:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
 ```
-# mepunity_front
+cd mepunity
+```
+
+3. nstall the dependencies:
+
+```
+npm install
+```
+
+4. Start the development server:
+
+```
+npm run dev
+```
+
+
+## Usage
+
+* Open your browser and navigate to http://localhost:3000.
+* Register or log in to your account.
+* Use the navigation bar to access different features such as file upload, project cost calculation, and profile management.
+
+
+## Features
+
+* Main Page: Introduction to the MepUnity services.
+* File Upload: Upload files related to electric, mechanical, and plumbing projects.
+* Cost Calculation: Calculate the cost of projects based on selected services and area.
+* Profile Management: Update user profile information.
+* Authentication: User registration, login, and password reset.
+
+
+## Technologies Used
+ 
+* React: JavaScript library for building user interfaces.
+* Vite: Next Generation Frontend Tooling.
+* TypeScript: Superset of JavaScript that adds static types.
+* Framer Motion: Library for animations.
+* i18next: Internationalization framework.
+* i18next-browser-languagedetector: Language detection plugin for i18next.
+* React Icons: Include popular icons in your React projects easily.
+* React Select: A flexible and beautiful Select Input control for ReactJS.
+* React Tooltip: Lightweight tooltip component for React.
+* dotenv: Loads environment variables from a .env file into process.env.
+* ESLint: Pluggable linting utility for JavaScript and TypeScript.
+* TypeScript ESLint: Monorepo for all the tooling which enables ESLint to support TypeScript.
+
+
+### Feel free to include this section in your README file under the "Technologies Used" heading.
+
+
+
+
+
+
+
+
+
+
