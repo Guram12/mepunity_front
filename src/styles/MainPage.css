@@ -33,6 +33,68 @@
 }
 
 
+.mainpage_latter_e {
+  fill: #cc1f30;
+}
+
+
+.mainpage_latter_m {
+  fill: #6e2764;
+}
+
+
+.mainpage_latter_p {
+  fill: #004d98;
+}
+
+
+/* Define keyframes for hover effect */
+@keyframes moveLeftDown {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-20px, 10px);
+  }
+}
+
+@keyframes moveRightDown {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(20px, 10px);
+  }
+}
+
+@keyframes moveUp {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, -10px);
+  }
+}
+
+/* Apply hover effect to mainpage_logo */
+.mainpage_logo:hover .mainpage_latter_m {
+  transform: translate(-20px, 10px);
+}
+
+.mainpage_logo:hover .mainpage_latter_e {
+  transform: translate(0, -10px);
+}
+
+.mainpage_logo:hover .mainpage_latter_p {
+  transform: translate(20px, 10px);
+}
+
+/* Smooth return to original position */
+.mainpage_latter_m,
+.mainpage_latter_e,
+.mainpage_latter_p {
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
 /* ===================================================================================== */
 @keyframes changewords {
   0% {
