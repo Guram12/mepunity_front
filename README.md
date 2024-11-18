@@ -39,7 +39,7 @@ npm run dev
 
 ## Usage
 
-* Open your browser and navigate to http://localhost:3000.
+* Open your browser and navigate to http://localhost:5173.
 * Register or log in to your account.
 * Use the navigation bar to access different features such as file upload, project cost calculation, and profile management.
 
