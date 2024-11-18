@@ -69,7 +69,6 @@ npm run dev
 * TypeScript ESLint: Monorepo for all the tooling which enables ESLint to support TypeScript.
 
 
-### Feel free to include this section in your README file under the "Technologies Used" heading.
 
 
 
