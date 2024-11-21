@@ -136,7 +136,7 @@
 }
 
 .word {
-  color: #de6449;
+  color: #cc1f30;
   position: absolute;
   top: 0;
   height: 40px;
@@ -155,12 +155,12 @@
 }
 
 .word:nth-of-type(2) {
-  color: #791e94;
+  color: #6e2764;
   animation-delay: 2s;
 }
 
 .word:nth-of-type(3) {
-  color: #41d3bd;
+  color: #004d98;
   animation-delay: 4s;
 }
 
