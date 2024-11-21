@@ -319,4 +319,11 @@
     margin-bottom: 10px;
   }
 
+  .contonue_without_container{
+    margin-top: 10px;
+  }
+  .contonue_without{
+    text-align: center;
+  }
+
 }
