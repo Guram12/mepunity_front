@@ -76,6 +76,10 @@ const Header: React.FC<HeaderProps> = ({
   }, []);
 
 
+useEffect(()=> {
+  console.log("opened")
+},[is_mobile_TooltipOpen])
+
 
   // ==============================================================================
   const toggleMenu = () => {
