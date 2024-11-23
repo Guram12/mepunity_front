@@ -26,8 +26,6 @@ interface HeaderProps {
   setLanguage: (language: "ka" | "en") => void,
 
 }
-
-
 // ===================================================================================
 const Header: React.FC<HeaderProps> = ({
   profileData,
@@ -74,11 +72,6 @@ const Header: React.FC<HeaderProps> = ({
       return () => clearTimeout(showTooltipTimeout);
     }
   }, []);
-
-
-useEffect(()=> {
-  console.log("opened")
-},[is_mobile_TooltipOpen])
 
 
   // ==============================================================================
