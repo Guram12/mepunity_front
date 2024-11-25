@@ -137,6 +137,3 @@ const PasswordResetRequest: React.FC = () => {
 export default PasswordResetRequest;
 
 
-
-// g.nishnianidze97@gmail.com
-
