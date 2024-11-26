@@ -128,14 +128,7 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated, lan
       const service = projectServices?.find(service => service.id === id);
       if (service && square_meter) {
         setWarning('');
-        // console.log(
-        //   `Service: ${service.name_ka}, 
-        //   price_per_sqm_below: ${service.price_per_sqm_below}, 
-        //   , price_per_sqm_above: ${service.price_per_sqm_above},
-        //   Square meter: ${square_meter}`
-        // );
-
-
+        
         let price_per_sqm = Number(square_meter) > minimum_space_for_newprice ? Number(service.price_per_sqm_above) : Number(service.price_per_sqm_below);
         if (!isAuthenticated && markedItems.size > 1) {
           const discount = Number(service.discount_percentage);

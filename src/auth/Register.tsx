@@ -94,6 +94,8 @@ const Register: React.FC = () => {
     navigate('/login');
   }
 
+
+  
   // ================================  check if form is valid ================================
   const isFormValid = isPasswordLengthValid && isPasswordNumeric && hasNumericCharacter && arePasswordsSame
     && email !== '' && username !== '' && company !== '' && phoneNumber !== '';
