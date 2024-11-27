@@ -53,6 +53,7 @@
   0% {
     transform: translate(0, 0);
   }
+
   100% {
     transform: translate(-20px, 10px);
   }
@@ -62,6 +63,7 @@
   0% {
     transform: translate(0, 0);
   }
+
   100% {
     transform: translate(20px, 10px);
   }
@@ -71,6 +73,7 @@
   0% {
     transform: translate(0, 0);
   }
+
   100% {
     transform: translate(0, -10px);
   }
@@ -95,6 +98,7 @@
 .mainpage_latter_p {
   transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
+
 /* ===================================================================================== */
 @keyframes changewords {
   0% {

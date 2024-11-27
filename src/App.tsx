@@ -96,7 +96,6 @@ const App: React.FC = () => {
               Authorization: `Bearer ${accessToken}`
             }
           })
-          // console.log("profile data from app",response.data)
           setProfileData(response.data)
 
         }
