@@ -92,7 +92,7 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
     } catch (error: any) {
       setLoading(false);
       console.error('Error during profile setup:', error.response);
-      const errorMessage = error.response?.data?.username?.[0] || error.response?.data?.detail || 'Error during profile setup. Please try again.';
+      const errorMessage = error.response?.data?.username?.[0] || error.response?.data?.detail || error.response?.data?.company?.[0] ||  'Error during profile setup. Please try again.';
       setError(errorMessage); // Set error message
 
     }
