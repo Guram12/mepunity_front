@@ -102,11 +102,6 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated, lan
   const mechanicalServices = filterServicesByType("mechanical");
   const plumbingServices = filterServicesByType("plumbing");
 
-  // ============================== count  marked service number ===================================================
-
-  // useEffect(() => {
-  //   setMarkedServiceCount(markedItems.size);
-  // }, [markedItems]);
 
   // ===============================================================================================================
 
