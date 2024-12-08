@@ -109,7 +109,7 @@
 }
 
 
-.image_preview_container{
+.image_preview_container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -117,12 +117,12 @@
   gap: 20px;
 }
 
-.down_icon{
+.down_icon {
   font-size: 40px;
   color: #00a753;
 }
 
-.image_preview{
+.image_preview {
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -183,7 +183,7 @@
   width: 230px;
 }
 
-.disabled_btn{
+.disabled_btn {
   background-color: rgb(28, 28, 30);
   cursor: not-allowed;
 }
@@ -192,7 +192,7 @@
   background-color: rgb(28, 28, 30) !important;
 }
 
-.emabled_btn{
+.emabled_btn {
   background-color: #00a753;
   cursor: pointer;
 }
@@ -201,16 +201,17 @@
   background-color: #00a75496;
 }
 
-.profileupdate_massage{
+.profileupdate_massage {
   font-size: 20px;
   font-weight: 500;
 
 }
 
 
-.update_icon{
+.update_icon {
   font-size: 25px;
 }
+
 /* ===================================== mobile styles ===================================== */
 
 @media (max-width: 768px) {
@@ -219,7 +220,7 @@
     width: 90%;
   }
 
-  .profile_update_h1{
+  .profile_update_h1 {
     font-size: 25px;
   }
 }
