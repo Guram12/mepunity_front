@@ -43,6 +43,7 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
   }
 
 
+  // footer content 
   return (
     <footer className={`site_footer  ${!showFooter ? "remove_footer" : ""}`}>
       <div className="footer_content_container">
