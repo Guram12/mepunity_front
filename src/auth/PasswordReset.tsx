@@ -19,7 +19,7 @@ const PasswordReset: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [password_reseted, setPassword_reseted] = useState<boolean>(false);
   const [countdown, setCountdown] = useState<number>(5);
-  
+
   // password validation states
   const [isPasswordLengthValid, setIsPasswordLengthValid] = useState<boolean>(false);
   const [isPasswordNumeric, setIsPasswordNumeric] = useState<boolean>(false);
@@ -36,7 +36,7 @@ const PasswordReset: React.FC = () => {
         setCountdown((prevCountdown) => {
           if (prevCountdown <= 1) {
             clearInterval(timer);
-            navigate('/'); 
+            navigate('/');
           }
           return prevCountdown - 1;
         });
@@ -187,7 +187,7 @@ const PasswordReset: React.FC = () => {
                     className={`reset_password_button  ${isFormValid ? "valid_coloure" : "invalide_coloure"} `}
                     disabled={!isFormValid}
                   >
-                   {t("Reset Password")}
+                    {t("Reset Password")}
                   </button>
 
                   <MdLockReset className='reset_password_icon' />
