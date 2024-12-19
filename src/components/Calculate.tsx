@@ -26,7 +26,6 @@ interface ProjectServicesType {
 const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated, language }) => {
   const [markedItems, setMarkedItems] = useState<Set<number>>(new Set());
   const [projectServices, setProjectServices] = useState<ProjectServicesType[]>([]);
-  // const [markedServiceCount, setMarkedServiceCount] = useState<number>(0);
   const [square_meter, setSquare_meter] = useState<number | null>(null);
   const [fullPrice, setFullPrice] = useState<number | null>(null);
   const [warning, setWarning] = useState<string>('');
