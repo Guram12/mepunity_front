@@ -42,7 +42,6 @@ export interface ProfileData {
 const App: React.FC = () => {
   const [language, setLanguage] = useState('ka');
 
-
   const [showSplashScreen, setShowSplashScreen] = useState<boolean>(true);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [profileData, setProfileData] = useState<ProfileData | null>(null);
