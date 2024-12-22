@@ -58,12 +58,12 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
           <div className="footer_mobile_email_container">
             <div className="footer_mobile_container" >
               <MdOutlinePhoneInTalk className="foolter_mobile_icon" />
-              <p className="mobile_p" >+995 568 24 24 41  </p>
+              <p className="mobile_p" >+995 568 24 24 41</p>
             </div>
 
             <div className="footer_email_container" >
               <CgMail className="footer_email_icon" />
-              <p className="email_p" > mepunity@gmail.com  </p>
+              <p className="email_p" > mepunity2024@gmail.com  </p>
             </div>
           </div>
 
