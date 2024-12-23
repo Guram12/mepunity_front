@@ -1,7 +1,6 @@
 import "../styles/Projects.css";
 import "../styles/Loader.css"
 import React, { useEffect, useState } from 'react';
-// import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { ProjectType } from "../App";
 import { useNavigate } from "react-router-dom";

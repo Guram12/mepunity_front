@@ -28,8 +28,6 @@ const PasswordResetRequest: React.FC = () => {
   }, [email])
 
 
-
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -121,7 +119,7 @@ const PasswordResetRequest: React.FC = () => {
                 <p className="error_message">{error}</p>
 
                 <div className="request_reset_register_and_icon" >
-                  <p className="reset_page_register_p" onClick={handleRegister} > Register</p>
+                  <p className="reset_page_register_p" onClick={handleRegister} > {t("Register")}</p>
                   <FaUserPlus />
                 </div>
               </div>
