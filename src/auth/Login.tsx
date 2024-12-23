@@ -165,7 +165,7 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, language }) => {
                   </div>
                   :
                   <div className='login_button_container' >
-                    <button type="submit" className="login_button">Login</button>
+                    <button type="submit" className="login_button">{t('log in')}</button>
                   </div>
                 }
               </div>
