@@ -30,7 +30,7 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
     company: '',
   });
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null); // State for error messages
+  const [error, setError] = useState<string | null>(null);
 
 
   const { t } = useTranslation();
@@ -92,11 +92,13 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
     } catch (error: any) {
       setLoading(false);
       console.error('Error during profile setup:', error.response);
-      const errorMessage = error.response?.data?.username?.[0] || error.response?.data?.detail || error.response?.data?.company?.[0] ||  'Error during profile setup. Please try again.';
+      const errorMessage = error.response?.data?.username?.[0] || error.response?.data?.detail || error.response?.data?.company?.[0] || 'Error during profile setup. Please try again.';
       setError(errorMessage); // Set error message
 
     }
   };
+
+  // content of the component
 
 
   return (
@@ -181,7 +183,7 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
           </div>
         </form>
       )}
-      {error && <div className="google_complite_error">{error}</div>} 
+      {error && <div className="google_complite_error">{error}</div>}
 
     </div>
   );
