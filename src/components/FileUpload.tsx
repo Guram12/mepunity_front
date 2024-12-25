@@ -34,6 +34,15 @@ const FileUpload: React.FC = () => {
 
 
 
+ useEffect(()=> {
+    console.log("files", files)
+ }, [files])
+
+
+
+
+
+
   useEffect(() => {
     scrollToTop();
   }, []);
