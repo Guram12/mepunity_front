@@ -48,9 +48,9 @@ npm run dev
 
 * Main Page: Introduction to the MepUnity services.
 * File Upload: Upload files related to electric, mechanical, and plumbing projects.
-* Cost Calculation: Calculate the cost of projects based on selected services and area.
+* Cost Calculation: Calculate the cost of projects based on selected services and areas.
 * Profile Management: Update user profile information.
-* Authentication: User registration, login, and password reset.
+* Authentication: User registration, login, and password reset for a custom discount.
 
 
 ## Technologies Used
