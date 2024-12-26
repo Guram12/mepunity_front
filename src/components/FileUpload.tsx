@@ -34,13 +34,9 @@ const FileUpload: React.FC = () => {
 
 
 
- useEffect(()=> {
+  useEffect(() => {
     console.log("files", files)
- }, [files])
-
-
-
-
+  }, [files])
 
 
   useEffect(() => {
