@@ -33,20 +33,13 @@ const FileUpload: React.FC = () => {
   const { t } = useTranslation();
 
 
-
-  useEffect(() => {
-    console.log("files", files)
-  }, [files])
-
-
   useEffect(() => {
     scrollToTop();
   }, []);
 
   // =========================================================================================
-  const MAX_TOTAL_SIZE: number = 2 * 1024 * 1024 * 1024; // 2GB total
-
-
+  const MAX_TOTAL_SIZE: number = 2 * 1024 * 1024 * 1024; // 2GB total size limit
+  
   // ===============================================================================================================
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -133,6 +126,17 @@ const FileUpload: React.FC = () => {
             if (percentCompleted === 100) {
               setIsFilesSending(false);
               setFilesAreSent(true);
+
+              // ---->>>> clear inputs after sending files
+              setFiles([]);
+              setName('');
+              setCompany('');
+              setUserEmail('');
+              setSubject('');
+              setDescription('');
+              setCurrent_file_size(0);
+              fileInputRef.current!.value = '';
+
               setTimeout(() => {
                 setFilesAreSent(false);
               }, 2000);
