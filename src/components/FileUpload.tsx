@@ -9,7 +9,7 @@ import { MdOutlineLibraryBooks } from "react-icons/md";
 import { IoMdRemoveCircleOutline } from "react-icons/io";
 import { FaFilePdf, FaFileAlt } from "react-icons/fa";
 import { FaRegFileZipper } from "react-icons/fa6";
-import { SiAutodesk } from "react-icons/si"; // DWG icon
+import { SiAutodesk } from "react-icons/si"; 
 import { useTranslation } from "react-i18next";
 import { scrollToTop } from "../utils/ScrollToTop";
 import { motion } from "framer-motion"

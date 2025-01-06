@@ -100,7 +100,6 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
 
   // content of the component
 
-
   return (
     <div>
       {!isGoogleLoggedIn && (
@@ -111,7 +110,7 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
             theme="filled_black"  // Options: 'outline' or 'filled'
             size="large"     // Options: 'small', 'medium', 'large'
             text="signup_with"    // Options: 'signin_with', 'signup_with', 'continue_with', 'signin'
-            width="50px"
+            width="50px"  // Options: '50px', '300px', '100%'
             locale={language}
 
           />
