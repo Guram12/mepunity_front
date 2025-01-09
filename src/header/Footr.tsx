@@ -63,7 +63,7 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
 
             <div className="footer_email_container" >
               <CgMail className="footer_email_icon" />
-              <p className="email_p" > mepunity2024@gmail.com  </p>
+              <p className="email_p" > infomepunity@gmail.com </p>
             </div>
           </div>
 
