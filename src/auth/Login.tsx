@@ -9,19 +9,20 @@ import { MdOutlineNextPlan } from "react-icons/md";
 import { PiPasswordBold } from "react-icons/pi";
 import { useTranslation } from "react-i18next";
 import { FaUserPlus } from "react-icons/fa";
-
-
-
-
+import Select from 'react-select';
+import geo_flag from '../assets/ka.png'
+import us_flag from '../assets/en.png'
+import i18n from "../utils/i18n";
+import { customStyles } from "../utils/SelectCustomStyles";
 
 interface LoginProps {
   language: string;
   setIsAuthenticated: (isAuthenticated: boolean) => void;
-
+  setLanguage: (language: string) => void;
 }
 
 
-const Login: React.FC<LoginProps> = ({ setIsAuthenticated, language }) => {
+const Login: React.FC<LoginProps> = ({ setIsAuthenticated, language , setLanguage}) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
@@ -82,6 +83,23 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, language }) => {
     navigate('/password-reset')
   }
 
+
+
+  // =================== language change functionality  =========================================
+
+  const languageOptions = [
+    { value: 'ka', label: <><img src={geo_flag} alt="Georgian" style={{ width: '20px', marginRight: '8px' }} />GE</> },
+    { value: 'en', label: <><img src={us_flag} alt="English" style={{ width: '20px', marginRight: '8px' }} />EN</> },
+  ];
+
+  const handleLanguageChange = (selectedOption: any) => {
+    setLanguage(selectedOption.value);
+    i18n.changeLanguage(selectedOption.value);
+  };
+
+  // ==================================================================================
+
+
   return (
     <div className="login_mother_container" >
       <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 549.67 802.83" className='login_company_logo' >
@@ -98,7 +116,19 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated, language }) => {
         </g>
       </svg>
 
+      <div>
+        {/* language select  */}
+        <Select
+          id="language-select"
+          value={languageOptions.find(option => option.value === language)}
+          onChange={handleLanguageChange}
+          options={languageOptions}
+          styles={customStyles}
+          classNamePrefix="react-select"
+          blurInputOnSelect={true}
 
+        />
+      </div>
       <div className='Login_child_container' >
         {!isGoogleLoggedIn && (
           <div className='login_form_container' >

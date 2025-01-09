@@ -147,7 +147,7 @@
 }
 
 
-.login_page_error{
+.login_page_error {
   color: tomato;
   font-size: 17px;
   font-weight: 500;
@@ -155,7 +155,7 @@
 }
 
 
-.login_loading_button_container{
+.login_loading_button_container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -207,7 +207,7 @@
 
 
 
-.login_register_container{
+.login_register_container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -225,7 +225,7 @@
 
 }
 
-.login_register_icon{
+.login_register_icon {
   font-size: 25px;
 }
 
@@ -293,6 +293,11 @@
     width: 80%;
   }
 
+  .login_h2 {
+    margin-top: 0px;
+  }
+
+
   .mark_and_input_container {
     display: flex;
     flex-direction: column;
@@ -319,10 +324,11 @@
     margin-bottom: 10px;
   }
 
-  .contonue_without_container{
+  .contonue_without_container {
     margin-top: 10px;
   }
-  .contonue_without{
+
+  .contonue_without {
     text-align: center;
   }
 
