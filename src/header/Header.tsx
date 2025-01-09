@@ -13,8 +13,7 @@ import { useLocation } from 'react-router-dom';
 import default_image from "../assets/default.jpg";
 import { TbInfoCircle } from "react-icons/tb";
 import { Tooltip } from 'react-tooltip'
-
-
+import { customStyles } from '../utils/SelectCustomStyles';
 
 
 
@@ -26,6 +25,9 @@ interface HeaderProps {
   setLanguage: (language: "ka" | "en") => void,
 
 }
+
+
+
 // ===================================================================================
 const Header: React.FC<HeaderProps> = ({
   profileData,
@@ -110,64 +112,6 @@ const Header: React.FC<HeaderProps> = ({
   }
 
 
-  const customStyles = {
-    control: (provided: any, state: any) => ({
-      ...provided,
-      minWidth: 120,
-      backgroundColor: 'rgb(28, 28, 30)',
-      borderColor: state.isFocused ? '#00a753' : '#4b4b4b',
-      boxShadow: state.isFocused ? '0 0 0 0.15vw #00a753' : '0 0 0 0.15vw transparent',
-      transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
-      '&:hover': {
-        borderColor: '#00a753',
-        boxShadow: '0 0 0 0.15vw rgba(135, 207, 235, 0.186)',
-      },
-    }),
-    singleValue: (provided: any) => ({
-      ...provided,
-      color: '#ffffff',
-      transition: 'color 0.3s ease',
-    }),
-    menu: (provided: any) => ({
-      ...provided,
-      backgroundColor: 'rgb(28, 28, 30)',
-      transition: 'opacity 0.3s ease',
-      animation: 'slideDown 0.3s ease',
-    }),
-    option: (provided: any, state: any) => ({
-      ...provided,
-      backgroundColor: state.isSelected ? '#00a753' : state.isFocused ? '#313131' : 'rgb(28, 28, 30)',
-      color: '#ffffff',
-      transition: 'background-color 0.3s ease, color 0.3s ease',
-      '&:hover': {
-        backgroundColor: '#00a75496',
-      },
-    }),
-    placeholder: (provided: any) => ({
-      ...provided,
-      color: '#ffffff',
-      transition: 'color 0.3s ease',
-    }),
-    dropdownIndicator: (provided: any, state: any) => ({
-      ...provided,
-      color: state.isFocused ? '#00a753' : '#4b4b4b',
-      transition: 'color 0.3s ease',
-      '&:hover': {
-        color: '#00a753',
-      },
-    }),
-    indicatorSeparator: (provided: any) => ({
-      ...provided,
-      backgroundColor: '#4b4b4b',
-      transition: 'background-color 0.3s ease',
-    }),
-  };
-
-  const hanbdleLgoClick = () => {
-    navigate("/");
-  }
-
-
 
   useEffect(() => {
     if (location.pathname === "/login" || location.pathname === "/register" ||
@@ -180,6 +124,10 @@ const Header: React.FC<HeaderProps> = ({
     }
   }, [location.pathname])
 
+  const hanbdleLgoClick = () => {
+    navigate("/");
+  }
+  
 
   return (
     <div className={`main_header_cont  ${!showHeader ? "remove_header" : ""}`} >
@@ -318,6 +266,8 @@ const Header: React.FC<HeaderProps> = ({
         {isAuthenticated && (
           <h1 className='discount  old_discount_remove_on_mobile' >{t("Discount")} {profileData?.discount} % </h1>
         )}
+
+        {/* language select  */}
         <Select
           id="language-select"
           value={languageOptions.find(option => option.value === language)}
