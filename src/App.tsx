@@ -78,7 +78,7 @@ const App: React.FC = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setShowSplashScreen(false);
-    }, 4000);
+    }, 40);
 
     return () => clearTimeout(timeoutId);
   }, []);
@@ -210,11 +210,11 @@ const App: React.FC = () => {
         <Route path="/upload-file" element={<FileUpload />} />
         <Route path="/profile-update" element={<ProfileUpdate profileData={profileData} setProfileUpdated={setProfileUpdated} profileUpdated={profileUpdated} />} />
         <Route path="/projects/:projectId" element={<SelectedProject language={language} />} />
-        <Route path="/login" element={<Login language={language} setLanguage={setLanguage}  setIsAuthenticated={setIsAuthenticated} />} />
+        <Route path="/login" element={<Login language={language} setLanguage={setLanguage} setIsAuthenticated={setIsAuthenticated} />} />
         <Route path="/password-reset" element={<PasswordResetRequest />} />
         <Route path="/reset-password/:uidb64/:token" element={<PasswordReset />} />
       </Routes>
-      <Footer language={language} />
+      <Footer />
     </Router>
   )
 }
