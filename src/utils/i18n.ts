@@ -52,6 +52,10 @@ const resources = {
       //footer component
       "About Us": "About Us",
       "Contact": "Contact",
+      "about_us_1" : "Our company is an experienced project management firm focused on providing innovative and effective solutions across various industries. Our goal is to create high-quality projects that have a positive impact on our clients and partners. ",
+      "about_us_2" : 'Our team consists of highly qualified specialists who ensure full project management – from concept development and planning to design and final implementation of buildings or systems. We can handle projects of all sizes, from small-scale to large-scale endeavors. ',
+      'about_us_3' : 'The success of our company is based on quality, professionalism, and transparency. We work individually on each project, aiming to find the most efficient and cost-effective solutions. ',
+
 
       //registration component
       "Register": "Register",
@@ -149,6 +153,10 @@ const resources = {
       //footer component
       "About Us": "ჩვენს შესახებ",
       "Contact": "კონტაქტი",
+      "about_us_1" : 'ჩვენი კომპანია არის გამოცდილი პროექტების მართვაში, რომელიც ორიენტირებულია ინოვაციური და ეფექტური გადაწყვეტილებების მიწოდებაზე სხვადასხვა ინდუსტრიაში. ჩვენი მიზანია შევქმნათ მაღალი ხარისხის პროექტები, რომლებიც დადებითად აისახება ჩვენს კლიენტებსა და პარტნიორებზე. ',
+      "about_us_2" : 'ჩვენი გუნდი შედგება მაღალკვალიფიციური სპეციალისტებისგან, რომლებიც უზრუნველყოფენ პროექტის სრულ მენეჯმენტს – კონცეფციის შემუშავებას,  შენობის დაგეგმვას ან სისტემების დიზაინისა და საბოლოო დანერგვას. ჩვენ შეგვიძლია გავუმკლავდეთ როგორც მცირე ასევე ფართომასშტაბიან პროექტებს. ', 
+      "about_us_3" : 'ჩვენი კომპანიის წარმატება დაფუძნებულია ხარისხზე, პროფესიონალიზმზე და გამჭვირვალობაზე. ჩვენ ინდივიდუალურად ვმუშაობთ თითოეულ პროექტზე, რომლის მიზანია ვიპოვოთ ყველაზე ეფექტური და ეკონომიური გადაწყვეტილებები. ',
+
 
       //registration component
       "Register": "რეგისტრაცია",

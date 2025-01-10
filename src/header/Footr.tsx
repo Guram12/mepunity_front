@@ -7,14 +7,8 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 
-interface FooterProps {
-  language: string;
-}
 
-
-
-
-const Footer: React.FC<FooterProps> = ({ language }) => {
+const Footer: React.FC = () => {
 
   const [showFooter, setShowFooter] = useState<boolean>(true);
   const location = useLocation();
@@ -34,14 +28,6 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
   }, [location.pathname])
 
 
-  const change_about_language = (language: string) => {
-    if (language === "ka") {
-      return "ჩვენი კომპანია არის წამყვანი კომპანია სამშენებლო და არქიტექტურის სფეროში. ჩვენ ამ სფეროში 5 წელზე მეტია ვმუშაობთ და ბევრი წარმატებული პროექტი გვაქვს განხორციელებული. ჩვენი გუნდი დაკომპლექტებულია მაღალკვალიფიციური სპეციალისტებისგან, რომლებიც ყოველთვის მზად არიან დაგეხმაროთ ნებისმიერ შეკითხვაში."
-    } else {
-      return "Our company is a leading company in the field of construction and architecture. We have been working in this field for over 5 years and have completed many successful projects. Our team consists of highly qualified specialists who are always ready to help you with any question."
-    }
-  }
-
 
   // footer content 
   return (
@@ -49,8 +35,13 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
       <div className="footer_content_container">
 
         <div className="about_continer" >
+
           <h1 className="footer_about_h1" >{t("About Us")}</h1>
-          <p className="footer_about_p" >{change_about_language(language)}</p>
+          <p className="footer_about_p" > {t("about_us_1")} </p>
+          <p className="footer_about_p" > {t("about_us_2")} </p>
+          <p className="footer_about_p" > {t("about_us_3")} </p>
+
+
         </div>
 
         <div className="contact_container" >
@@ -67,9 +58,7 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
             </div>
           </div>
 
-
         </div>
-
         <p className="rights_reserver" >© 2024 All rights reserved.</p>
       </div>
     </footer>
@@ -78,21 +67,6 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
 
 
 export default Footer;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
