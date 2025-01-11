@@ -78,7 +78,7 @@ const MainPage: React.FC = () => {
       </div>
 
       <div className='gradient_text_container' >
-        <h1 className='gradient_texct'  >რატომ ჩვენ?</h1>
+        <h1 className='gradient_texct'  >{t("Why Choose Us?")}</h1>
       </div>
 
       {/* about us txt container */}
@@ -94,7 +94,7 @@ const MainPage: React.FC = () => {
             transition={{ type: 'spring', stiffness: 50, delay: 0.1 }}
 
           >
-            <b className='why_us_b'> გამოცდილება: </b> ფართო გამოცდილება პროექტების ფართო სპექტრში.
+            <b className='why_us_b'> {t('Experience')} </b> {t('Experience_text')}
           </motion.p>
         </div>
 
@@ -107,7 +107,7 @@ const MainPage: React.FC = () => {
             animate={controls}
             transition={{ type: 'spring', stiffness: 50, delay: 0.2 }}
           >
-            <b className='why_us_b'> კლიენტებთან ჩართულობა: </b> უწყვეტი კომუნიკაცია და კლიენტის საჭიროებების გათვალისწინება.
+            <b className='why_us_b'>{t('Client Engagement')}  </b> {t('Client Engagement_text')}
           </motion.p>
         </div>
 
@@ -120,7 +120,7 @@ const MainPage: React.FC = () => {
             animate={controls}
             transition={{ type: 'spring', stiffness: 50, delay: 0.3 }}
           >
-            <b className='why_us_b'> ინოვაციური მიდგომები: </b> თანამედროვე ტექნოლოგიებისა და ტექნიკის გამოყენება.
+            <b className='why_us_b'>  {t('Innovative Approaches')} </b> {t('Innovative Approaches_text')}
           </motion.p>
         </div>
 
@@ -133,7 +133,7 @@ const MainPage: React.FC = () => {
             animate={controls}
             transition={{ type: 'spring', stiffness: 50, delay: 0.4 }}
           >
-            <b className='why_us_b'> მაღალი ხარისხი: </b> ხარისხისა და გამძლეობის სტანდარტების მკაცრი დაცვა.
+            <b className='why_us_b'>{t('High Quality')}</b> {t('High Quality_text')}
           </motion.p>
         </div>
 
@@ -146,7 +146,7 @@ const MainPage: React.FC = () => {
             animate={controls}
             transition={{ type: 'spring', stiffness: 50, delay: 0.5 }}
           >
-            <b className='why_us_b'> დროისა და ბიუჯეტის მართვა: </b> ჩვენ ვუზრუნველყოფთ პროექტების დასრულებას დროულად და გამოყოფილი ბიუჯეტის ფარგლებში.
+            <b className='why_us_b'>{t('Time and Budget Management')} </b> {t('Time and Budget Management_text')}
           </motion.p>
         </div>
 
@@ -159,7 +159,7 @@ const MainPage: React.FC = () => {
             animate={controls}
             transition={{ type: 'spring', stiffness: 50, delay: 0.6 }}
           >
-            ჩვენი მიზანია დავეხმაროთ ჩვენს კლიენტებს წარმატების მიღწევაში და ხელი შევუწყოთ მათი ბიზნესის ან პროექტების ზრდას ყველაზე ეფექტური გზით.
+            {t('Goal')}
           </motion.p>
         </div>
 
