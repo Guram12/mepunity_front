@@ -92,7 +92,6 @@ const MainPage: React.FC = () => {
             initial={{ x: '100vw' }}
             animate={controls}
             transition={{ type: 'spring', stiffness: 50, delay: 0.1 }}
-
           >
             <b className='why_us_b'> {t('Experience')} </b> {t('Experience_text')}
           </motion.p>
