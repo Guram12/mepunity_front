@@ -78,7 +78,7 @@ const App: React.FC = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setShowSplashScreen(false);
-    }, 40);
+    }, 4000);
 
     return () => clearTimeout(timeoutId);
   }, []);
