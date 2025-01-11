@@ -52,9 +52,9 @@ const resources = {
       //footer component
       "About Us": "About Us",
       "Contact": "Contact",
-      "about_us_1" : "Our company is an experienced project management firm focused on providing innovative and effective solutions across various industries. Our goal is to create high-quality projects that have a positive impact on our clients and partners. ",
-      "about_us_2" : 'Our team consists of highly qualified specialists who ensure full project management – from concept development and planning to design and final implementation of buildings or systems. We can handle projects of all sizes, from small-scale to large-scale endeavors. ',
-      'about_us_3' : 'The success of our company is based on quality, professionalism, and transparency. We work individually on each project, aiming to find the most efficient and cost-effective solutions. ',
+      "about_us_1": "Our company is an experienced project management firm focused on providing innovative and effective solutions across various industries. Our goal is to create high-quality projects that have a positive impact on our clients and partners. ",
+      "about_us_2": 'Our team consists of highly qualified specialists who ensure full project management – from concept development and planning to design and final implementation of buildings or systems. We can handle projects of all sizes, from small-scale to large-scale endeavors. ',
+      'about_us_3': 'The success of our company is based on quality, professionalism, and transparency. We work individually on each project, aiming to find the most efficient and cost-effective solutions. ',
 
 
       //registration component
@@ -83,7 +83,7 @@ const resources = {
       "Password has chenged successfully!": "Password has chenged successfully!",
       "Redirecting to login in": "Redirecting to login in ",
       "seconds": "seconds",
-      
+
       //profile complite component
       "Enter your name": "Enter your name",
       "Enter Company Name": "Enter Company Name",
@@ -105,6 +105,22 @@ const resources = {
       "mechanical": "Mechanical",
       "plumbing_2": "Plumbing",
       "second_header_part": "Projects with the highest quality standards",
+
+      "Why Choose Us?": "Why Choose Us?",
+      "Experience": "Experience: ",
+      'Experience_text': 'Extensive experience in a wide range of project types. ',
+      'Client Engagement': 'Client Engagement: ',
+      'Client Engagement_text': "Continuous communication and consideration of client needs. ",
+      "Innovative Approaches": "Innovative Approaches: ",
+      "Innovative Approaches_text": "Use of modern technologies and techniques. ",
+      "High Quality": "High Quality: ",
+      "High Quality_text": "Strict adherence to quality and durability standards. ",
+      "Time and Budget Management": "Time and Budget Management: ",
+      "Time and Budget Management_text": 'We ensure projects are completed on time and within the allocated budget. ',
+      "Goal": "Our aim is to help our clients achieve success and facilitate the growth of their businesses or projects in the most effective way. ",
+
+
+
     }
   },
 
@@ -122,7 +138,7 @@ const resources = {
       "log in": "შესვლა",
       "Discount": "ფასდაკლება:",
       "Click on image to update profile data": "დააწკაპუნეთ სურათზე პროფილის მონაცემების განახლებისთვის",
-      "For custom discount, please log in or register" : "ინდივიდუალური ფასდაკლებისთვის გთხოვთ შეხვიდეთ სისტემაში ან დარეგისტრირდეთ",
+      "For custom discount, please log in or register": "ინდივიდუალური ფასდაკლებისთვის გთხოვთ შეხვიდეთ სისტემაში ან დარეგისტრირდეთ",
 
       //Projects component
       "Completed Projects": "დასრულებული პროექტები",
@@ -153,9 +169,9 @@ const resources = {
       //footer component
       "About Us": "ჩვენს შესახებ",
       "Contact": "კონტაქტი",
-      "about_us_1" : 'ჩვენი კომპანია არის გამოცდილი პროექტების მართვაში, რომელიც ორიენტირებულია ინოვაციური და ეფექტური გადაწყვეტილებების მიწოდებაზე სხვადასხვა ინდუსტრიაში. ჩვენი მიზანია შევქმნათ მაღალი ხარისხის პროექტები, რომლებიც დადებითად აისახება ჩვენს კლიენტებსა და პარტნიორებზე. ',
-      "about_us_2" : 'ჩვენი გუნდი შედგება მაღალკვალიფიციური სპეციალისტებისგან, რომლებიც უზრუნველყოფენ პროექტის სრულ მენეჯმენტს – კონცეფციის შემუშავებას,  შენობის დაგეგმვას ან სისტემების დიზაინისა და საბოლოო დანერგვას. ჩვენ შეგვიძლია გავუმკლავდეთ როგორც მცირე ასევე ფართომასშტაბიან პროექტებს. ', 
-      "about_us_3" : 'ჩვენი კომპანიის წარმატება დაფუძნებულია ხარისხზე, პროფესიონალიზმზე და გამჭვირვალობაზე. ჩვენ ინდივიდუალურად ვმუშაობთ თითოეულ პროექტზე, რომლის მიზანია ვიპოვოთ ყველაზე ეფექტური და ეკონომიური გადაწყვეტილებები. ',
+      "about_us_1": 'ჩვენი კომპანია არის გამოცდილი პროექტების მართვაში, რომელიც ორიენტირებულია ინოვაციური და ეფექტური გადაწყვეტილებების მიწოდებაზე სხვადასხვა ინდუსტრიაში. ჩვენი მიზანია შევქმნათ მაღალი ხარისხის პროექტები, რომლებიც დადებითად აისახება ჩვენს კლიენტებსა და პარტნიორებზე. ',
+      "about_us_2": 'ჩვენი გუნდი შედგება მაღალკვალიფიციური სპეციალისტებისგან, რომლებიც უზრუნველყოფენ პროექტის სრულ მენეჯმენტს – კონცეფციის შემუშავებას,  შენობის დაგეგმვას ან სისტემების დიზაინისა და საბოლოო დანერგვას. ჩვენ შეგვიძლია გავუმკლავდეთ როგორც მცირე ასევე ფართომასშტაბიან პროექტებს. ',
+      "about_us_3": 'ჩვენი კომპანიის წარმატება დაფუძნებულია ხარისხზე, პროფესიონალიზმზე და გამჭვირვალობაზე. ჩვენ ინდივიდუალურად ვმუშაობთ თითოეულ პროექტზე, რომლის მიზანია ვიპოვოთ ყველაზე ეფექტური და ეკონომიური გადაწყვეტილებები. ',
 
 
       //registration component
@@ -203,6 +219,22 @@ const resources = {
       "mechanical": "მექანიკური",
       "plumbing_2": "სანტექნიკური",
       "second_header_part": "პროექტები უმაღლესი ხარისხის სტანდარტებით",
+
+      "Why Choose Us?": "რატომ ჩვენ?",
+      "Experience": "გამოცდილება: ",
+      'Experience_text': 'ფართო გამოცდილება პროექტების ფართო სპექტრში. ',
+      'Client Engagement': 'კლიენტებთან ჩართულობა: ',
+      'Client Engagement_text': "უწყვეტი კომუნიკაცია და კლიენტის საჭიროებების გათვალისწინება.  ",
+      "Innovative Approaches": "ინოვაციური მიდგომები: ",
+      "Innovative Approaches_text": "თანამედროვე ტექნოლოგიებისა და ტექნიკის გამოყენება.  ",
+      "High Quality": "მაღალი ხარისხი: ",
+      "High Quality_text": "ხარისხისა და გამძლეობის სტანდარტების მკაცრი დაცვა. ",
+      "Time and Budget Management": "დროისა და ბიუჯეტის მართვა: ",
+      "Time and Budget Management_text": 'ჩვენ ვუზრუნველყოფთ პროექტების დასრულებას დროულად და გამოყოფილი ბიუჯეტის ფარგლებში. ',
+      "Goal": 'ჩვენი მიზანია დავეხმაროთ ჩვენს კლიენტებს წარმატების მიღწევაში და ხელი შევუწყოთ მათი ბიზნესის ან პროექტების ზრდას ყველაზე ეფექტური გზით. ',
+
+
+
     }
   },
 
