@@ -8,7 +8,7 @@ import { IoIosGitNetwork } from "react-icons/io";
 import { GiDiploma } from "react-icons/gi";
 import { FaBusinessTime } from "react-icons/fa";
 import { GoGoal } from "react-icons/go";
-
+import { scrollToTop } from '../utils/ScrollToTop';
 
 
 const MainPage: React.FC = () => {
@@ -16,6 +16,14 @@ const MainPage: React.FC = () => {
 
   const controls = useAnimation();
   const ref = useRef<HTMLDivElement>(null);
+
+
+
+
+  useEffect(() => {
+    scrollToTop();
+  }, [])
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -169,17 +177,6 @@ const MainPage: React.FC = () => {
 }
 
 export default MainPage;
-
-
-
-
-
-// <p className='why_us_p' ><b style={{ color: "gray" }}> გამოცდილება: </b> ფართო გამოცდილება პროექტების ფართო სპექტრში. </p>
-// <p className='why_us_p' ><b style={{ color: "gray" }} >კლიენტებთან ჩართულობა: </b> უწყვეტი კომუნიკაცია და კლიენტის საჭიროებების გათვალისწინება. </p>
-// <p className='why_us_p' ><b style={{ color: "gray" }} >ინოვაციური მიდგომები: </b> თანამედროვე ტექნოლოგიებისა და ტექნიკის გამოყენება.</p>
-// <p className='why_us_p' ><b style={{ color: "gray" }} >მაღალი ხარისხი: </b> ხარისხისა და გამძლეობის სტანდარტების მკაცრი დაცვა. </p>
-// <p className='why_us_p' ><b style={{ color: "gray" }} >დროისა და ბიუჯეტის მართვა: </b> ჩვენ ვუზრუნველყოფთ პროექტების დასრულებას დროულად და გამოყოფილი ბიუჯეტის ფარგლებში. </p>
-
 
 
 
