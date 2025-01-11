@@ -36,7 +36,7 @@ const Header: React.FC<HeaderProps> = ({
   setLanguage
 }) => {
 
-
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [showHeader, setShowHeader] = useState<boolean>(true);
   const [menuVisible, setMenuVisible] = useState<boolean>(false);
   const [is_desktop_TooltipOpen, setIs_desktop_TooltipOpen] = useState<boolean>(false);
@@ -74,6 +74,25 @@ const Header: React.FC<HeaderProps> = ({
       return () => clearTimeout(showTooltipTimeout);
     }
   }, []);
+
+  // ==============================================================================
+
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+  
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
 
 
   // ==============================================================================
@@ -127,10 +146,10 @@ const Header: React.FC<HeaderProps> = ({
   const hanbdleLgoClick = () => {
     navigate("/");
   }
-  
+
 
   return (
-    <div className={`main_header_cont  ${!showHeader ? "remove_header" : ""}`} >
+    <div className={`main_header_cont  ${!showHeader ? "remove_header" : ""} ${isScrolled ? "scrolled" : ""}`} >
       <div className='logo_cont'>
         <svg
           onClick={hanbdleLgoClick}
