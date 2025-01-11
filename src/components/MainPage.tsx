@@ -1,10 +1,42 @@
 import '../styles/MainPage.css';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { BsClipboard2Data } from "react-icons/bs";
+import { useRef, useEffect } from 'react';
+import { FaUserCheck } from "react-icons/fa";
+import { IoIosGitNetwork } from "react-icons/io";
+import { GiDiploma } from "react-icons/gi";
+import { FaBusinessTime } from "react-icons/fa";
+import { GoGoal } from "react-icons/go";
+
 
 
 const MainPage: React.FC = () => {
   const { t } = useTranslation();
+
+  const controls = useAnimation();
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          controls.start({ x: 0 });
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, [controls]);
 
 
 
@@ -45,25 +77,111 @@ const MainPage: React.FC = () => {
         </p>
       </div>
 
-      <div className='about_us_text' >
-        <div>
-
-          <h1>რატომ ჩვენ?</h1>
-          <p><b>გამოცდილება:</b> ფართო გამოცდილება პროექტების ფართო სპექტრში. </p>
-          <p><b>კლიენტებთან ჩართულობა:</b>უწყვეტი კომუნიკაცია და კლიენტის საჭიროებების გათვალისწინება. </p>
-          <p><b>ინოვაციური მიდგომები</b>თანამედროვე ტექნოლოგიებისა და ტექნიკის გამოყენება.</p>
-          <p><b>მაღალი ხარისხი: </b>ხარისხისა და გამძლეობის სტანდარტების მკაცრი დაცვა. </p>
-          <p><b>დროისა და ბიუჯეტის მართვა: </b>ჩვენ ვუზრუნველყოფთ პროექტების დასრულებას დროულად და გამოყოფილი ბიუჯეტის ფარგლებში. </p>
-
-
-
-
-        </div>
+      <div className='gradient_text_container' >
+        <h1 className='gradient_texct'  >რატომ ჩვენ?</h1>
       </div>
 
+      {/* about us txt container */}
+      <div className='about_us_text_container' ref={ref} >
 
+        {/* 1 text and icon container */}
+        <div className='text_and_icon_container' >
+          <BsClipboard2Data id='why_us_icon' />
+          <motion.p
+            className='why_us_p'
+            initial={{ x: '100vw' }}
+            animate={controls}
+            transition={{ type: 'spring', stiffness: 50, delay: 0.1 }}
+
+          >
+            <b className='why_us_b'> გამოცდილება: </b> ფართო გამოცდილება პროექტების ფართო სპექტრში.
+          </motion.p>
+        </div>
+
+        {/* 2 text and icon container */}
+        <div className='text_and_icon_container'>
+          <FaUserCheck id='why_us_icon' />
+          <motion.p
+            className='why_us_p'
+            initial={{ x: '100vw' }}
+            animate={controls}
+            transition={{ type: 'spring', stiffness: 50, delay: 0.2 }}
+          >
+            <b className='why_us_b'> კლიენტებთან ჩართულობა: </b> უწყვეტი კომუნიკაცია და კლიენტის საჭიროებების გათვალისწინება.
+          </motion.p>
+        </div>
+
+        {/* 3 text and icon container */}
+        <div className='text_and_icon_container'>
+          <IoIosGitNetwork id='why_us_icon' />
+          <motion.p
+            className='why_us_p'
+            initial={{ x: '100vw' }}
+            animate={controls}
+            transition={{ type: 'spring', stiffness: 50, delay: 0.3 }}
+          >
+            <b className='why_us_b'> ინოვაციური მიდგომები: </b> თანამედროვე ტექნოლოგიებისა და ტექნიკის გამოყენება.
+          </motion.p>
+        </div>
+
+        {/* 4 text and icon container */}
+        <div className='text_and_icon_container'>
+          <GiDiploma id='why_us_icon' />
+          <motion.p
+            className='why_us_p'
+            initial={{ x: '100vw' }}
+            animate={controls}
+            transition={{ type: 'spring', stiffness: 50, delay: 0.4 }}
+          >
+            <b className='why_us_b'> მაღალი ხარისხი: </b> ხარისხისა და გამძლეობის სტანდარტების მკაცრი დაცვა.
+          </motion.p>
+        </div>
+
+        {/* 5 text and icon container */}
+        <div className='text_and_icon_container'>
+          <FaBusinessTime id='why_us_icon' />
+          <motion.p
+            className='why_us_p'
+            initial={{ x: '100vw' }}
+            animate={controls}
+            transition={{ type: 'spring', stiffness: 50, delay: 0.5 }}
+          >
+            <b className='why_us_b'> დროისა და ბიუჯეტის მართვა: </b> ჩვენ ვუზრუნველყოფთ პროექტების დასრულებას დროულად და გამოყოფილი ბიუჯეტის ფარგლებში.
+          </motion.p>
+        </div>
+
+        {/* 6 text and icon container */}
+        <div className='text_and_icon_container'>
+          <GoGoal id='why_us_icon' />
+          <motion.p
+            className='gola_p'
+            initial={{ x: '100vw' }}
+            animate={controls}
+            transition={{ type: 'spring', stiffness: 50, delay: 0.6 }}
+          >
+            ჩვენი მიზანია დავეხმაროთ ჩვენს კლიენტებს წარმატების მიღწევაში და ხელი შევუწყოთ მათი ბიზნესის ან პროექტების ზრდას ყველაზე ეფექტური გზით.
+          </motion.p>
+        </div>
+
+
+      </div>
     </div>
   )
 }
 
 export default MainPage;
+
+
+
+
+
+// <p className='why_us_p' ><b style={{ color: "gray" }}> გამოცდილება: </b> ფართო გამოცდილება პროექტების ფართო სპექტრში. </p>
+// <p className='why_us_p' ><b style={{ color: "gray" }} >კლიენტებთან ჩართულობა: </b> უწყვეტი კომუნიკაცია და კლიენტის საჭიროებების გათვალისწინება. </p>
+// <p className='why_us_p' ><b style={{ color: "gray" }} >ინოვაციური მიდგომები: </b> თანამედროვე ტექნოლოგიებისა და ტექნიკის გამოყენება.</p>
+// <p className='why_us_p' ><b style={{ color: "gray" }} >მაღალი ხარისხი: </b> ხარისხისა და გამძლეობის სტანდარტების მკაცრი დაცვა. </p>
+// <p className='why_us_p' ><b style={{ color: "gray" }} >დროისა და ბიუჯეტის მართვა: </b> ჩვენ ვუზრუნველყოფთ პროექტების დასრულებას დროულად და გამოყოფილი ბიუჯეტის ფარგლებში. </p>
+
+
+
+
+
