@@ -350,7 +350,7 @@
     position: absolute;
     top: 80px;
     left: 0;
-    background-color: black ; /* Transparent background */
+    background-color: black;
     width: 100%;
     padding: 10px;
     animation: slideDown 0.3s ease forwards;
