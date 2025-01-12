@@ -157,7 +157,7 @@ const App: React.FC = () => {
 
 
 
-
+  // splash screen  ==============================================
   if (showSplashScreen) {
     return (
       <div className='shpash_screen_container' >
@@ -194,7 +194,6 @@ const App: React.FC = () => {
 
   return (
     <Router>
-
       <Header
         language={language}
         setLanguage={setLanguage}
