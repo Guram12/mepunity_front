@@ -26,9 +26,7 @@ interface HeaderProps {
 
 }
 
-
-
-// ===================================================================================
+// ==========================    header component  ================================
 const Header: React.FC<HeaderProps> = ({
   profileData,
   isAuthenticated,
@@ -44,9 +42,7 @@ const Header: React.FC<HeaderProps> = ({
 
 
   const location = useLocation();
-
   const { t, i18n } = useTranslation();
-
   const navigate = useNavigate();
 
 
@@ -86,7 +82,7 @@ const Header: React.FC<HeaderProps> = ({
         setIsScrolled(false);
       }
     };
-  
+
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
