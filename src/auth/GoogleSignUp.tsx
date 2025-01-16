@@ -2,7 +2,7 @@ import "../styles/GoogleSignUp.css"
 import "../styles/Loader.css"
 import { GoogleOAuthProvider, GoogleLogin, CredentialResponse } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axiosInstance from "../utils/axiosInstance";
 import { RiUserSearchFill } from "react-icons/ri";
 import { MdBusinessCenter } from "react-icons/md";
@@ -35,6 +35,11 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
 
   const { t } = useTranslation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log("loading", loading)
+  },[])
+
 
   const handleGoogleLoginSuccess = async (credentialResponse: CredentialResponse) => {
     try {
@@ -93,7 +98,7 @@ const GoogleSignUp: React.FC<GoogleOuthProps> = ({ setIsAuthenticated, setIsGoog
       setLoading(false);
       console.error('Error during profile setup:', error.response);
       const errorMessage = error.response?.data?.username?.[0] || error.response?.data?.detail || error.response?.data?.company?.[0] || 'Error during profile setup. Please try again.';
-      setError(errorMessage); 
+      setError(errorMessage);
     }
   };
 
