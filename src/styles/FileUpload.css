@@ -197,7 +197,7 @@
 
 
 .drag_drop_area {
-  border: 2px dashed #00a753;
+  border: 2px dashed rgb(145, 145, 145);;
   border-radius: 10px;
   padding: 20px;
   text-align: center;

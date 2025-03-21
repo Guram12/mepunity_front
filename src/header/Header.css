@@ -110,15 +110,19 @@
   position: absolute;
   width: 0%;
   height: 2px;
-  background-color: #00a753;
+  background-color: #ffffff;
   transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
   transition-duration: 400ms;
   transition-property: width, left;
 }
 
 .header_button.active {
-  color: #00a753;
+  background: linear-gradient(90deg, #cc1f30, #6e2764, #004d98);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
 
 .profile_picture {
   width: 40px;

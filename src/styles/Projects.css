@@ -25,7 +25,9 @@
 .project_header_line {
   width: 85%;
   height: 1px;
-  background-color: #00a753;
+  /* background-color: #00a753; */
+  background: linear-gradient(90deg, #cc1f30, #6e2764, #004d98);
+
 }
 
 .projects_loader {
