@@ -31,8 +31,9 @@
 
 .child_div_line {
   width: 70%;
-  background-color: #00a753;
-  height: 2px;
+
+  background: linear-gradient(90deg, #cc1f30, #6e2764, #004d98);
+  height: 1px;
 }
 
 .services_container {
