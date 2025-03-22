@@ -7,11 +7,18 @@ import { useTranslation } from 'react-i18next';
 import { scrollToTop } from "../utils/ScrollToTop"
 import { motion } from 'framer-motion';
 
+import FormControl from '@mui/material/FormControl';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
+
 interface CalculateProps {
   language: string,
   profileData: ProfileData | null,
   isAuthenticated: boolean,
 }
+
+
 
 interface ProjectServicesType {
   id: number,
@@ -19,8 +26,18 @@ interface ProjectServicesType {
   name_ka: string,
   name_en: string,
   discount_percentage: string,
-  price_per_sqm_below: string,
-  price_per_sqm_above: string,
+  price_per_sqm_below_hotel: string,
+  price_per_sqm_above_hotel: string,
+  price_per_sqm_below_residential: string,
+  price_per_sqm_above_residential: string,
+  price_per_sqm_below_enterprise: string,
+  price_per_sqm_above_enterprise: string,
+}
+
+interface BuildingType {
+  hotel: boolean,
+  residential: boolean,
+  enterprise: boolean
 }
 
 const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated, language }) => {
@@ -31,6 +48,13 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated, lan
   const [warning, setWarning] = useState<string>('');
   const [contentLoaded, setContentLoaded] = useState<boolean>(false);
   const [minimum_space_for_newprice, setMinimum_space_for_newprice] = useState<number>(0);
+  const [buildingType, setBuildingType] = useState<BuildingType>({
+    hotel: true,
+    residential: false,
+    enterprise: false
+  });
+
+
 
   const { t } = useTranslation();
 
@@ -107,7 +131,7 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated, lan
 
   useEffect(() => {
     calculate_full_price();
-  }, [markedItems, square_meter]);
+  }, [markedItems, square_meter, buildingType.enterprise, buildingType.hotel, buildingType.residential]);
 
 
 
@@ -122,8 +146,17 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated, lan
       const service = projectServices?.find(service => service.id === id);
       if (service && square_meter) {
         setWarning('');
-        
-        let price_per_sqm = Number(square_meter) > minimum_space_for_newprice ? Number(service.price_per_sqm_above) : Number(service.price_per_sqm_below);
+
+        let price_per_sqm;
+        if (buildingType.hotel === true) {
+          price_per_sqm = Number(square_meter) > minimum_space_for_newprice ? Number(service.price_per_sqm_above_hotel) : Number(service.price_per_sqm_below_hotel);
+        } else if (buildingType.residential === true) {
+          price_per_sqm = Number(square_meter) > minimum_space_for_newprice ? Number(service.price_per_sqm_above_residential) : Number(service.price_per_sqm_below_residential);
+        } else {
+          price_per_sqm = Number(square_meter) > minimum_space_for_newprice ? Number(service.price_per_sqm_above_enterprise) : Number(service.price_per_sqm_below_enterprise);
+        }
+
+
         if (!isAuthenticated && markedItems.size > 1) {
           const discount = Number(service.discount_percentage);
           price_per_sqm -= (price_per_sqm * discount / 100);
@@ -164,6 +197,26 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated, lan
     }),
   };
 
+
+// ==================================== change building type =====================================
+  const handleChange_building_type = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = event.target;
+
+    // If the user is trying to disable the last enabled building type, prevent it
+    if (!checked && Object.values(buildingType).filter(Boolean).length === 1) {
+      return;
+    }
+
+    // Ensure only one building type is toggled on at a time
+    setBuildingType({
+      hotel: name === "Hotel" ? checked : false,
+      residential: name === "Residential" ? checked : false,
+      enterprise: name === "Enterprise" ? checked : false,
+    });
+  };
+
+
+
   return (
     <div className="main_calculation_container">
       <div className="parent_div_line">
@@ -175,6 +228,93 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated, lan
           <h3>{warning}</h3>
         </div>
       )}
+
+      <div className="building_type_container" >
+        <FormControl component="fieldset" variant="standard">
+          <FormGroup row >
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={buildingType.hotel}
+                  onChange={handleChange_building_type}
+                  name="Hotel"
+                  sx={{
+                    '& .MuiSwitch-switchBase.Mui-checked': {
+                      color: 'rgb(27, 201, 119)', // Custom color for the checked state
+                      '&:hover': {
+                        backgroundColor: 'rgba(22, 92, 59, 0.08)', // Custom hover color for the checked state
+                      },
+                    },
+                    '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
+                      backgroundColor: 'rgb(22, 92, 59)', // Custom track color for the checked state
+                    },
+                  }}
+
+                />
+              }
+              label={t("Hotel")}
+              sx={{
+                '& .MuiFormControlLabel-label': {
+                  fontWeight: 'bold', // Custom font weight for the label text
+                },
+              }}
+            />
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={buildingType.residential}
+                  onChange={handleChange_building_type}
+                  name="Residential"
+                  sx={{
+                    '& .MuiSwitch-switchBase.Mui-checked': {
+                      color: 'rgb(27, 201, 119)', // Custom color for the checked state
+                      '&:hover': {
+                        backgroundColor: 'rgba(22, 92, 59, 0.08)', // Custom hover color for the checked state
+                      },
+                    },
+                    '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
+                      backgroundColor: 'rgb(22, 92, 59)', // Custom track color for the checked state
+                    },
+                  }}
+                />
+              }
+              label={t("Residential")}
+              sx={{
+                '& .MuiFormControlLabel-label': {
+                  fontWeight: 'bold', // Custom font weight for the label text
+                },
+              }}
+            />
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={buildingType.enterprise}
+                  onChange={handleChange_building_type}
+                  name="Enterprise"
+                  sx={{
+                    '& .MuiSwitch-switchBase.Mui-checked': {
+                      color: 'rgb(27, 201, 119)', // Custom color for the checked state
+                      '&:hover': {
+                        backgroundColor: 'rgba(22, 92, 59, 0.08)', // Custom hover color for the checked state
+                      },
+                    },
+                    '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
+                      backgroundColor: 'rgb(22, 92, 59)', // Custom track color for the checked state
+                    },
+                  }}
+                />
+              }
+              label={t("Enterprise")}
+              sx={{
+                '& .MuiFormControlLabel-label': {
+                  fontWeight: 'bold', // Custom font weight for the label text
+                },
+              }}
+            />
+          </FormGroup>
+        </FormControl>
+      </div>
+
       <div className="services_container" >
 
         <h3 className="service_name" >{t("electricity")}</h3>
@@ -322,6 +462,9 @@ export default Calculate;
 
 
 
+// 1) sastumros proeqtireba
+// 2) sacxovrebeli saxlis proeqtireba
+// 3) sawarmo da sxva specializirebuli obieqtebis proeqtireba
 
 
 

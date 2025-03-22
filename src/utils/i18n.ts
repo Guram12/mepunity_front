@@ -27,7 +27,7 @@ const resources = {
       "Completed Projects": "Completed Projects",
 
       //calculate component
-      "Select the desired service": "Select the desired service",
+      "Select the desired service": "Select the desired building type and service.",
       "electricity": "Electric",
       "Mechanical": "Mechanical",
       "plumbing": "Plumbing",
@@ -35,6 +35,10 @@ const resources = {
       "Anter area": "Anter area",
       "Clear": "Clear",
       "Total price": "Total price : ",
+      "Hotel": "Hotel",
+      "Residential": "Residential",
+      "Enterprise": "Enterprise and other specialized facilities",
+
 
       // file upload component
       "File upload wait massage": "Please wait for the files to upload. This may take a couple of minutes.",
@@ -144,14 +148,17 @@ const resources = {
       "Completed Projects": "დასრულებული პროექტები",
 
       //calculate component
-      "Select the desired service": "აირჩიეთ სასურველი სერვისი",
+      "Select the desired service": "აირჩიეთ სასურველი შენობა-ნაგებობის ტიპი და სერვისი",
       "electricity": "ელექტროობა",
-      "Mechanical": "მექანიკური",
+      "Mechanical": "მექანიკა",
       "plumbing": "სანტექნიკა",
       "Area": "ფართობი ( მ² )",
       "Anter area": "შეიყვანე ფართობი",
       "Clear": "გასუფთავება",
       "Total price": "სრული ფასი : ",
+      "Hotel": "სასტუმრო",
+      "Residential": "საცხოვრებელი",
+      "Enterprise": "საწარმო და სხვა სპეციალიზირებული ობიექტები",
 
       // file upload component
       "File upload wait massage": "გთხოვთ, დაელოდოთ ფაილების ატვირთვას. პროცესი შეიძლება რამდენიმე წუთი გაგრძელდეს.",
