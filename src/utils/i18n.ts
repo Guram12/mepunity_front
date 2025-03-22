@@ -35,6 +35,10 @@ const resources = {
       "Anter area": "Anter area",
       "Clear": "Clear",
       "Total price": "Total price : ",
+      "Hotel": "Hotel",
+      "Residential": "Residential",
+      "Enterprise": "Enterprise",
+
 
       // file upload component
       "File upload wait massage": "Please wait for the files to upload. This may take a couple of minutes.",
@@ -152,6 +156,9 @@ const resources = {
       "Anter area": "შეიყვანე ფართობი",
       "Clear": "გასუფთავება",
       "Total price": "სრული ფასი : ",
+      "Hotel": "სასტუმრო",
+      "Residential": "საცხოვრებელი",
+      "Enterprise": "საწარმო",
 
       // file upload component
       "File upload wait massage": "გთხოვთ, დაელოდოთ ფაილების ატვირთვას. პროცესი შეიძლება რამდენიმე წუთი გაგრძელდეს.",
