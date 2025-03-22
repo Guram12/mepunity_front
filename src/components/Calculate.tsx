@@ -197,12 +197,8 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated, lan
     }),
   };
 
-  // 1) sastumros proeqtireba
-  // 2) sacxovrebeli saxlis proeqtireba
-  // 3) sawarmo da sxva specializirebuli obieqtebis proeqtireba
 
-
-
+// ==================================== change building type =====================================
   const handleChange_building_type = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target;
 
@@ -235,7 +231,7 @@ const Calculate: React.FC<CalculateProps> = ({ profileData, isAuthenticated, lan
 
       <div className="building_type_container" >
         <FormControl component="fieldset" variant="standard">
-          <FormGroup  row >
+          <FormGroup row >
             <FormControlLabel
               control={
                 <Switch
@@ -466,6 +462,9 @@ export default Calculate;
 
 
 
+// 1) sastumros proeqtireba
+// 2) sacxovrebeli saxlis proeqtireba
+// 3) sawarmo da sxva specializirebuli obieqtebis proeqtireba
 
 
 
