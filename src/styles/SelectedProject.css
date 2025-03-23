@@ -14,6 +14,25 @@
   align-items: center;
 }
 
+.fullscreen_mode {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fullscreen_mode .image_wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.fullscreen_mode .main_slider_image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .sel_pr_h1 {
   font-size: 40px;
   margin-bottom: 20px;
