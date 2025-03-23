@@ -8,8 +8,6 @@ import { FaAnglesLeft, FaAnglesRight, FaExpand } from "react-icons/fa6";
 import { useTranslation } from "react-i18next";
 import { scrollToTop } from "../utils/ScrollToTop";
 
-
-
 interface SelectedProjectProps {
   language: string;
 }
@@ -22,12 +20,10 @@ const SelectedProject: React.FC<SelectedProjectProps> = ({ language }) => {
   const { projectId } = useParams<{ projectId: string }>();
   const { t } = useTranslation();
 
-
   useEffect(() => {
     scrollToTop();
   }, []);
 
-  // =========================================================================================
   useEffect(() => {
     const fetchSelectedProject = async () => {
       try {
@@ -39,7 +35,6 @@ const SelectedProject: React.FC<SelectedProjectProps> = ({ language }) => {
     };
     fetchSelectedProject();
   }, [projectId]);
-
 
   const handleNextImage = () => {
     if (!project) return;
@@ -66,9 +61,6 @@ const SelectedProject: React.FC<SelectedProjectProps> = ({ language }) => {
     }
   }
 
-
-
-
   if (!project) {
     return (
       <div className="loader_on_selected_project">
@@ -87,7 +79,7 @@ const SelectedProject: React.FC<SelectedProjectProps> = ({ language }) => {
   }
 
   return (
-    <div className="selected_project_main_container">
+    <div className={`selected_project_main_container ${isFullScreen ? 'fullscreen_mode' : ''}`}>
       <h1 className="sel_pr_h1" >{language === "en" ? project?.title_en : project?.title_ka}</h1>
       <div className="selected_project_child_cont">
         {!isFullScreen && (
@@ -111,7 +103,6 @@ const SelectedProject: React.FC<SelectedProjectProps> = ({ language }) => {
           {isFullScreen && (
             <FaAnglesRight className="onfullscreen_slider_button_right" onClick={handleNextImage} />
           )}
-          {/* dot container  */}
           <div className="dots_container">
             {project?.images?.map((_, index) => (
               <span
