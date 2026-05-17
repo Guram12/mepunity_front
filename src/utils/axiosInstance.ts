@@ -1,7 +1,11 @@
 import axios from 'axios';
 
-const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : 'https://mepunity-back.fly.dev';
+const baseURL = import.meta.env.DEV
+  ? 'http://localhost:8000'
+  : 'https://mepunity-back.fly.dev';
 
+
+  
 const axiosInstance = axios.create({
   baseURL: baseURL,
 });
