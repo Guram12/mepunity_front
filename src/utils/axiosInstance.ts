@@ -2,10 +2,10 @@ import axios from 'axios';
 
 const baseURL = import.meta.env.DEV
   ? 'http://localhost:8000'
-  : 'https://mepunity-back.fly.dev';
+  : 'https://api.mepunity.com';
 
 
-  
+
 const axiosInstance = axios.create({
   baseURL: baseURL,
 });
